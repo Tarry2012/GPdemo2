@@ -1,0 +1,27 @@
+.container{
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 500px;
+}
+.page-container {
+    text-align: center;
+}
+.input-group-lg{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-group>.btn:first-child{
+    margin-right: 250px;
+   /* margin-top: 20px;*/
+    margin-left: 5px;
+}
+
+.panel-signin {
+    width: 500px;
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+}
