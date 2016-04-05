@@ -112,7 +112,7 @@ DROP TABLE IF EXISTS `wd_user`;
 CREATE TABLE `wd_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(20) NOT NULL,
-  `user_passwd` varchar(20) NOT NULL,
+  `user_passwd` varchar(300) DEFAULT NULL,
   `user_sex` char(2) DEFAULT NULL,
   `user_mail` varchar(50) NOT NULL,
   `user_picture` varchar(100) DEFAULT NULL,
@@ -146,9 +146,9 @@ DROP TABLE IF EXISTS `wd_user_interest`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `wd_user_interest` (
-  `user_id` int(11) DEFAULT NULL,
-  `interest_id` int(11) DEFAULT NULL,
-  KEY `userinte` (`user_id`),
+  `user_id` int(11) NOT NULL,
+  `interest_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`interest_id`),
   KEY `interest` (`interest_id`),
   CONSTRAINT `wd_user_interest_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`),
   CONSTRAINT `wd_user_interest_ibfk_2` FOREIGN KEY (`interest_id`) REFERENCES `wd_interest` (`interest_id`)
@@ -234,9 +234,9 @@ DROP TABLE IF EXISTS `wd_video_interest`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `wd_video_interest` (
-  `video_id` int(11) DEFAULT NULL,
-  `interest_id` int(11) DEFAULT NULL,
-  KEY `vidinte` (`video_id`),
+  `video_id` int(11) NOT NULL,
+  `interest_id` int(11) NOT NULL,
+  PRIMARY KEY (`video_id`,`interest_id`),
   KEY `inter` (`interest_id`),
   CONSTRAINT `wd_video_interest_ibfk_1` FOREIGN KEY (`video_id`) REFERENCES `wd_video` (`video_id`),
   CONSTRAINT `wd_video_interest_ibfk_2` FOREIGN KEY (`interest_id`) REFERENCES `wd_interest` (`interest_id`)
@@ -261,4 +261,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-04 23:40:35
+-- Dump completed on 2016-04-05  9:31:28
