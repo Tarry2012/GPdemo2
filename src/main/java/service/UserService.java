@@ -11,9 +11,8 @@ import java.util.List;
 public interface UserService {
     String SPRING_NAME = "userService";
 
-    UserDO findByUserName(String userName);
+    UserDO getById(String userName);
 
-    Integer updateUserLoginInfo(int userId);
+    Integer updateLoginById(int userId);
 
-    List<UserDO> findPage(Page page);
 }

@@ -28,6 +28,8 @@
     <freemarker-verison>2.3.23</freemarker-verison>
     <jsp-api-version>2.0</jsp-api-version>
     <axis-version>1.4</axis-version>
+    <commons-codec-version>1.10</commons-codec-version>
+    <bcprov-jdk16-version>1.46</bcprov-jdk16-version>
   </properties>
 
   <repositories>
@@ -200,6 +202,20 @@
       <artifactId>axis</artifactId>
       <version>${axis-version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>${commons-codec-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk16</artifactId>
+      <version>${bcprov-jdk16-version}</version>
+    </dependency>
+
+
 
   </dependencies>
   <build>

@@ -15,11 +15,11 @@
         <result column="last_login_time" property="lastLoginTime"/>
     </resultMap>
 
-    <select id="findByUserName" parameterType="String" resultMap="UserMap">
+    <select id="getById" parameterType="String" resultMap="UserMap">
         select * from wd_user where user_name=#{userName}
     </select>
 
-    <update id="updateUserLoginInfo" parameterType="Integer">
+    <update id="updateLoginById" parameterType="Integer">
         update wd_user set login_times = login_times + 1, last_login_time = now() where user_id= #{userId}
     </update>
 

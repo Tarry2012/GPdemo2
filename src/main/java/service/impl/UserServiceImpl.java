@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService{
         return userDAO;
     }
 
-    public UserDO findByUserName(String userName) {
-        UserDO user =  this.userDAO.findByUserName(userName);
+    public UserDO getById(String userName) {
+        UserDO user =  this.userDAO.getById(userName);
         if (user == null){
             System.out.println("username is null");
         }else{
@@ -41,12 +41,9 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
-    public Integer updateUserLoginInfo(int userId){
+    public Integer updateLoginById(int userId){
         System.out.println("userId: " + userId);
-        return this.userDAO.updateUserLoginInfo(userId);
+        return this.userDAO.updateLoginById(userId);
     }
 
-    public List<UserDO> findPage (Page page){
-        return this.userDAO.findPage(page);
-    }
 }

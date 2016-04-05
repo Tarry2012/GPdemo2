@@ -12,10 +12,9 @@ import java.util.List;
 public interface UserDAO {
 //    @Select("select user_id as userId, user_name as userName, user_password as userPassword, login_times as loginTimes," +
 //            "last_login_time as lastLoginTime from user where user_name=#{userName}")
-    UserDO findByUserName(@Param("userName")String userName);
+    UserDO getById(@Param("userName")String userName);
  //   @Update("update user set login_times = login_times + 1, last_login_time = now() where user_id= #{userId}")
-    Integer updateUserLoginInfo(@Param("userId")int userId);
+    Integer updateLoginById(@Param("userId")int userId);
 
-    List<UserDO>findPage(Page page);
     Integer insertUser(@Param("userName")String userName, @Param("password")String password, @Param("mail")String mail);
 }

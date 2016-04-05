@@ -32,7 +32,7 @@ public class UserTest extends AbstractJUnit4SpringContextTests{
     UserService userService;
     @Test
     public void findByName() {
-        UserDO user = userService.findByUserName("test1");
+        UserDO user = userService.getById("test1");
         if (user == null) {
             System.out.println("user is null");
         } else {
@@ -56,7 +56,7 @@ public class UserTest extends AbstractJUnit4SpringContextTests{
             }
         }
 
-        System.out.println(userService.updateUserLoginInfo(2));
+        System.out.println(userService.updateLoginById(2));
 
     }
 
