@@ -9,16 +9,11 @@ public class AESTest {
 
     @Test
     public  void AesTest(){
-        String content = "test";
-        String password = "12345678";
-        //加密
-        System.out.println("加密前：" + content);
-        byte[] encryptResult = AES.encrypt(content, password);
-        String tt4 = Base64.encode(encryptResult);
-        System.out.println(new String(tt4));
+        String ID = "tqy12345678";
 
-        //解密
-        byte[] decryptResult = AES.decrypt(encryptResult,password);
-        System.out.println("解密后：" + new String(decryptResult));
+        String idEncrypt = AES.encrypt(ID);
+        System.out.println(idEncrypt);
+        String idDecrypt = AES.decrypt(idEncrypt);
+        System.out.println(idDecrypt);
     }
 }

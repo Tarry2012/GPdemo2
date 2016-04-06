@@ -112,7 +112,7 @@ DROP TABLE IF EXISTS `wd_user`;
 CREATE TABLE `wd_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(20) NOT NULL,
-  `user_passwd` varchar(300) DEFAULT NULL,
+  `user_passwd` varchar(450) DEFAULT NULL,
   `user_sex` char(2) DEFAULT NULL,
   `user_mail` varchar(50) NOT NULL,
   `user_picture` varchar(100) DEFAULT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE `wd_user` (
 
 LOCK TABLES `wd_user` WRITE;
 /*!40000 ALTER TABLE `wd_user` DISABLE KEYS */;
-INSERT INTO `wd_user` VALUES (1,'test1','123456','女','`123456789@qq.com',NULL,NULL,'2016-04-04 14:32:46',NULL);
+INSERT INTO `wd_user` VALUES (1,'test1','123456','女','`123456789@qq.com',NULL,NULL,'2016-04-06 00:02:02',NULL);
 /*!40000 ALTER TABLE `wd_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,4 +261,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-05  9:31:28
+-- Dump completed on 2016-04-06 10:33:22
