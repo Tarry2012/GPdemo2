@@ -84,7 +84,7 @@ CREATE TABLE `wd_note` (
   `user_id` int(11) DEFAULT NULL,
   `video_id` int(11) DEFAULT NULL,
   `note_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `note_address` varchar(100) DEFAULT NULL,
+  `note_content` longtext,
   `note_name` varchar(30) DEFAULT NULL,
   KEY `noteuser` (`user_id`),
   KEY `notevid` (`video_id`),
@@ -261,4 +261,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-06 10:33:22
+-- Dump completed on 2016-04-06 13:19:58
