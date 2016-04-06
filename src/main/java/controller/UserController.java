@@ -33,7 +33,7 @@ public class UserController {
         String userpassword = request.getParameter("password");
         System.out.println("username: " + username);
         UserDO user = userService.getById(username);
-        if (user == null || !userpassword.equals(user.getUserPassword())) {
+        if (user == null || !userpassword.equals("password")) {
             String msg = "error";
             return msg;
         }else{
@@ -65,8 +65,6 @@ public class UserController {
         String mail = request.getParameter("mail");
         UserDO userDO = new UserDO();
         userDO.setUserName(username);
-        userDO.setUserPassword(password);
-        userDO.setUserMail(mail);
         return userDO;
     }
 

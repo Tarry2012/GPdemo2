@@ -9,9 +9,7 @@ import java.util.Date;
 public class UserDO implements Serializable{
     private int userId;
     private String userName;
-    private String userPassword;
     private String userSex;
-    private String userMail;
     private String userPicture;
     private String userHomePage;
     private int loginTimes;
@@ -23,10 +21,6 @@ public class UserDO implements Serializable{
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
     }
 
     public void setLoginTimes(int loginTimes) {
@@ -45,9 +39,6 @@ public class UserDO implements Serializable{
         return userName;
     }
 
-    public String getUserPassword() {
-        return userPassword;
-    }
 
     public int getLoginTimes() {
         return loginTimes;
@@ -61,10 +52,6 @@ public class UserDO implements Serializable{
         return userSex;
     }
 
-    public String getUserMail() {
-        return userMail;
-    }
-
     public String getUserPicture() {
         return userPicture;
     }
@@ -75,10 +62,6 @@ public class UserDO implements Serializable{
 
     public void setUserSex(String userSex) {
         this.userSex = userSex;
-    }
-
-    public void setUserMail(String userMail) {
-        this.userMail = userMail;
     }
 
     public void setUserPicture(String userPicture) {
@@ -94,9 +77,7 @@ public class UserDO implements Serializable{
         return "UserDO{" +
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
-                ", userPassword='" + userPassword + '\'' +
                 ", userSex='" + userSex + '\'' +
-                ", userMail='" + userMail + '\'' +
                 ", userPicture='" + userPicture + '\'' +
                 ", userHomePage='" + userHomePage + '\'' +
                 ", loginTimes=" + loginTimes +

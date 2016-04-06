@@ -112,18 +112,13 @@ DROP TABLE IF EXISTS `wd_user`;
 CREATE TABLE `wd_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(20) NOT NULL,
-  `user_passwd` varchar(450) DEFAULT NULL,
   `user_sex` char(2) DEFAULT NULL,
-  `user_mail` varchar(50) NOT NULL,
   `user_picture` varchar(100) DEFAULT NULL,
   `user_home_page` varchar(100) DEFAULT NULL,
   `last_login_time` datetime DEFAULT NULL,
   `login_times` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
-  UNIQUE KEY `user_mail` (`user_mail`),
-  UNIQUE KEY `user_mail_2` (`user_mail`),
-  UNIQUE KEY `user_mail_3` (`user_mail`),
   UNIQUE KEY `user_home_page` (`user_home_page`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -134,8 +129,37 @@ CREATE TABLE `wd_user` (
 
 LOCK TABLES `wd_user` WRITE;
 /*!40000 ALTER TABLE `wd_user` DISABLE KEYS */;
-INSERT INTO `wd_user` VALUES (1,'test1','123456','女','`123456789@qq.com',NULL,NULL,'2016-04-06 00:02:02',NULL);
+INSERT INTO `wd_user` VALUES (1,'test1','女',NULL,NULL,'2016-04-06 00:02:02',NULL);
 /*!40000 ALTER TABLE `wd_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wd_user_auths`
+--
+
+DROP TABLE IF EXISTS `wd_user_auths`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wd_user_auths` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `login_type` int(11) DEFAULT NULL,
+  `login_name` varchar(20) DEFAULT NULL,
+  `login_password` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `auths` (`user_id`),
+  CONSTRAINT `wd_user_auths_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`),
+  CONSTRAINT `wd_user_auths_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wd_user_auths`
+--
+
+LOCK TABLES `wd_user_auths` WRITE;
+/*!40000 ALTER TABLE `wd_user_auths` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wd_user_auths` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -261,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-06 13:19:58
+-- Dump completed on 2016-04-06 17:54:27

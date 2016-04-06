@@ -11,5 +11,7 @@
         <typeAlias alias="UserInterestDO" type="domain.UserInterestDO"/>
         <typeAlias alias="UserVideoDO" type="domain.UserVideoDO"/>
         <typeAlias alias="VideoInterestDO" type="domain.UserInterestDO"/>
+        <typeAlias alias="UserAuthsDO" type="domain.UserAuthsDO"/>
+
     </typeAliases>
 </configuration>
