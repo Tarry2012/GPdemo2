@@ -49,10 +49,7 @@
     </script>
 </head>
 <body>
-<div>  </div>
-<script type="text/javascript">
-    $("div").html("可以用");
-</script>
+
 <div class="container page-container">
     <img src="<%=request.getContextPath()%>/resources/images/login.png"/>
     <div class="panel panel-default panel-signin">

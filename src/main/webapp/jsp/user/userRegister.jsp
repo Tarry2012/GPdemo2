@@ -27,29 +27,29 @@
     <div class="panel panel-default panel-signin">
         <div class="panel-heading">用户注册</div>
         <div class="panel-body">
-            <form action="" method="post">
+            <form action="" method="">
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">用户名&nbsp&nbsp:&nbsp&nbsp</span>
                     <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1"
-                           name="userName">
+                           name="username" id="username">
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">密&nbsp&nbsp&nbsp&nbsp&nbsp码&nbsp&nbsp:&nbsp</span>
                     <input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1"
-                           name="password1">
+                           name="password1" id="password1">
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">确认密码&nbsp:</span>
                     <input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1"
-                           name="password2">
+                           name="password2" id="password2">
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">邮&nbsp&nbsp&nbsp&nbsp&nbsp箱&nbsp&nbsp:&nbsp</span>
                     <input type="text" class="form-control" placeholder="Mail" aria-describedby="sizing-addon1"
-                           name="usermail">
+                           name="usermail" id="usermail">
                 </div>
                 <div class="button btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default" onclick="">注册</button>
+                    <button type="button" class="btn btn-default">注册</button>
                     <a href="index.jsp">
                         <button type="button" class="btn btn-default">取消</button>
                     </a>

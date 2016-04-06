@@ -21,4 +21,11 @@
         update wd_user set login_times = login_times + 1, last_login_time = now() where user_id= #{userId}
     </update>
 
+    <insert id="add" parameterType="String">
+        insert wd_user(user_name)values(#{username})
+    </insert>
+
+    <select id="selectLastId" resultMap="Integer">
+        select last_insert_id();
+    </select>
 </mapper>

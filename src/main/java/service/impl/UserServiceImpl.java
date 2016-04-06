@@ -10,6 +10,7 @@ import service.UserService;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by tqy on 16/3/14.
@@ -41,8 +42,15 @@ public class UserServiceImpl implements UserService{
     }
 
     public Integer updateLoginById(int userId){
-        System.out.println("userId: " + userId);
         return this.userDAO.updateLoginById(userId);
+    }
+
+   public Integer add(String username){
+       return this.userDAO.add(username);
+   }
+
+    public Integer selectLastId(){
+        return this.userDAO.selectLastId();
     }
 
 }

@@ -62,6 +62,7 @@ public class UserController {
             userService.updateLoginById(user.getUserId());
             request.getSession().setAttribute("username", user.getUserName());
             Cookie cookieUser = new Cookie("username", user.getUserName());
+            response.addCookie(cookieUser);
             String msg = "ok";
             return msg;
         }
@@ -77,17 +78,11 @@ public class UserController {
     @RequestMapping(value = "/userRegister")
     @ResponseBody
     public boolean register(HttpServletRequest request){
-        UserDO userDO = genUserDO(request);
-        return false;
+        String username = request.getParameter("username");
+        Integer res = userService.add(username);
+        return  false;
     }
 
-    private UserDO genUserDO(HttpServletRequest request){
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String mail = request.getParameter("mail");
-        UserDO userDO = new UserDO();
-        userDO.setUserName(username);
-        return userDO;
-    }
+
 
 }
