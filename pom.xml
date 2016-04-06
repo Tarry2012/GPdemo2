@@ -215,8 +215,6 @@
       <version>${bcprov-jdk16-version}</version>
     </dependency>
 
-
-
   </dependencies>
   <build>
     <finalName>demo</finalName>
