@@ -1,3 +1,4 @@
+import org.mindrot.jbcrypt.BCrypt;
 import utils.AESUtils;
 import org.junit.Test;
 
@@ -15,5 +16,18 @@ public class AESTest {
         System.out.println(s);
         System.out.println(s1 + "  " + s1.length());
         System.out.println(s2);
+    }
+
+    @Test
+    public void BCrypt(){
+        String password = "123456";
+        String hash = BCrypt.hashpw(password, BCrypt.gensalt());
+        System.out.println("hash: " + hash);
+
+        if (BCrypt.checkpw("123", hash)) {
+            System.out.println("It matches");
+        } else {
+            System.out.println("It does not match");
+        }
     }
 }
