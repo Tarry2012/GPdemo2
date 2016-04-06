@@ -24,7 +24,7 @@ public class AESTest {
         String hash = BCrypt.hashpw(password, BCrypt.gensalt());
         System.out.println("hash: " + hash);
 
-        if (BCrypt.checkpw("123", hash)) {
+        if (BCrypt.checkpw("123C", hash)) {
             System.out.println("It matches");
         } else {
             System.out.println("It does not match");

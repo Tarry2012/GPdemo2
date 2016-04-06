@@ -31,6 +31,8 @@
     <commons-codec-version>1.10</commons-codec-version>
     <bcprov-jdk16-version>1.46</bcprov-jdk16-version>
     <jbcrypt-version>0.3m</jbcrypt-version>
+    <javamail-version>1.4.7</javamail-version>
+    <jaf-version>1.0.2</jaf-version>
   </properties>
 
   <repositories>
@@ -216,11 +218,27 @@
       <version>${bcprov-jdk16-version}</version>
     </dependency>
 
+    <!--jbcrypt加密-->
     <dependency>
       <groupId>org.mindrot</groupId>
       <artifactId>jbcrypt</artifactId>
       <version>${jbcrypt-version}</version>
     </dependency>
+
+    <!--java mail-->
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>${javamail-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>jaf</groupId>
+      <artifactId>activation</artifactId>
+      <version>${jaf-version}</version>
+    </dependency>
+
+
 
   </dependencies>
   <build>
