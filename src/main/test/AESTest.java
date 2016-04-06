@@ -1,5 +1,4 @@
-import common.AES;
-import org.apache.axis.encoding.Base64;
+import utils.AESUtils;
 import org.junit.Test;
 
 /**
@@ -9,11 +8,12 @@ public class AESTest {
 
     @Test
     public  void AesTest(){
-        String ID = "tqy12345678";
-
-        String idEncrypt = AES.encrypt(ID);
-        System.out.println(idEncrypt);
-        String idDecrypt = AES.decrypt(idEncrypt);
-        System.out.println(idDecrypt);
+        String s = "18878186";
+        String key = AESUtils.WEDDAO_KEY;
+        String s1 = AESUtils.encrypt(s, key);
+        String s2 = AESUtils.decrypt(s1, key);
+        System.out.println(s);
+        System.out.println(s1 + "  " + s1.length());
+        System.out.println(s2);
     }
 }
