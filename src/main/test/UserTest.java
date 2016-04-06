@@ -18,20 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class UserTest extends AbstractJUnit4SpringContextTests{
-/*
-    ApplicationContext context = null;
-    UserService userService = null;
-
-    @Before
-    public void initContext() {
-        this.context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        this.userService = (UserService) context.getBean("userService");
-    }*/
 
     @Resource
     UserService userService;
     @Test
     public void findByName() {
+        System.out.println(userService);
         UserDO user = userService.getById("test1");
         if (user == null) {
             System.out.println("user is null");

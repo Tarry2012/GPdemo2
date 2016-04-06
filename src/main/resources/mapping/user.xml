@@ -6,9 +6,7 @@
     <resultMap id="UserMap" type="domain.UserDO">
         <result column="user_id" property="userId"/>
         <result column="user_name" property="userName"/>
-        <result column="user_passwd" property="userPassword"/>
         <result column="user_sex" property="userSex"/>
-        <result column="user_mail" property="userMail"/>
         <result column="user_picture" property="userPicture"/>
         <result column="user_home_page" property="userHomePage"/>
         <result column="login_times" property="loginTimes"/>

@@ -17,7 +17,6 @@ import java.util.List;
 @Service(UserService.SPRING_NAME)
 public class UserServiceImpl implements UserService{
 
-
     @Resource
     private UserDAO userDAO;
 

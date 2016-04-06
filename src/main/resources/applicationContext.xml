@@ -100,8 +100,8 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
 
-    <bean id="restaurantDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="dao.RestaurantDAO"></property>
+    <bean id="userAuthsDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="dao.UserAuthsDAO"></property>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
 

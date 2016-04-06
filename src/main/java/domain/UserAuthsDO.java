@@ -6,9 +6,9 @@ package domain;
 public class UserAuthsDO {
     private String id;
     private String userId;
-    private int logintype;
+    private int loginType;
     private String loginName;
-    private String password;
+    private String loginPassword;
 
     public String getId() {
         return id;
@@ -18,16 +18,16 @@ public class UserAuthsDO {
         return userId;
     }
 
-    public int getLogintype() {
-        return logintype;
+    public int getLoginType() {
+        return loginType;
     }
 
     public String getLoginName() {
         return loginName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getLoginPassword() {
+        return loginPassword;
     }
 
     public void setId(String id) {
@@ -38,26 +38,26 @@ public class UserAuthsDO {
         this.userId = userId;
     }
 
-    public void setLogintype(int logintype) {
-        this.logintype = logintype;
+    public void setLoginType(int loginType) {
+        this.loginType = loginType;
     }
 
     public void setLoginName(String loginName) {
         this.loginName = loginName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLoginPassword(String loginPassword) {
+        this.loginPassword = loginPassword;
     }
 
     @Override
     public String toString() {
-        return "UserAuthorDO{" +
+        return "UserAuthsDO{" +
                 "id='" + id + '\'' +
                 ", userId='" + userId + '\'' +
-                ", logintype=" + logintype +
+                ", loginType=" + loginType +
                 ", loginName='" + loginName + '\'' +
-                ", password='" + password + '\'' +
+                ", loginPassword='" + loginPassword + '\'' +
                 '}';
     }
 }
