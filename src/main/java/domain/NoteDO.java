@@ -10,7 +10,7 @@ public class NoteDO {
     private String videoId;
     private String noteName;
     private Date noteTime;
-    private String noteAddress;
+    private String noteContent;
 
     public String getUserId() {
         return userId;
@@ -28,8 +28,8 @@ public class NoteDO {
         return noteTime;
     }
 
-    public String getNoteAddress() {
-        return noteAddress;
+    public String getNoteContent() {
+        return noteContent;
     }
 
     public void setUserId(String userId) {
@@ -48,8 +48,8 @@ public class NoteDO {
         this.noteTime = noteTime;
     }
 
-    public void setNoteAddress(String noteAddress) {
-        this.noteAddress = noteAddress;
+    public void setNoteContent(String noteContent) {
+        this.noteContent = noteContent;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class NoteDO {
                 ", videoId='" + videoId + '\'' +
                 ", noteName='" + noteName + '\'' +
                 ", noteTime=" + noteTime +
-                ", noteAddress='" + noteAddress + '\'' +
+                ", noteAddress='" + noteContent + '\'' +
                 '}';
     }
 }
