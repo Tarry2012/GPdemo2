@@ -75,14 +75,25 @@ public class UserController {
         return "jsp/user/userLogout";
     }
 
-    @RequestMapping(value = "/userRegister")
+    @RequestMapping(value = "/userIsExist", method = RequestMethod.POST)
     @ResponseBody
-    public boolean register(HttpServletRequest request){
+    public String nameIsExist(HttpServletRequest request){
         String username = request.getParameter("username");
-        Integer res = userService.add(username);
-        return  false;
+        UserDO userDO = userService.getById("username");
+        if (null == userDO){
+            String msg = "ok";
+            return msg;
+        }else{
+            String msg = "error";
+            return msg;
+        }
     }
 
-
+    @RequestMapping(value = "/mailIsExist", method = RequestMethod.POST)
+    @ResponseBody
+    public String mailIsExist(HttpServletRequest request){
+        String mail = request.getParameter("mail");
+       return "error";
+    }
 
 }

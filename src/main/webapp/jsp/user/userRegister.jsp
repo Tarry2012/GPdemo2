@@ -18,7 +18,41 @@
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <%-- video.js--%>
+
+<script type="text/javascript">
+    function match(info, expression){
+            var regExp = new RegExp(expression)
+            if (regExp.test(info)){
+                return true;
+            }else{
+                return false;
+            }
+    }
+
+    $(document).ready(function(){
+      $("#username").onblur(function(){
+      if ($("#username").val() == '' || !match($("#username").val(),"^[\u4e00-\u9fa5]{1,7}$|^[\dA-Za-z_]{1,14}$")) {
+            alert("最长不得超过7个汉字，或14个字节(数字，字母和下划线)") }
+      else {
+             $.ajax({
+                     url: '<%=request.getContextPath()%>/userIsExist', //处理测试页面,注意返回内容，成功返回OK
+                     dataType: 'text',
+                     type: 'POST',
+                     data: $("form").serialize(),
+                     success: function (msg) {
+                     msg = msg.replace(/rn/g, '');
+                     if (msg == "error") {
+                        alert("用户名已被注册");
+                      }
+                          }
+                       });
+                       return false;
+             }
+             return false;
+      });
+    });
+
+</script>
 </head>
 <body>
 <div class="container page-container">

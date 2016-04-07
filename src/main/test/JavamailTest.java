@@ -38,7 +38,7 @@ public class JavamailTest {
 
 
          //设置发送人和接受人
-         Address sender=new InternetAddress("njtangqy@163.com");
+         Address sender=new InternetAddress("wendaodemo2@163.com");
          Address receiver=new InternetAddress("353216134@qq.com");
 
             /*
@@ -83,8 +83,8 @@ public class JavamailTest {
          msg.saveChanges();
 
          Transport trans=mailConnection.getTransport("smtp");
-         String username="xxx@163.com";
-         String pw="xxx";
+         String username="wendaodemo2@163.com";
+         String pw="xxxxx";
          //邮件服务器名,用户名，密码
          trans.connect("smtp.163.com", username,  pw);
          trans.sendMessage(msg, msg.getAllRecipients());

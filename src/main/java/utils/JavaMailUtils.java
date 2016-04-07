@@ -11,8 +11,8 @@ import java.util.Properties;
  * Created by tqy on 16/4/6.
  */
 public class JavaMailUtils {
-    private static final String SEND_MAIL = "xxx@163.com";
-    private static final String SEND_MAIL_PW = "xxxx";
+    private static final String SEND_MAIL = "softwendao@163.com";
+    private static final String SEND_MAIL_PW = "666666";
 
     static public boolean sendMail(String receiveMail, String sendContent, String sendSubject) {
 
