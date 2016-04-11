@@ -19,33 +19,36 @@
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
     <script type="text/javascript">
-      $(document).ready(function(){
-          $("#subuser").click(function(){
-    		/*提交验证，异步传输*/
-    		    if ($("#username").val() == '' || $("#password").val() == '') { return false; }
-                        else {
-                            $.ajax({
-                                url: '<%=request.getContextPath()%>/userLogin', //处理测试页面,注意返回内容，成功返回OK
-                                dataType: 'text',
-                                type: 'POST',
-                                data: $("form").serialize(),
-                                success: function (msg) {
-                                msg = msg.replace(/rn/g, '');
-                                if (msg == "ok") { window.location.href = "<%=request.getContextPath()%>/index.jsp"; }
-                                else {
-                                       alert("您输入的用户名或密码不相符，请您重新输入");
-                                       return;
-                                     }
-                                  }
-                              });
-                          }
+        $(document).ready(function () {
+            $("#subuser").click(function () {
+                /*提交验证，异步传输*/
+                if ($("#username").val() == '' || $("#password").val() == '') {
+                    return false;
+                }
+                else {
+                    $.ajax({
+                        url: '<%=request.getContextPath()%>/userLogin', //处理测试页面,注意返回内容，成功返回OK
+                        dataType: 'text',
+                        type: 'POST',
+                        data: $("form").serialize(),
+                        success: function (msg) {
+                            msg = msg.replace(/rn/g, '');
+                            if (msg == "ok") {
+                                window.location.href = "<%=request.getContextPath()%>/index.jsp";
+                            }
+                            else {
+                                alert("您输入的用户名或密码不相符，请您重新输入");
+                                return;
+                            }
+                        }
+                    });
+                }
                 return false;
-          });
-          return false;
-      });
+            });
+            return false;
+        });
     </script>
 </head>
 <body>

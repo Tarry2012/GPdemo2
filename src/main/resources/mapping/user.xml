@@ -25,7 +25,7 @@
         insert wd_user(user_name)values(#{username})
     </insert>
 
-    <select id="selectLastId" resultMap="Integer">
+    <select id="selectLastId" resultType="Integer">
         select last_insert_id();
     </select>
 </mapper>

@@ -1,15 +1,16 @@
 import domain.UserDO;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import service.UserService;
-
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.junit.Test;
 
 /**
  * Created by tqy on 16/3/14.
@@ -52,7 +53,18 @@ public class UserTest extends AbstractJUnit4SpringContextTests{
 
     }
 
+    @Test
+    public void StringTest(){
+        String test = "a,b,c,d";
+        String[] res = test.split(",");
+        List<String> listRest = new ArrayList<String>();
 
+        for (String i : res){
+            System.out.println(i);
+            listRest.add(i);
+        }
+        System.out.println(listRest);
+    }
 
 
 }
