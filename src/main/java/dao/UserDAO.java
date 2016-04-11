@@ -18,4 +18,6 @@ public interface UserDAO {
     Integer add(String username);
 
     Integer selectLastId();
+
+    List getNames();
 }

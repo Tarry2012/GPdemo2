@@ -20,4 +20,5 @@ public interface UserService {
 
     Integer selectLastId();
 
+    List getNames();
 }

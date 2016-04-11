@@ -34,15 +34,64 @@
             }
         }
 
-        function checkPassword1(){
-            var re = /^[a-zA-Z]\w{5,17}$/;
+        function checkPassword1() {
+            var re = /^[\dA-Za-z_]{5,17}$/;
             var password = document.getElementById('password1').value;
-            if (password != null && password.length > 0){
-                if(!re.test(password)){
-                    alert("以字母开头，长度在6~18之间，只能包含字母、数字和下划线")
+            if (password != null && password.length > 0) {
+                if (!re.test(password)) {
+                    alert("6~18字节,只能包含字母,数字和下划线")
                 }
+            } else {
+                alert("请输入密码")
             }
         }
+
+        function checkPassword2() {
+            var password1 = document.getElementById('password1').value;
+            var password2 = document.getElementById('password2').value;
+            if (password2 != null && password2.length > 0) {
+                if (password1 != password2) {
+                    alert("两次密码输入不一致")
+                }
+            } else {
+                alert("请输入密码")
+            }
+        }
+
+
+        $(document).ready(function () {
+            $("#username").onblur(function () {
+                /*提交验证，异步传输*/
+                var user = $("#username").val();
+                var ref = /^[\u4e00-\u9fa5]{1,7}$|^[\dA-Za-z_]{1,15}$/;
+                if (user == '' || user == '') {
+                    alert("用户名称为空")
+                    return false;
+                } else if(!ref.test(user)){
+                    alert("不得超过7个汉字，或14个字节(数字，字母和下划线)")
+                    return false;
+                } else {
+                    $.ajax({
+                        url: '<%=request.getContextPath()%>/userRegister', //处理测试页面,注意返回内容，成功返回OK
+                        dataType: 'text',
+                        type: 'POST',
+                        data: $("form").serialize(),
+                        success: function (msg) {
+                            msg = msg.replace(/rn/g, '');
+                            if (msg == "ok") {
+                                window.location.href = "<%=request.getContextPath()%>/index.jsp";
+                            }
+                            else {
+                                alert("您输入的用户名或密码不相符，请您重新输入");
+                                return;
+                            }
+                        }
+                    });
+                }
+                return false;
+            });
+            return false;
+        });
 
     </script>
 </head>
@@ -56,26 +105,29 @@
             <form action="" method="">
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">用户名&nbsp&nbsp:&nbsp&nbsp</span>
-                    <input type="text" class="form-control" placeholder="字母开头，允许5-16字节，允许字母数字下划线" aria-describedby="sizing-addon1"
+                    <input type="text" class="form-control" placeholder="字母开头，允许5-16字节，允许字母数字下划线"
+                           aria-describedby="sizing-addon1"
                            name="username" id="username"/>
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon"
                           id="sizing-addon1">密&nbsp&nbsp&nbsp&nbsp&nbsp码&nbsp&nbsp:&nbsp</span>
-                    <input type="password" class="form-control" placeholder="以字母开头，长度在6~18之间，只能包含字母、数字和下划线" aria-describedby="sizing-addon1"
-                           name="password1" id="password1"/>
+                    <input type="password" class="form-control" placeholder="6~18字节,只能包含字母,数字和下划线"
+                           aria-describedby="sizing-addon1"
+                           name="password1" id="password1" onblur="checkPassword1()"/>
 
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">确认密码&nbsp:</span>
-                    <input type="password" class="form-control" placeholder="以字母开头，长度在6~18之间，只能包含字母、数字和下划线" aria-describedby="sizing-addon1"
-                           name="password2" id="password2"/>
+                    <input type="password" class="form-control" placeholder="6~18字节,只能包含字母,数字和下划线"
+                           aria-describedby="sizing-addon1"
+                           name="password2" id="password2" onblur="checkPassword2()"/>
                 </div>
-                <div class="input-group input-group-lg" onmouseout="checkEmail()">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon"
                           id="sizing-addon1">邮&nbsp&nbsp&nbsp&nbsp&nbsp箱&nbsp&nbsp:&nbsp</span>
                     <input type="text" class="form-control" placeholder="Mail" aria-describedby="sizing-addon1"
-                           name="usermail" id="usermail"/>
+                           name="usermail" id="usermail" onblur="checkEmail()"/>
                 </div>
                 <div class="button btn-group" role="group" aria-label="...">
                     <button type="button" class="btn btn-default">注册</button>

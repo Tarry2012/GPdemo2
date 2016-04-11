@@ -67,4 +67,10 @@ public class UserTest extends AbstractJUnit4SpringContextTests{
     }
 
 
+    @Test
+    public void getNamesTest(){
+        List<String> res = userService.getNames();
+        System.out.println(res);
+    }
+
 }

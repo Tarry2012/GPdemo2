@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import service.UserService;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -51,6 +52,15 @@ public class UserServiceImpl implements UserService{
 
     public Integer selectLastId(){
         return this.userDAO.selectLastId();
+    }
+
+    public List getNames(){
+         List<UserDO> users = userDAO.getNames();
+         List<String> names = new ArrayList<String>();
+         for(UserDO user : users){
+             names.add(user.getUserName());
+         }
+        return names;
     }
 
 }

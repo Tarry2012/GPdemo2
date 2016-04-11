@@ -3,6 +3,7 @@ package service;
 import dao.UserAuthsDAO;
 import domain.UserAuthsDO;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,4 +12,6 @@ import java.util.Map;
 public interface UserAuthsService {
     public static final String STRING_NANE = "userAuthsService";
     UserAuthsDO getById(Map paramMap);
+
+    List getMails();
 }

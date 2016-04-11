@@ -3,6 +3,7 @@ package dao;
 import domain.UserAuthsDO;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -10,4 +11,6 @@ import java.util.Map;
  */
 public interface UserAuthsDAO {
     public UserAuthsDO getById(Map paramMap);
+
+    public List getMails();
 }

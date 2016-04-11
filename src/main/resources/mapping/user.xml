@@ -28,4 +28,8 @@
     <select id="selectLastId" resultType="Integer">
         select last_insert_id();
     </select>
+
+    <select id="getNames" resultMap="UserMap">
+        select * from wd_user;
+    </select>
 </mapper>

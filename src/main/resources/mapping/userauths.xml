@@ -15,8 +15,8 @@
         select * from wd_user_auths where user_id=#{userId} and login_type=#{loginType}
     </select>
 
-    <select id="getAllMail" resultType="List">
-
+    <select id="getMails" resultMap="UserAuthsMap">
+      select * from wd_user_auths
     </select>
 
 </mapper>

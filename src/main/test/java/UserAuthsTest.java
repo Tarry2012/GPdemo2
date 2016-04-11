@@ -33,4 +33,9 @@ public class UserAuthsTest {
             System.out.println(userAuthsDO.toString());
         }
     }
+
+    @Test
+    public void getMailsTest(){
+        System.out.println(userAuthsService.getMails());
+    }
 }
