@@ -4,17 +4,17 @@ package domain;
  * Created by tqy on 16/4/6.
  */
 public class UserAuthsDO {
-    private String id;
-    private String userId;
+    private int id;
+    private int userId;
     private int loginType;
     private String loginName;
     private String loginPassword;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
@@ -30,11 +30,11 @@ public class UserAuthsDO {
         return loginPassword;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

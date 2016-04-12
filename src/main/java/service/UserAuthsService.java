@@ -14,4 +14,5 @@ public interface UserAuthsService {
     UserAuthsDO getById(Map paramMap);
 
     List getMails();
+    boolean add(UserAuthsDO userAuthsDO);
 }

@@ -19,4 +19,7 @@
       select * from wd_user_auths
     </select>
 
+    <insert id="add" parameterMap="UserAuthsMap">
+        insert into wd_user_auths(user_id, login_type, login_name, login_password)values(#{userId}, #{loginType}, #{loginName}, #{loginPassword})
+    </insert>
 </mapper>

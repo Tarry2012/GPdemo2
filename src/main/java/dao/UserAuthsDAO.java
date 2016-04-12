@@ -13,4 +13,6 @@ public interface UserAuthsDAO {
     public UserAuthsDO getById(Map paramMap);
 
     public List getMails();
+
+    public Integer add(UserAuthsDO userAuthsDO);
 }

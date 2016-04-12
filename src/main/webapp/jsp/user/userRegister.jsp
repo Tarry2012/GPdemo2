@@ -58,13 +58,12 @@
             }
         }
 
-
         $(document).ready(function () {
             $("#username").onblur(function () {
                 /*提交验证，异步传输*/
                 var user = $("#username").val();
                 var ref = /^[\u4e00-\u9fa5]{1,7}$|^[\dA-Za-z_]{1,15}$/;
-                if (user == '' || user == '') {
+                if (user == '') {
                     alert("用户名称为空")
                     return false;
                 } else if(!ref.test(user)){
@@ -72,18 +71,14 @@
                     return false;
                 } else {
                     $.ajax({
-                        url: '<%=request.getContextPath()%>/userRegister', //处理测试页面,注意返回内容，成功返回OK
+                        url: '<%=request.getContextPath()%>/userIsExist', //处理测试页面,注意返回内容，成功返回OK
                         dataType: 'text',
-                        type: 'POST',
+                        type: 'GET',
                         data: $("form").serialize(),
                         success: function (msg) {
                             msg = msg.replace(/rn/g, '');
-                            if (msg == "ok") {
-                                window.location.href = "<%=request.getContextPath()%>/index.jsp";
-                            }
-                            else {
-                                alert("您输入的用户名或密码不相符，请您重新输入");
-                                return;
+                            if (msg != "ok") {
+                                alert("用户名已存在")
                             }
                         }
                     });
@@ -105,9 +100,9 @@
             <form action="" method="">
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">用户名&nbsp&nbsp:&nbsp&nbsp</span>
-                    <input type="text" class="form-control" placeholder="字母开头，允许5-16字节，允许字母数字下划线"
+                    <input type="text" class="form-control" placeholder="不得超过7个汉字，或14个字节(数字，字母和下划线)"
                            aria-describedby="sizing-addon1"
-                           name="username" id="username"/>
+                           name="username" id="username" onblur="checkName()"/>
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon"

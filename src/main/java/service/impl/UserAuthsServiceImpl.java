@@ -31,6 +31,13 @@ public class UserAuthsServiceImpl implements UserAuthsService{
             mails.add(userAuthsDO.getLoginName());
         }
         return mails;
+    }
 
+    public boolean add(UserAuthsDO userAuthsDO){
+        if( userAuthsDAO.add(userAuthsDO) > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

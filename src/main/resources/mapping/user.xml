@@ -32,4 +32,5 @@
     <select id="getNames" resultMap="UserMap">
         select * from wd_user;
     </select>
+
 </mapper>
