@@ -12,7 +12,7 @@ import java.util.Map;
 public interface UserService {
     public  static final String SPRING_NAME = "userService";
 
-    UserDO getById(String userName);
+    UserDO getById(Integer userId);
 
     Integer updateLoginById(int userId);
 

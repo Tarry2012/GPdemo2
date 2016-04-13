@@ -11,15 +11,15 @@
 
     </resultMap>
 
-    <select id="getById" parameterType="Map" resultMap="UserAuthsMap">
-        select * from wd_user_auths where user_id=#{userId} and login_type=#{loginType}
-    </select>
-
     <select id="getMails" resultMap="UserAuthsMap">
       select * from wd_user_auths
     </select>
 
-    <insert id="add" parameterMap="UserAuthsMap">
+    <insert id="add" parameterType="domain.UserAuthsDO">
         insert into wd_user_auths(user_id, login_type, login_name, login_password)values(#{userId}, #{loginType}, #{loginName}, #{loginPassword})
     </insert>
+
+    <select id="getByName" parameterType="String" resultMap="UserAuthsMap">
+        select * from wd_user_auths where login_name = #{loginName}
+    </select>
 </mapper>

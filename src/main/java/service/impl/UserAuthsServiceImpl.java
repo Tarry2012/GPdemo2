@@ -19,11 +19,6 @@ public class UserAuthsServiceImpl implements UserAuthsService{
     @Resource
     UserAuthsDAO userAuthsDAO;
 
-    public UserAuthsDO getById(Map paramMap){
-        System.out.println("hello");
-        return userAuthsDAO.getById(paramMap);
-    }
-
     public List getMails(){
         List<UserAuthsDO> userAuthsDOs = userAuthsDAO.getMails();
         List<String> mails = new ArrayList<String>();
@@ -39,5 +34,9 @@ public class UserAuthsServiceImpl implements UserAuthsService{
         }else{
             return false;
         }
+    }
+
+    public UserAuthsDO getByName(String loginName){
+        return userAuthsDAO.getByName(loginName);
     }
 }

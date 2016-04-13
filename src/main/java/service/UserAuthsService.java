@@ -11,8 +11,8 @@ import java.util.Map;
  */
 public interface UserAuthsService {
     public static final String STRING_NANE = "userAuthsService";
-    UserAuthsDO getById(Map paramMap);
 
     List getMails();
     boolean add(UserAuthsDO userAuthsDO);
+    UserAuthsDO getByName(String loginName);
 }

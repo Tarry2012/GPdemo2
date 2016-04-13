@@ -32,8 +32,8 @@ public class UserServiceImpl implements UserService{
         return userDAO;
     }
 
-    public UserDO getById(String userName) {
-        UserDO user =  this.userDAO.getById(userName);
+    public UserDO getById(Integer userId) {
+        UserDO user =  this.userDAO.getById(userId);
         if (user == null){
             System.out.println("username is null");
         }else{

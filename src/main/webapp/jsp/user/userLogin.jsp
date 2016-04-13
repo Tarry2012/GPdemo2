@@ -24,7 +24,7 @@
         $(document).ready(function () {
             $("#subuser").click(function () {
                 /*提交验证，异步传输*/
-                if ($("#username").val() == '' || $("#password").val() == '') {
+                if ($("#loginName").val() == '' || $("#password").val() == '') {
                     return false;
                 }
                 else {
@@ -58,11 +58,11 @@
     <div class="panel panel-default panel-signin">
         <div class="panel-heading">用户登录</div>
         <div class="panel-body">
-            <form action="" method="post">
+            <form action="" method="">
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">用户名:</span>
                     <input type="text" class="form-control" placeholder="username" aria-describedby="sizing-addon1"
-                           name="username" id="username">
+                           name="loginName" id="loginName">
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">密&nbsp&nbsp&nbsp码:</span>

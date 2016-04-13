@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by tqy on 16/3/14.
  */
 public interface UserDAO {
-    UserDO getById(@Param("userName")String userName);
+    UserDO getById(Integer userId);
 
     Integer updateLoginById(@Param("userId")int userId);
 

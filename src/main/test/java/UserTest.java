@@ -25,7 +25,7 @@ public class UserTest extends AbstractJUnit4SpringContextTests{
     @Test
     public void findByName() {
         System.out.println(userService);
-        UserDO user = userService.getById("test1");
+        UserDO user = userService.getById(1);
         if (user == null) {
             System.out.println("user is null");
         } else {

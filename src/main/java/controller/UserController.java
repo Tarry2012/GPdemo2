@@ -37,41 +37,23 @@ public class UserController {
     @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
     @ResponseBody
     public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
-        String username = request.getParameter("username");
+        String loginName = request.getParameter("loginName");
         String userpassword = request.getParameter("password");
-        System.out.println("username: " + username);
-        boolean type = username.contains("@");
-        UserDO user = userService.getById(username);
-        //该用户名不存在
-        if (user == null) {
+        System.out.println("loginName: " + loginName);
+
+        //用户密码加密,加密比较
+        UserAuthsDO userAuthsDO = userAuthsService.getByName(loginName);
+        System.out.println(userAuthsDO);
+        if (userAuthsDO == null || !BCrypt.checkpw(userpassword,userAuthsDO.getLoginPassword())) {
             String msg = "error";
             return msg;
-        } else {
-            Map<String, Integer> paramMap = new HashMap<String, Integer>();
-            paramMap.put("userId", user.getUserId());
-            //用户昵称登录
-            if (type == false) {
-                paramMap.put("loginType", 0);
-                //用户邮箱登录
-            } else {
-                paramMap.put("loginType", 1);
-            }
-            UserAuthsDO userAuthsDO = userAuthsService.getById(paramMap);
-            //当加入密码是这么样做
-            //String passwordHash = BCrypt.hashpw(userpassword, BCrypt.gensalt());
-            //if (userAuthsDO == null || !BCrypt.checkpw(userAuthsDO.getLoginPassword(), passwordHash))) {
-            if (userAuthsDO == null || !userpassword.equals(userAuthsDO.getLoginPassword())) {
-                String msg = "error";
-                return msg;
-            }
-            userService.updateLoginById(user.getUserId());
-            request.getSession().setAttribute("username", user.getUserName());
-            Cookie cookieUser = new Cookie("username", user.getUserName());
-            response.addCookie(cookieUser);
-            String msg = "ok";
-            return msg;
         }
-
+        String username = userService.getById(userAuthsDO.getUserId()).getUserName();
+        request.getSession().setAttribute("username", username);
+        Cookie cookieUser = new Cookie("username", username);
+        response.addCookie(cookieUser);
+        String msg = "ok";
+        return msg;
     }
 
     @RequestMapping(value = "/userLogout")
@@ -80,11 +62,12 @@ public class UserController {
         return "jsp/user/userLogout";
     }
 
-    @RequestMapping(value = "/userIsExist", method = RequestMethod.GET)
+    @RequestMapping(value = "/userIsExist.{format}", method = RequestMethod.GET)
     @ResponseBody
     public String nameIsExist(HttpServletRequest request) {
         String username = request.getParameter("username");
         List<String> names = userService.getNames();
+        System.out.println(names);
         if (!names.contains(username)) {
             String msg = "ok";
             return msg;
@@ -94,7 +77,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/mailIsExist", method = RequestMethod.GET)
+    @RequestMapping(value = "/mailIsExist.{format}", method = RequestMethod.GET)
     @ResponseBody
     public String mailIsExist(HttpServletRequest request) {
         String mail = request.getParameter("mail");
@@ -110,16 +93,16 @@ public class UserController {
 
     @RequestMapping(value = "/userRegister", method = RequestMethod.POST)
     @ResponseBody
-    public String userRegister(HttpServletRequest request){
+    public String userRegister(HttpServletRequest request) {
         String username = request.getParameter("username");
         String password = request.getParameter("password1");
         String mail = request.getParameter("usermail");
-        if (userService.add(username) <= 0){
+        if (userService.add(username) <= 0) {
             String msg = "error1";
             return msg;
         }
         int userId = userService.selectLastId();
-        UserAuthsDO userAuthsDO1= new UserAuthsDO();
+        UserAuthsDO userAuthsDO1 = new UserAuthsDO();
         userAuthsDO1.setUserId(userId);
         //0表示用户名登录
         userAuthsDO1.setLoginType(0);
@@ -133,10 +116,10 @@ public class UserController {
         userAuthsDO2.setLoginType(1);
         userAuthsDO2.setLoginName(mail);
         userAuthsDO2.setLoginPassword(passwordHash);
-        if (!userAuthsService.add(userAuthsDO1) || !userAuthsService.add(userAuthsDO2)){
+        if (!userAuthsService.add(userAuthsDO1) || !userAuthsService.add(userAuthsDO2)) {
             String msg = "error2";
             return msg;
-        }else{
+        } else {
             String msg = "ok";
             return msg;
         }

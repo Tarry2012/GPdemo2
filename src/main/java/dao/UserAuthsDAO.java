@@ -10,9 +10,9 @@ import java.util.Map;
  * Created by tqy on 16/4/6.
  */
 public interface UserAuthsDAO {
-    public UserAuthsDO getById(Map paramMap);
+    List getMails();
 
-    public List getMails();
+    Integer add(UserAuthsDO userAuthsDO);
 
-    public Integer add(UserAuthsDO userAuthsDO);
+    UserAuthsDO getByName(String loginName);
 }

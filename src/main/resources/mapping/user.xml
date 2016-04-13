@@ -13,8 +13,8 @@
         <result column="last_login_time" property="lastLoginTime"/>
     </resultMap>
 
-    <select id="getById" parameterType="String" resultMap="UserMap">
-        select * from wd_user where user_name=#{userName}
+    <select id="getById" parameterType="Integer" resultMap="UserMap">
+        select * from wd_user where user_id=#{userId}
     </select>
 
     <update id="updateLoginById" parameterType="Integer">

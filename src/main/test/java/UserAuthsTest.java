@@ -19,23 +19,15 @@ public class UserAuthsTest {
     @Resource
     UserAuthsService userAuthsService;
 
-    @Test
-    public void getById(){
-        Map<String, Integer> paramMap = new HashMap<String, Integer>();
-        paramMap.put("userId", 1);
-        paramMap.put("loginType", 0);
-        System.out.println(paramMap);
-        System.out.println(userAuthsService);
-        UserAuthsDO userAuthsDO = userAuthsService.getById(paramMap);
-        if (userAuthsDO == null) {
-            System.out.println("user is null");
-        } else {
-            System.out.println(userAuthsDO.toString());
-        }
-    }
 
     @Test
     public void getMailsTest(){
         System.out.println(userAuthsService.getMails());
+    }
+
+    @Test
+    public void getByName(){
+        UserAuthsDO userAuthsDO = userAuthsService.getByName("test2");
+        System.out.println(userAuthsDO);
     }
 }
