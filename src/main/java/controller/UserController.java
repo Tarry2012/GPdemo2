@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 
 /**
@@ -49,6 +50,7 @@ public class UserController {
             return msg;
         }
         String username = userService.getById(userAuthsDO.getUserId()).getUserName();
+        userService.updateLoginById(userAuthsDO.getUserId());
         request.getSession().setAttribute("username", username);
         Cookie cookieUser = new Cookie("username", username);
         response.addCookie(cookieUser);
@@ -80,8 +82,10 @@ public class UserController {
     @RequestMapping(value = "/mailIsExist.{format}", method = RequestMethod.GET)
     @ResponseBody
     public String mailIsExist(HttpServletRequest request) {
-        String mail = request.getParameter("mail");
+        String mail = request.getParameter("usermail");
+        System.out.println(mail);
         List<String> mails = userAuthsService.getMails();
+        System.out.println("a: " + mails);
         if (!mails.contains(mail)) {
             String msg = "ok";
             return msg;
@@ -91,9 +95,9 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/userRegister", method = RequestMethod.POST)
+    @RequestMapping(value = "/userRegister.{format}", method = RequestMethod.POST)
     @ResponseBody
-    public String userRegister(HttpServletRequest request) {
+    public String userRegister(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password1");
         String mail = request.getParameter("usermail");
@@ -120,10 +124,27 @@ public class UserController {
             String msg = "error2";
             return msg;
         } else {
+            Cookie cookieMail = new Cookie("usermail", mail);
+            response.addCookie(cookieMail);
+            Random rand = new Random(System.currentTimeMillis());
+            int code = rand.nextInt(1000);
+            //放到数据库中并且发送邮件
             String msg = "ok";
             return msg;
         }
     }
 
 
+    @RequestMapping(value = "/userCheckMail.{format}", method = RequestMethod.POST)
+    @ResponseBody
+    public String userCheckMail(HttpServletRequest request){
+        String code = request.getParameter("checkCode");
+        Cookie[] cookies = request.getCookies();
+        String usermail = null;
+        for (Cookie cookie : cookies){
+            if (cookie.getName().equals("usermail")){
+                usermail = cookie.getValue();
+            }
+        }
+    }
 }

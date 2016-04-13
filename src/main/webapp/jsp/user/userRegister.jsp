@@ -59,19 +59,19 @@
         }
 
         $(document).ready(function () {
-            $("#username").onblur(function () {
+            $("#username").on('blur', function () {
                 /*提交验证，异步传输*/
                 var user = $("#username").val();
                 var ref = /^[\u4e00-\u9fa5]{1,7}$|^[\dA-Za-z_]{1,15}$/;
                 if (user == '') {
                     alert("用户名称为空")
                     return false;
-                } else if(!ref.test(user)){
+                } else if (!ref.test(user)) {
                     alert("不得超过7个汉字，或14个字节(数字，字母和下划线)")
                     return false;
                 } else {
                     $.ajax({
-                        url: '<%=request.getContextPath()%>/userIsExist', //处理测试页面,注意返回内容，成功返回OK
+                        url: '<%=request.getContextPath()%>/userIsExist.', //处理测试页面,注意返回内容，成功返回OK
                         dataType: 'text',
                         type: 'GET',
                         data: $("form").serialize(),
@@ -83,6 +83,60 @@
                         }
                     });
                 }
+                return false;
+            });
+            return false;
+        });
+
+        $(document).ready(function () {
+            $("#usermail").on('blur', function () {
+                var re = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+                var email = document.getElementById('usermail').value;
+                if (email == '') {
+                    alert("邮箱为空")
+                    return false;
+                } else if (!re.test(email)) {
+                    alert("邮箱输入不合法")
+                    return false;
+                } else {
+                    $.ajax({
+                        url: '<%=request.getContextPath()%>/mailIsExist.', //处理测试页面,注意返回内容，成功返回OK
+                        dataType: 'text',
+                        type: 'GET',
+                        data: $("form").serialize(),
+                        success: function (msg) {
+                            msg = msg.replace(/rn/g, '');
+                            if (msg != "ok") {
+                                alert("邮箱已存在")
+                            }
+                        }
+                    });
+                }
+                return false;
+            });
+            return false;
+        });
+
+        $(document).ready(function () {
+            $("#subuser").click(function () {
+                /*提交验证，异步传输*/
+                $.ajax({
+                    url: '<%=request.getContextPath()%>/userRegister.', //处理测试页面,注意返回内容，成功返回OK
+                    dataType: 'text',
+                    type: 'POST',
+                    data: $("form").serialize(),
+                    success: function (msg) {
+                        msg = msg.replace(/rn/g, '');
+                        if (msg == "ok") {
+                            alert("我们已向您的邮箱发送了一封邮件,请验证")
+                            window.location.href = "<%=request.getContextPath()%>/index.jsp";
+                        }
+                        else {
+                            alert("您输入的用户名或邮箱已存在,请重新输入");
+                            return;
+                        }
+                    }
+                });
                 return false;
             });
             return false;
@@ -102,7 +156,7 @@
                     <span class="input-group-addon" id="sizing-addon1">用户名&nbsp&nbsp:&nbsp&nbsp</span>
                     <input type="text" class="form-control" placeholder="不得超过7个汉字，或14个字节(数字，字母和下划线)"
                            aria-describedby="sizing-addon1"
-                           name="username" id="username" onblur="checkName()"/>
+                           name="username" id="username"/>
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon"
@@ -122,10 +176,10 @@
                     <span class="input-group-addon"
                           id="sizing-addon1">邮&nbsp&nbsp&nbsp&nbsp&nbsp箱&nbsp&nbsp:&nbsp</span>
                     <input type="text" class="form-control" placeholder="Mail" aria-describedby="sizing-addon1"
-                           name="usermail" id="usermail" onblur="checkEmail()"/>
+                           name="usermail" id="usermail"/>
                 </div>
                 <div class="button btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default">注册</button>
+                    <button type="button" class="btn btn-default" id="subuser">注册</button>
                     <a href="index.jsp">
                         <button type="button" class="btn btn-default">取消</button>
                     </a>

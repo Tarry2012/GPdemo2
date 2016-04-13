@@ -61,7 +61,7 @@
             <form action="" method="">
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">用户名:</span>
-                    <input type="text" class="form-control" placeholder="username" aria-describedby="sizing-addon1"
+                    <input type="text" class="form-control" placeholder="username/mail" aria-describedby="sizing-addon1"
                            name="loginName" id="loginName">
                 </div>
                 <div class="input-group input-group-lg">

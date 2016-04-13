@@ -120,7 +120,7 @@ CREATE TABLE `wd_user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
   UNIQUE KEY `user_home_page` (`user_home_page`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `wd_user` (
 
 LOCK TABLES `wd_user` WRITE;
 /*!40000 ALTER TABLE `wd_user` DISABLE KEYS */;
-INSERT INTO `wd_user` VALUES (1,'test1','女',NULL,NULL,'2016-04-06 00:02:02',NULL);
+INSERT INTO `wd_user` VALUES (1,'test1','女',NULL,NULL,'2016-04-12 23:36:46',NULL),(2,'test2','女',NULL,NULL,NULL,NULL),(3,'test3',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `wd_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,11 +146,12 @@ CREATE TABLE `wd_user_auths` (
   `login_type` int(11) DEFAULT NULL,
   `login_name` varchar(20) DEFAULT NULL,
   `login_password` varchar(500) DEFAULT NULL,
+  `check_code` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `auths` (`user_id`),
   CONSTRAINT `wd_user_auths_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`),
   CONSTRAINT `wd_user_auths_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,6 +160,7 @@ CREATE TABLE `wd_user_auths` (
 
 LOCK TABLES `wd_user_auths` WRITE;
 /*!40000 ALTER TABLE `wd_user_auths` DISABLE KEYS */;
+INSERT INTO `wd_user_auths` VALUES (1,1,0,'用户昵称','123456',NULL),(2,1,0,'test','123456',NULL),(3,1,0,'test1','123456',NULL),(4,2,0,'test2','$2a$10$aZcd.yqCDnC4LEteVnYI4.zVwSo6SYQMQFlut674WlA0cbY0Z.FN6',NULL),(5,2,1,'353216134@qq.com','$2a$10$z5qHRulr5LYq98lnfRo3yuiolxJthlpU1.fs6ESuIFd0SzILwxO4a',NULL),(6,3,0,'test3','$2a$10$O8LTnxGdlyoyMP2rEcf90O.U/Eck7Sq9yJ6Sr0HE6hdqLW9897bp6',NULL),(7,3,1,'njtangqy@163.com','$2a$10$O8LTnxGdlyoyMP2rEcf90O.U/Eck7Sq9yJ6Sr0HE6hdqLW9897bp6',NULL);
 /*!40000 ALTER TABLE `wd_user_auths` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-06 17:54:27
+-- Dump completed on 2016-04-14  0:22:32
