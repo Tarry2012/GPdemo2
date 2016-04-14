@@ -32,7 +32,6 @@
 <body>
 <div class="top_content">
     <ul>
-         <li><a href="#">我的主页</a></li>
         <%  if (session.getAttribute("username") == null) {
         %>
         <li><a href="<%=request.getContextPath()%>/jsp/user/userLogin.jsp">登录</a></li>
@@ -40,6 +39,7 @@
         <%  }
         else  {
         %>
+         <li><a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp">我的主页</a></li>
          <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
             <%}
         %>
@@ -66,7 +66,7 @@
 </div>
 <div class="navigation">
     <ul class="nav nav-pills">
-        <li role="presentation" class="disabled"><a href="#">首页</a></li>
+        <li role="presentation" class="disabled"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
         <li role="presentation" class="disabled"><a href="#">计算机</a></li>
         <li role="presentation" class="disabled"><a href="#">哲学</a></li>
         <li role="presentation" class="disabled"><a href="#">历史</a></li>

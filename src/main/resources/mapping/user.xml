@@ -21,13 +21,13 @@
         update wd_user set login_times = login_times + 1, last_login_time = now() where user_id= #{userId}
     </update>
 
-    <insert id="add" parameterType="String">
-        insert wd_user(user_name)values(#{username})
+    <insert id="add" parameterType="domain.UserDO">
+        <selectKey resultType="int" keyProperty="userId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert wd_user(user_name,user_sex,user_picture,
+        user_home_page,last_login_time,login_times)values(#{userName},#{userSex},#{userPicture},#{userHomePage},#{lastLoginTime},#{loginTimes})
     </insert>
-
-    <select id="selectLastId" resultType="Integer">
-        select last_insert_id();
-    </select>
 
     <select id="getNames" resultMap="UserMap">
         select * from wd_user;

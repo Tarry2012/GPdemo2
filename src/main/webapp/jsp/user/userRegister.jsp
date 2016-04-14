@@ -128,7 +128,7 @@
                     success: function (msg) {
                         msg = msg.replace(/rn/g, '');
                         if (msg == "ok") {
-                            alert("我们已向您的邮箱发送了一封邮件,请验证")
+                            alert("注册成功")
                             window.location.href = "<%=request.getContextPath()%>/index.jsp";
                         }
                         else {

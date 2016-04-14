@@ -16,9 +16,7 @@ public interface UserService {
 
     Integer updateLoginById(int userId);
 
-    Integer add(String username);
-
-    Integer selectLastId();
+    Integer add(UserDO userDO);
 
     List getNames();
 }

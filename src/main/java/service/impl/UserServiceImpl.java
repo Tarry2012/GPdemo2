@@ -46,13 +46,11 @@ public class UserServiceImpl implements UserService{
         return this.userDAO.updateLoginById(userId);
     }
 
-   public Integer add(String username){
-       return this.userDAO.add(username);
+   public Integer add(UserDO userDO){
+       this.userDAO.add(userDO);
+       return userDO.getUserId();
    }
 
-    public Integer selectLastId(){
-        return this.userDAO.selectLastId();
-    }
 
     public List getNames(){
          List<UserDO> users = userDAO.getNames();

@@ -120,7 +120,7 @@ CREATE TABLE `wd_user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
   UNIQUE KEY `user_home_page` (`user_home_page`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `wd_user` (
 
 LOCK TABLES `wd_user` WRITE;
 /*!40000 ALTER TABLE `wd_user` DISABLE KEYS */;
-INSERT INTO `wd_user` VALUES (1,'test1','女',NULL,NULL,'2016-04-12 23:36:46',NULL),(2,'test2','女',NULL,NULL,NULL,NULL),(3,'test3',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `wd_user` VALUES (1,'test1','女',NULL,NULL,'2016-04-12 23:36:46',NULL),(2,'test2','女',NULL,NULL,'2016-04-14 20:15:32',NULL),(3,'test3',NULL,NULL,NULL,NULL,NULL),(4,'test4',NULL,NULL,NULL,NULL,0),(5,'test5',NULL,NULL,NULL,NULL,0),(6,'test7',NULL,NULL,NULL,NULL,0);
 /*!40000 ALTER TABLE `wd_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,11 +147,12 @@ CREATE TABLE `wd_user_auths` (
   `login_name` varchar(20) DEFAULT NULL,
   `login_password` varchar(500) DEFAULT NULL,
   `check_code` int(11) DEFAULT NULL,
+  `isvalid` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `auths` (`user_id`),
   CONSTRAINT `wd_user_auths_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`),
   CONSTRAINT `wd_user_auths_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +161,7 @@ CREATE TABLE `wd_user_auths` (
 
 LOCK TABLES `wd_user_auths` WRITE;
 /*!40000 ALTER TABLE `wd_user_auths` DISABLE KEYS */;
-INSERT INTO `wd_user_auths` VALUES (1,1,0,'用户昵称','123456',NULL),(2,1,0,'test','123456',NULL),(3,1,0,'test1','123456',NULL),(4,2,0,'test2','$2a$10$aZcd.yqCDnC4LEteVnYI4.zVwSo6SYQMQFlut674WlA0cbY0Z.FN6',NULL),(5,2,1,'353216134@qq.com','$2a$10$z5qHRulr5LYq98lnfRo3yuiolxJthlpU1.fs6ESuIFd0SzILwxO4a',NULL),(6,3,0,'test3','$2a$10$O8LTnxGdlyoyMP2rEcf90O.U/Eck7Sq9yJ6Sr0HE6hdqLW9897bp6',NULL),(7,3,1,'njtangqy@163.com','$2a$10$O8LTnxGdlyoyMP2rEcf90O.U/Eck7Sq9yJ6Sr0HE6hdqLW9897bp6',NULL);
+INSERT INTO `wd_user_auths` VALUES (1,1,0,'用户昵称','123456',NULL,0),(2,1,0,'test','123456',NULL,0),(3,1,0,'test1','123456',NULL,0),(4,2,0,'test2','$2a$10$aZcd.yqCDnC4LEteVnYI4.zVwSo6SYQMQFlut674WlA0cbY0Z.FN6',NULL,0),(5,2,1,'353216134@qq.com','$2a$10$z5qHRulr5LYq98lnfRo3yuiolxJthlpU1.fs6ESuIFd0SzILwxO4a',NULL,0),(6,3,0,'test3','$2a$10$O8LTnxGdlyoyMP2rEcf90O.U/Eck7Sq9yJ6Sr0HE6hdqLW9897bp6',NULL,0),(7,3,1,'njtangqy@163.com','$2a$10$O8LTnxGdlyoyMP2rEcf90O.U/Eck7Sq9yJ6Sr0HE6hdqLW9897bp6',NULL,0),(8,4,0,'test4','$2a$10$SQ49B50nGA73mMgeurv0H.fToAeoPLMcsn9m4qbFAPdVYkHzOej/a',NULL,0),(9,4,1,'1234@qq.com','$2a$10$SQ49B50nGA73mMgeurv0H.fToAeoPLMcsn9m4qbFAPdVYkHzOej/a',NULL,0),(10,5,0,'test5','$2a$10$kv6JBBiu546npSf4md7f0.tLwGRXieUOjX4qllvdGaHDEpIhcSlt.',NULL,0),(11,5,1,'34567@qq.com','$2a$10$kv6JBBiu546npSf4md7f0.tLwGRXieUOjX4qllvdGaHDEpIhcSlt.',NULL,0),(12,6,0,'test7','$2a$10$7EoHe0VmzCZl9AY/cwt.SeiOCBBw5Lj9nWfoZlfglLqlrNJysTLfW',NULL,0),(13,6,1,'456789@qq.com','$2a$10$7EoHe0VmzCZl9AY/cwt.SeiOCBBw5Lj9nWfoZlfglLqlrNJysTLfW',NULL,0);
 /*!40000 ALTER TABLE `wd_user_auths` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,4 +288,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-14  0:22:32
+-- Dump completed on 2016-04-14 20:16:57

@@ -23,6 +23,15 @@
     <link href="<%=request.getContextPath()%>/resources/css/userHomepage.css" rel="stylesheet" type="text/css"/>
     <title>问道 用户主页</title>
 </head>
+<%
+    String username = null;
+    Cookie cookies[] = request.getCookies(); //读出用户硬盘上的Cookie，并将所有的Cookie放到一个cookie对象数组里面
+    for (Cookie cookie : cookies) {    //取出数组中的一个Cookie对象
+            if (("username").equals(cookie.getName())) {
+                username = cookie.getValue();
+            }
+        }
+%>
 <body>
 <div class="top_content">
     <ul>
@@ -32,7 +41,7 @@
     </ul>
 
     <div class="top_title">
-        欢迎(替换成用户名)来到 问道视频学习网站
+        欢迎来到 问道视频学习网站
     </div>
 </div>
 <%--top结束--%>
@@ -53,7 +62,7 @@
 </div>
 <div class="navigation">
     <ul class="nav nav-pills">
-        <li role="presentation" class="disabled"><a href="#">首页</a></li>
+        <li role="presentation" class="disabled"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
         <li role="presentation" class="disabled"><a href="#">计算机</a></li>
         <li role="presentation" class="disabled"><a href="#">哲学</a></li>
         <li role="presentation" class="disabled"><a href="#">历史</a></li>
@@ -70,19 +79,22 @@
                 <div class="avatar">
                     <img src="<%=request.getContextPath()%>/resources/images/defaultHeadPortrait.png"/>
                 </div>
-                <h5 class="text-center">替换成用户名</h5>
+                <h5 class="text-center"><%System.out.println(username);;%></h5>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <button onclick=""><img src="resources/images/Looked.png"/></button>
+                        <button onclick=""><img src="<%=request.getContextPath()%>/resources/images/Looked.png"/>
+                        </button>
                     </li>
                     <li class="list-group-item">
-                        <button onclick=""><img src="resources/images/note.png"/></button>
+                        <button onclick=""><img src="<%=request.getContextPath()%>/resources/images/note.png"/></button>
                     </li>
                     <li class="list-group-item">
-                        <button onclick=""><img src="resources/images/comment.png"/></button>
+                        <button onclick=""><img src="<%=request.getContextPath()%>/resources/images/comment.png"/>
+                        </button>
                     </li>
                     <li class="list-group-item">
-                        <button onclick=""><img src="resources/images/interest.png"/></button>
+                        <button onclick=""><img src="<%=request.getContextPath()%>/resources/images/interest.png"/>
+                        </button>
                     </li>
                 </ul>
             </aside>
@@ -91,44 +103,42 @@
         </div>
     </div>
 
-    <div s="guessYouLike">
-        <div class="guess_title">
-            <img src="<%=request.getContextPath()%>/resources/images/guessyoulike.png" height="45px"/>
+    <div class="guess_title">
+        <img src="<%=request.getContextPath()%>/resources/images/guessyoulike.png" height="45px"/>
+    </div>
+    <div class="guess_content clearfix">
+        <div class="add_convenient">
+            <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
+                   poster="<%=request.getContextPath()%>/resources/images/index1.jpg" data-setup="{}">
+                <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg"/>
+                <source src="MY_VIDEO.webm" type="video/webm"/>
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>
         </div>
-        <div class="guess_content clearfix">
-            <div class="add_convenient">
-                <video id="myvideo" class="video-js" controls preload="auto" width="350" height="208"
-                       poster="<%=request.getContextPath()%>/resources/images/2a.jpg" data-setup="{}">
-                    <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg"/>
-                    <source src="MY_VIDEO.webm" type="video/webm"/>
-                    <p class="vjs-no-js">
-                        To view this video please enable JavaScript, and consider upgrading to a web browser that
-                        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                    </p>
-                </video>
-            </div>
-            <div class="add_convenient">
-                <video id="myvideo" class="video-js" controls preload="auto" width="350" height="208"
-                       poster="<%=request.getContextPath()%>/resources/images/2a.jpg" data-setup="{}">
-                    <source src="<%=request.getContextPath()%>/resources/video/李易峰-请跟我联络.mp4" type='video/ogg'>
-                    <source src="MY_VIDEO.webm" type='video/webm'>
-                    <p class="vjs-no-js">
-                        To view this video please enable JavaScript, and consider upgrading to a web browser that
-                        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                    </p>
-                </video>
-            </div>
-            <div class="add_convenient">
-                <video id="myvideo" class="video-js" controls preload="auto" width="350" height="208"
-                       poster="<%=request.getContextPath()%>/resources/images/2a.jpg" data-setup="{}">
-                    <source src="<%=request.getContextPath()%>/resources/video/李易峰-请跟我联络.mp4" type='video/ogg'>
-                    <source src="MY_VIDEO.webm" type='video/webm'>
-                    <p class="vjs-no-js">
-                        To view this video please enable JavaScript, and consider upgrading to a web browser that
-                        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                    </p>
-                </video>
-            </div>
+        <div class="add_convenient">
+            <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
+                   poster="<%=request.getContextPath()%>/resources/images/index2.jpg" data-setup="{}">
+                <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
+                <source src="MY_VIDEO.webm" type='video/webm'>
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>
+        </div>
+        <div class="add_convenient">
+            <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
+                   poster="<%=request.getContextPath()%>/resources/images/index3.jpg" data-setup="{}">
+                <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
+                <source src="MY_VIDEO.webm" type='video/webm'>
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>
         </div>
     </div>
 </div>

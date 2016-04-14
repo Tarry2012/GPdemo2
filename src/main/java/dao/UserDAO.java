@@ -15,9 +15,7 @@ public interface UserDAO {
 
     Integer updateLoginById(@Param("userId")int userId);
 
-    Integer add(String username);
-
-    Integer selectLastId();
+    Integer add(UserDO userDO);
 
     List getNames();
 }

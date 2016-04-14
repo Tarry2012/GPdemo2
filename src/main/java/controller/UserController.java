@@ -12,9 +12,11 @@ import service.UserAuthsService;
 import service.UserService;
 
 import javax.annotation.Resource;
+import javax.mail.Session;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,13 +47,14 @@ public class UserController {
         //用户密码加密,加密比较
         UserAuthsDO userAuthsDO = userAuthsService.getByName(loginName);
         System.out.println(userAuthsDO);
-        if (userAuthsDO == null || !BCrypt.checkpw(userpassword,userAuthsDO.getLoginPassword())) {
+        if (userAuthsDO == null || !BCrypt.checkpw(userpassword, userAuthsDO.getLoginPassword())) {
             String msg = "error";
             return msg;
         }
         String username = userService.getById(userAuthsDO.getUserId()).getUserName();
         userService.updateLoginById(userAuthsDO.getUserId());
         request.getSession().setAttribute("username", username);
+        System.out.println("username: " + username);
         Cookie cookieUser = new Cookie("username", username);
         response.addCookie(cookieUser);
         String msg = "ok";
@@ -101,11 +104,13 @@ public class UserController {
         String username = request.getParameter("username");
         String password = request.getParameter("password1");
         String mail = request.getParameter("usermail");
-        if (userService.add(username) <= 0) {
+        UserDO userDO = new UserDO();
+        userDO.setUserName(username);
+        int userId = userService.add(userDO);
+        if (userId <= 0) {
             String msg = "error1";
             return msg;
         }
-        int userId = userService.selectLastId();
         UserAuthsDO userAuthsDO1 = new UserAuthsDO();
         userAuthsDO1.setUserId(userId);
         //0表示用户名登录
@@ -124,27 +129,47 @@ public class UserController {
             String msg = "error2";
             return msg;
         } else {
-            Cookie cookieMail = new Cookie("usermail", mail);
-            response.addCookie(cookieMail);
-            Random rand = new Random(System.currentTimeMillis());
-            int code = rand.nextInt(1000);
-            //放到数据库中并且发送邮件
+//            Cookie cookieMail = new Cookie("usermail", mail);
+//            response.addCookie(cookieMail);
+//            Random rand = new Random(System.currentTimeMillis());
+//            int code = rand.nextInt(1000);
+//            System.out.println("code: " + code);
+//            HttpSession session = request.getSession();
+//            session.setAttribute("checkCode", code);
+//            session.setMaxInactiveInterval(30 * 60);
+            request.getSession().setAttribute("username", username);
+            Cookie cookieUser = new Cookie("username", username);
+            response.addCookie(cookieUser);
             String msg = "ok";
             return msg;
         }
     }
 
-
     @RequestMapping(value = "/userCheckMail.{format}", method = RequestMethod.POST)
     @ResponseBody
-    public String userCheckMail(HttpServletRequest request){
+    public String userCheckMail(HttpServletRequest request) {
         String code = request.getParameter("checkCode");
         Cookie[] cookies = request.getCookies();
         String usermail = null;
-        for (Cookie cookie : cookies){
-            if (cookie.getName().equals("usermail")){
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("usermail")) {
                 usermail = cookie.getValue();
             }
         }
+        return "false";
+    }
+
+
+    @RequestMapping(value = "/userHomePage.{format}")
+    public String userHomePage(HttpServletRequest request, Model model) {
+        String username = (String) request.getSession().getAttribute("username");
+        System.out.println("homepage: " + username);
+        if (username == null) {
+            return "index";
+        } else {
+            model.addAttribute("username", username);
+            return "jsp/user/userHomepage";
+        }
+
     }
 }

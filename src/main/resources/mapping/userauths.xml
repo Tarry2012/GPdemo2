@@ -20,6 +20,7 @@
     </insert>
 
     <select id="getByName" parameterType="String" resultMap="UserAuthsMap">
-        select * from wd_user_auths where login_name = #{loginName}
+        select * from wd_user_auths where login_name = #{loginName};
     </select>
+
 </mapper>
