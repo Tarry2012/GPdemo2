@@ -33,6 +33,7 @@
     <jbcrypt-version>0.3m</jbcrypt-version>
     <javamail-version>1.4.7</javamail-version>
     <jaf-version>1.0.2</jaf-version>
+    <jstl-version>1.2</jstl-version>
   </properties>
 
   <repositories>
@@ -238,7 +239,11 @@
       <version>${jaf-version}</version>
     </dependency>
 
-
+    <dependency>
+      <groupId>jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>${jstl-version}</version>
+    </dependency>
 
   </dependencies>
   <build>

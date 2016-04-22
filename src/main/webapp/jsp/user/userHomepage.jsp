@@ -23,25 +23,17 @@
     <link href="<%=request.getContextPath()%>/resources/css/userHomepage.css" rel="stylesheet" type="text/css"/>
     <title>问道 用户主页</title>
 </head>
-<%
-    String username = null;
-    Cookie cookies[] = request.getCookies(); //读出用户硬盘上的Cookie，并将所有的Cookie放到一个cookie对象数组里面
-    for (Cookie cookie : cookies) {    //取出数组中的一个Cookie对象
-            if (("username").equals(cookie.getName())) {
-                username = cookie.getValue();
-            }
-        }
-%>
+
 <body>
 <div class="top_content">
     <ul>
         <li><a href="#">修改信息</a></li>
-        <li><a href="<%=request.getContextPath()%>/userLogin.jsp">我的主页</a></li>
+        <li><a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp">我的主页</a></li>
     </ul>
     </ul>
 
     <div class="top_title">
-        欢迎来到 问道视频学习网站
+        欢迎来到${username} 问道视频学习网站
     </div>
 </div>
 <%--top结束--%>
@@ -79,7 +71,7 @@
                 <div class="avatar">
                     <img src="<%=request.getContextPath()%>/resources/images/defaultHeadPortrait.png"/>
                 </div>
-                <h5 class="text-center"><%System.out.println(username);;%></h5>
+                <h5 class="text-center">${username}</h5>
                 <ul class="list-group">
                     <li class="list-group-item">
                         <button onclick=""><img src="<%=request.getContextPath()%>/resources/images/Looked.png"/>

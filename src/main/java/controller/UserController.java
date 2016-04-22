@@ -160,16 +160,23 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/userHomePage.{format}")
-    public String userHomePage(HttpServletRequest request, Model model) {
-        String username = (String) request.getSession().getAttribute("username");
-        System.out.println("homepage: " + username);
-        if (username == null) {
-            return "index";
-        } else {
-            model.addAttribute("username", username);
-            return "jsp/user/userHomepage";
-        }
-
-    }
+//    @RequestMapping(value = "/jsp/user/userHomePage.{format}")
+//    public String userHomePage(HttpServletRequest request, Model model) {
+//        String username = null;
+//        System.out.println("aaaaaaaaaaa");
+//        Cookie cookies[] = request.getCookies();
+//        for (Cookie cookie : cookies) {
+//            if (("username").equals(cookie.getName())) {
+//                username = cookie.getValue();
+//            }
+//        }
+//        System.out.println("homepage: " + username);
+//        if (username == null) {
+//            return "index";
+//        } else {
+//            model.addAttribute("username", username);
+//            return "jsp/user/userHomepage";
+//        }
+//
+//    }
 }
