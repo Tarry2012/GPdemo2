@@ -42,7 +42,6 @@ public class UserController {
     public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
         String loginName = request.getParameter("loginName");
         String userpassword = request.getParameter("password");
-        System.out.println("loginName: " + loginName);
 
         //用户密码加密,加密比较
         UserAuthsDO userAuthsDO = userAuthsService.getByName(loginName);
@@ -54,7 +53,6 @@ public class UserController {
         String username = userService.getById(userAuthsDO.getUserId()).getUserName();
         userService.updateLoginById(userAuthsDO.getUserId());
         request.getSession().setAttribute("username", username);
-        System.out.println("username: " + username);
         Cookie cookieUser = new Cookie("username", username);
         response.addCookie(cookieUser);
         String msg = "ok";
@@ -129,14 +127,6 @@ public class UserController {
             String msg = "error2";
             return msg;
         } else {
-//            Cookie cookieMail = new Cookie("usermail", mail);
-//            response.addCookie(cookieMail);
-//            Random rand = new Random(System.currentTimeMillis());
-//            int code = rand.nextInt(1000);
-//            System.out.println("code: " + code);
-//            HttpSession session = request.getSession();
-//            session.setAttribute("checkCode", code);
-//            session.setMaxInactiveInterval(30 * 60);
             request.getSession().setAttribute("username", username);
             Cookie cookieUser = new Cookie("username", username);
             response.addCookie(cookieUser);
@@ -145,38 +135,4 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/userCheckMail.{format}", method = RequestMethod.POST)
-    @ResponseBody
-    public String userCheckMail(HttpServletRequest request) {
-        String code = request.getParameter("checkCode");
-        Cookie[] cookies = request.getCookies();
-        String usermail = null;
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("usermail")) {
-                usermail = cookie.getValue();
-            }
-        }
-        return "false";
-    }
-
-
-//    @RequestMapping(value = "/jsp/user/userHomePage.{format}")
-//    public String userHomePage(HttpServletRequest request, Model model) {
-//        String username = null;
-//        System.out.println("aaaaaaaaaaa");
-//        Cookie cookies[] = request.getCookies();
-//        for (Cookie cookie : cookies) {
-//            if (("username").equals(cookie.getName())) {
-//                username = cookie.getValue();
-//            }
-//        }
-//        System.out.println("homepage: " + username);
-//        if (username == null) {
-//            return "index";
-//        } else {
-//            model.addAttribute("username", username);
-//            return "jsp/user/userHomepage";
-//        }
-//
-//    }
 }

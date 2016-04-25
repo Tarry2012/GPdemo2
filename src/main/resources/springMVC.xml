@@ -14,6 +14,8 @@
     <context:annotation-config/>
     <!--自动扫包-->
     <context:component-scan base-package="controller"/>
+    <context:component-scan base-package="common"/>
+
     <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
     <mvc:annotation-driven/>
 
@@ -28,5 +30,15 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!--设置登录拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**.**" />
+            <mvc:exclude-mapping path="/resources/css/*"/>
+            <mvc:exclude-mapping path="/resources/images/*"/>
+            <mvc:exclude-mapping path="/resources/js/*"/>
+            <bean class="common.interceptor.SystemloginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>
