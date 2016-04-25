@@ -18,14 +18,16 @@ public class SystemloginInterceptor implements HandlerInterceptor {
         String reqUrl = httpServletRequest.getRequestURI().replace(httpServletRequest.getContextPath(), "");
         //当url地址为登录地址或者主页时跳过拦截器
         if (reqUrl.contains("userLogin") || reqUrl.contains("index.jsp")){
-            logger.warn("constains里面的: " + reqUrl);
             return true;
         }else{
             HttpSession session = httpServletRequest.getSession();
             Object obj = session.getAttribute("username");
             if (obj == null || "".equals(obj.toString())){
                 logger.warn("未登录的: " + reqUrl);
-                httpServletResponse.sendRedirect("/demo/jsp/user/userLogin.jsp");
+               // httpServletResponse.setStatus(301);
+              //  httpServletResponse.setHeader("location", httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
+               // httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
+
             }
         }
         return false;
