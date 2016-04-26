@@ -2,7 +2,9 @@ package controller;
 
 import domain.UserAuthsDO;
 import domain.UserDO;
+import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +28,12 @@ import java.util.Random;
 /**
  * Created by tqy on 16/3/14.
  */
+@Scope("prototype")
 @Controller
 //类级别的，处理根url
 @RequestMapping("")
 public class UserController {
+   Logger logger = Logger.getLogger(UserController.class);
 
     @Resource
     private UserService userService;
@@ -60,9 +64,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userLogout")
-    public String logout(HttpServletRequest request) {
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().invalidate();
-        return "jsp/user/userLogout";
+        //String reUrl = request.getContextPath() + "/index";
+        return "index";
     }
 
     @RequestMapping(value = "/userIsExist.{format}", method = RequestMethod.GET)

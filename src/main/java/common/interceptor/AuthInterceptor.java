@@ -17,15 +17,13 @@ public class AuthInterceptor implements HandlerInterceptor {
         //获取url地址
         String reqUrl = httpServletRequest.getRequestURI().replace(httpServletRequest.getContextPath(), "");
         //当url地址为登录地址或者主页时跳过拦截器
-        if (reqUrl.contains("userLogin") || reqUrl.contains("index.jsp")){
+        if (reqUrl.contains("userLogin") || reqUrl.contains("index.jsp") || reqUrl.contains("userLogout")){
             return true;
         }else{
             HttpSession session = httpServletRequest.getSession();
             Object obj = session.getAttribute("username");
             if (obj == null || "".equals(obj.toString())){
                 logger.warn("未登录的: " + reqUrl);
-               // httpServletResponse.setStatus(301);
-              //  httpServletResponse.setHeader("location", httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
                   httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
 
             }
