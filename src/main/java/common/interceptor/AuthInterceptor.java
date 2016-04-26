@@ -11,8 +11,8 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by tqy on 16/4/25.
  */
-public class SystemloginInterceptor implements HandlerInterceptor {
-    private static Logger logger = Logger.getLogger(SystemloginInterceptor.class);
+public class AuthInterceptor implements HandlerInterceptor {
+    private static Logger logger = Logger.getLogger(AuthInterceptor.class);
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         //获取url地址
         String reqUrl = httpServletRequest.getRequestURI().replace(httpServletRequest.getContextPath(), "");
@@ -26,7 +26,7 @@ public class SystemloginInterceptor implements HandlerInterceptor {
                 logger.warn("未登录的: " + reqUrl);
                // httpServletResponse.setStatus(301);
               //  httpServletResponse.setHeader("location", httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
-               // httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
+                  httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
 
             }
         }

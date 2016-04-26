@@ -27,12 +27,16 @@ public class AuthFilter  implements Filter{
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
+        if (reqUrl.endsWith(".png") || reqUrl.endsWith(".css") || reqUrl.endsWith(".js")){
+            filterChain.doFilter(servletRequest,servletResponse);
+            return;
+        }
         //判断用户是否登录，进行页面的处理
         if(null == httpSession.getAttribute("username")){
             //未登录用户，重定向到登录页面
             //httpServletResponse.setStatus(30);
-             httpServletResponse.setHeader("location", httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
-           // httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
+             //httpServletResponse.setHeader("location", httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
+             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
             return;
         } else {
             //已登录用户，允许访问

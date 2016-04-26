@@ -37,7 +37,7 @@
             <mvc:exclude-mapping path="/resources/css/*"/>
             <mvc:exclude-mapping path="/resources/images/*"/>
             <mvc:exclude-mapping path="/resources/js/*"/>
-            <bean class="common.interceptor.SystemloginInterceptor"/>
+            <bean class="common.interceptor.AuthInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

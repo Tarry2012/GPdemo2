@@ -88,21 +88,21 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="<%=request.getContextPath()%>/resources/images/index1.jpg"/>
+                <img src="<%=request.getContextPath()%>/resources/images/index1.png"/>
 
                 <div class="carousel-caption">
                     <h3>这是图片标题1</h3>
                 </div>
             </div>
             <div class="item">
-                <img src="<%=request.getContextPath()%>/resources/images/index2.jpg"/>
+                <img src="<%=request.getContextPath()%>/resources/images/index2.png"/>
 
                 <div class="carousel-caption">
                     <h3>这是图片标题2</h3>
                 </div>
             </div>
             <div class="item">
-                <img src="<%=request.getContextPath()%>/resources/images/index3.jpg"/>
+                <img src="<%=request.getContextPath()%>/resources/images/index3.png"/>
 
                 <div class="carousel-caption">
                     <h3>这是图片标题3</h3>
@@ -142,7 +142,7 @@
     <div class="guess_content clearfix">
         <div class="add_convenient">
             <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
-                   poster="<%=request.getContextPath()%>/resources/images/index1.jpg" data-setup="{}">
+                   poster="<%=request.getContextPath()%>/resources/images/index1.png" data-setup="{}">
                 <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg"/>
                 <source src="MY_VIDEO.webm" type="video/webm"/>
                 <p class="vjs-no-js">
@@ -153,7 +153,7 @@
         </div>
         <div class="add_convenient">
             <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
-                   poster="<%=request.getContextPath()%>/resources/images/index2.jpg" data-setup="{}">
+                   poster="<%=request.getContextPath()%>/resources/images/index2.png" data-setup="{}">
                 <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
                 <source src="MY_VIDEO.webm" type='video/webm'>
                 <p class="vjs-no-js">
@@ -164,7 +164,7 @@
         </div>
         <div class="add_convenient">
             <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
-                   poster="<%=request.getContextPath()%>/resources/images/index3.jpg" data-setup="{}">
+                   poster="<%=request.getContextPath()%>/resources/images/index3.png" data-setup="{}">
                 <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
                 <source src="MY_VIDEO.webm" type='video/webm'>
                 <p class="vjs-no-js">
