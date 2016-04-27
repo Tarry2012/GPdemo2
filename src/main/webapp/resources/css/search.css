@@ -40,3 +40,7 @@ a.list-group-item .list-group-item-heading, button.list-group-item .list-group-i
     height: 150px;
     width: 242px
 }
+
+.list-group{
+    margin-top: 50px;
+}

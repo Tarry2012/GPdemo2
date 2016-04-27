@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="<%=request.getContextPath()%>/resources/css/navigation.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
-
+    <link href="<%=request.getContextPath()%>/resources/css/search.css" rel="stylesheet" type="text/css"/>
     <title>搜索</title>
 </head>
 <body>
@@ -76,9 +76,88 @@
 <%--loge结束--%>
 <div class="contain">
     <div class="row">
-
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="txt" style="color: #006633">搜索 "" , 结果如下:</div>
+            <div class="list-group">
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">IOS7 应用开发</h4>
+                    <div class="tag"><span class="glyphicon glyphicon-heart"> 14</span>
+                        <span class="glyphicon glyphicon-comment"> 15</span>
+                    </div>
+                    <div class="image"><img
+                            src="<%=request.getContextPath()%>/resources/images/ios7.png"/></div>
+                    <div class="list-group-item-tex">
+                        适用于iOS7。本课程介绍了使用Xcode5建造iPhone平台上的应用程序所需的工具和应用程序接口；使用多点触控技术，为手机等终端设计用户互交界面等技术进行面向对象的设计。其他主题包括：内核动画、bonjour网络、移动终端电量管理和性能测评。
+                    </div>
+                </a>
+            </div>
+            <div class="list-group">
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">IOS7 应用开发</h4>
+                    <div class="tag"><span class="glyphicon glyphicon-heart"> 14</span>
+                        <span class="glyphicon glyphicon-comment"> 15</span>
+                    </div>
+                    <div class="image"><img
+                            src="<%=request.getContextPath()%>/resources/images/index1.png"/></div>
+                    <div class="list-group-item-tex">
+                        老师旁征博引，讲课幽默引人入胜，不乏深刻的见地，对俄罗斯文学名著进行当代阐释，揭示其中永恒的美学价值和社会意义，注重文学和当代的联系。不会拘于文学，思想开放。
+                    </div>
+                </a>
+            </div>
+            <div class="list-group">
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">IOS7 应用开发</h4>
+                    <div class="tag"><span class="glyphicon glyphicon-heart"> 14</span>
+                        <span class="glyphicon glyphicon-comment"> 15</span>
+                    </div>
+                    <div class="image"><img
+                            src="<%=request.getContextPath()%>/resources/images/index1.png"/></div>
+                    <div class="list-group-item-tex">
+                        老师旁征博引，讲课幽默引人入胜，不乏深刻的见地，对俄罗斯文学名著进行当代阐释，揭示其中永恒的美学价值和社会意义，注重文学和当代的联系。不会拘于文学，思想开放。
+                    </div>
+                </a>
+            </div>
+            <div class="list-group">
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">IOS7 应用开发</h4>
+                    <div class="tag"><span class="glyphicon glyphicon-heart"> 14</span>
+                        <span class="glyphicon glyphicon-comment"> 15</span>
+                    </div>
+                    <div class="image"><img
+                            src="<%=request.getContextPath()%>/resources/images/index1.png"/></div>
+                    <div class="list-group-item-tex">
+                        老师旁征博引，讲课幽默引人入胜，不乏深刻的见地，对俄罗斯文学名著进行当代阐释，揭示其中永恒的美学价值和社会意义，注重文学和当代的联系。不会拘于文学，思想开放。
+                    </div>
+                </a>
+            </div>
+            <div class="list-group">
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">IOS7 应用开发</h4>
+                    <div class="tag"><span class="glyphicon glyphicon-heart"> 14</span>
+                        <span class="glyphicon glyphicon-comment"> 15</span>
+                    </div>
+                    <div class="image"><img
+                            src="<%=request.getContextPath()%>/resources/images/index1.png"/></div>
+                    <div class="list-group-item-tex">
+                        老师旁征博引，讲课幽默引人入胜，不乏深刻的见地，对俄罗斯文学名著进行当代阐释，揭示其中永恒的美学价值和社会意义，注重文学和当代的联系。不会拘于文学，思想开放。
+                    </div>
+                </a>
+            </div>
+            <div class="nav">
+                <nav>
+                    <ul class="pager">
+                        <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+                        <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
     </div>
-    搜索"",如下内容
 </div>
+</div>
+
+
 </body>
 </html>

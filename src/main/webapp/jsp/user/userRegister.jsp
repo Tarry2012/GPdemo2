@@ -175,7 +175,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon"
                           id="sizing-addon1">邮&nbsp&nbsp&nbsp&nbsp&nbsp箱&nbsp&nbsp:&nbsp</span>
-                    <input type="text" class="form-control" placeholder="Mail" aria-describedby="sizing-addon1"
+                    <input type="email" class="form-control" placeholder="Mail" aria-describedby="sizing-addon1"
                            name="usermail" id="usermail"/>
                 </div>
                 <div class="button btn-group" role="group" aria-label="...">
