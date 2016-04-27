@@ -1,17 +1,42 @@
-html{
-    margin:0;
+html {
+    margin: 0;
     padding: 0;
-    font-size:16px;
-    font-family: "Arial","Hiragino Sans GB","Microsoft YaHei",\5fae\8f6f\96c5\9ed1,"Helvetica","sans-serif";
+    font-size: 16px;
+    font-family: "Arial", "Hiragino Sans GB", "Microsoft YaHei", \5fae\8f6f\96c5\9ed1, "Helvetica", "sans-serif";
 }
 
-.container{
+.container {
     margin: 0px;
     padding: 15px;
-    width:100%;
+    width: 100%;
 }
 
-.col-md-8{
+.col-md-8 {
     margin: 0px;
     padding-top: 10px;
+}
+
+.list-group-item-tex {
+    margin-top: 10px;
+}
+
+a.list-group-item .list-group-item-heading, button.list-group-item .list-group-item-heading {
+    color: #286A46;
+}
+
+.list-group-item-heading {
+    font-size: x-large;
+    padding-bottom: 5px;
+    font-color: #286A46;
+}
+
+.glyphicon {
+    padding-left: 12px;
+    color: #09924B;
+}
+
+.image > img{
+    margin-top: 10px;
+    height: 150px;
+    width: 242px
 }

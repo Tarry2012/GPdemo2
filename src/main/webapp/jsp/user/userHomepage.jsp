@@ -19,9 +19,21 @@
     <!--datatable-->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
-    <link href="<%=request.getContextPath()%>/resources/css/index.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/navigation.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/userHomepage.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/bottom.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/guess.css" rel="stylesheet" type="text/css"/>
     <title>问道 用户主页</title>
+
+    <script>
+        function aboutUs(){
+            alert("软件1204 汤秋媛 \n软件1203 宋润雨")
+        }
+        function contactUs(){
+            alert("宋润雨邮箱：songrunyu1993@gmail.com \n" +
+                    "汤秋媛邮箱：njtangqy@163.com")
+        }
+    </script>
 </head>
 
 <body>
@@ -54,13 +66,13 @@
 </div>
 <div class="navigation">
     <ul class="nav nav-pills">
-        <li role="presentation" class="disabled"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
-        <li role="presentation" class="disabled"><a href="#">计算机</a></li>
-        <li role="presentation" class="disabled"><a href="#">科学</a></li>
-        <li role="presentation" class="disabled"><a href="#">文学</a></li>
-        <li role="presentation" class="disabled"><a href="#">经济</a></li>
-        <li role="presentation" class="disabled"><a href="#">艺术</a></li>
-        <li role="presentation" class="disabled"><a href="#">心理</a></li>
+        <li role="presentation" ><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
+        <li role="presentation" ><a href="#">计算机</a></li>
+        <li role="presentation" ><a href="#">文学</a></li>
+        <li role="presentation" ><a href="#">科学</a></li>
+        <li role="presentation" ><a href="#">经济</a></li>
+        <li role="presentation" ><a href="#">艺术</a></li>
+        <li role="presentation" ><a href="#">心理</a></li>
 
     </ul>
 </div>

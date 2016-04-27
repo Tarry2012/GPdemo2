@@ -1,0 +1,27 @@
+.guess_content {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add_convenient {
+    width: 310px;
+    height: 174px;
+    margin-left: 5px;
+    margin-right: 5px;
+    float: left;
+}
+
+@media only screen and (min-width: 1200px) {
+    .guess_content {
+        width: 1200px;
+    }
+
+    .add_convenient {
+        width: 350px;
+        height: 196px;
+        margin-left: 25px;
+        margin-right: 25px;
+        float: left;
+    }
+}

@@ -1,0 +1,10 @@
+.bottom_base{
+    margin-top: 25px;
+    text-align: center;
+}
+
+.bottom_base input{
+    border:none;
+    background-color: transparent;
+    margin-right: 10px;
+}

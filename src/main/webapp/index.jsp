@@ -17,7 +17,9 @@
     <%--让页面在高分辨率的手机上显示正确的尺寸，防止因为屏幕像素高而使得页面元素变得很小--%>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="<%=request.getContextPath()%>/resources/css/index.css" rel="stylesheet" type="text/css"/>
-
+    <link href="<%=request.getContextPath()%>/resources/css/navigation.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/bottom.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/guess.css" rel="stylesheet" type="text/css"/>
     <title>问道学习视频网站</title>
     <script>
         function aboutUs(){
@@ -66,13 +68,13 @@
 </div>
 <div class="navigation">
     <ul class="nav nav-pills">
-        <li role="presentation" class="disabled"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
-        <li role="presentation" class="disabled"><a href="#">计算机</a></li>
-        <li role="presentation" class="disabled"><a href="#">科学</a></li>
-        <li role="presentation" class="disabled"><a href="#">文学</a></li>
-        <li role="presentation" class="disabled"><a href="#">经济</a></li>
-        <li role="presentation" class="disabled"><a href="#">艺术</a></li>
-        <li role="presentation" class="disabled"><a href="#">心理</a></li>
+        <li role="presentation" class="active"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
+        <li role="presentation" ><a href="<%=request.getContextPath()%>/jsp/ComputerCourse.jsp">计算机</a></li>
+        <li role="presentation" ><a href="#">文学</a></li>
+        <li role="presentation" ><a href="#">科学</a></li>
+        <li role="presentation" ><a href="#">经济</a></li>
+        <li role="presentation" ><a href="#">艺术</a></li>
+        <li role="presentation" ><a href="#">心理</a></li>
     </ul>
 </div>
 <%--loge结束--%>
@@ -89,21 +91,18 @@
         <div class="carousel-inner" role="listbox">
             <div class="item active">
                 <img src="<%=request.getContextPath()%>/resources/images/index1.png"/>
-
                 <div class="carousel-caption">
                     <h3>这是图片标题1</h3>
                 </div>
             </div>
             <div class="item">
                 <img src="<%=request.getContextPath()%>/resources/images/index2.png"/>
-
                 <div class="carousel-caption">
                     <h3>这是图片标题2</h3>
                 </div>
             </div>
             <div class="item">
                 <img src="<%=request.getContextPath()%>/resources/images/index3.png"/>
-
                 <div class="carousel-caption">
                     <h3>这是图片标题3</h3>
                 </div>
@@ -181,6 +180,5 @@
     <input type="button" onclick="aboutUs()" value="关于我们">
     <input type="button" onclick="contactUs()" value="联系我们">
 </div>
-<script src="http://vjs.zencdn.net/5.3.0/video.js"></script>
 </body>
 </html>
