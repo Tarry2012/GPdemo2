@@ -68,11 +68,11 @@
     <ul class="nav nav-pills">
         <li role="presentation" class="disabled"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
         <li role="presentation" class="disabled"><a href="#">计算机</a></li>
-        <li role="presentation" class="disabled"><a href="#">哲学</a></li>
-        <li role="presentation" class="disabled"><a href="#">历史</a></li>
-        <li role="presentation" class="disabled"><a href="#">心理</a></li>
-        <li role="presentation" class="disabled"><a href="#">数学</a></li>
+        <li role="presentation" class="disabled"><a href="#">科学</a></li>
         <li role="presentation" class="disabled"><a href="#">文学</a></li>
+        <li role="presentation" class="disabled"><a href="#">经济</a></li>
+        <li role="presentation" class="disabled"><a href="#">艺术</a></li>
+        <li role="presentation" class="disabled"><a href="#">心理</a></li>
     </ul>
 </div>
 <%--loge结束--%>

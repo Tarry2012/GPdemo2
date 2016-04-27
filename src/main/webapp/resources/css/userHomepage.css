@@ -20,11 +20,11 @@ html{
 }
 
 .col-md-3{
-    border: 1px solid #286A46;
+    border: 1px solid #f5f5f5;
 }
 
 .col-md-9{
-    border-bottom: 1px solid #286A46;
+    border-bottom: 1px solid #f5f5f5;
 }
 aside {
     padding: 30px 20px;

@@ -33,7 +33,7 @@
     </ul>
 
     <div class="top_title">
-        欢迎来到${username} 问道视频学习网站
+        欢迎 ${username} 来到问道视频学习网站
     </div>
 </div>
 <%--top结束--%>
@@ -56,11 +56,12 @@
     <ul class="nav nav-pills">
         <li role="presentation" class="disabled"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
         <li role="presentation" class="disabled"><a href="#">计算机</a></li>
-        <li role="presentation" class="disabled"><a href="#">哲学</a></li>
-        <li role="presentation" class="disabled"><a href="#">历史</a></li>
-        <li role="presentation" class="disabled"><a href="#">心理</a></li>
-        <li role="presentation" class="disabled"><a href="#">数学</a></li>
+        <li role="presentation" class="disabled"><a href="#">科学</a></li>
         <li role="presentation" class="disabled"><a href="#">文学</a></li>
+        <li role="presentation" class="disabled"><a href="#">经济</a></li>
+        <li role="presentation" class="disabled"><a href="#">艺术</a></li>
+        <li role="presentation" class="disabled"><a href="#">心理</a></li>
+
     </ul>
 </div>
 
@@ -72,67 +73,105 @@
                     <img src="<%=request.getContextPath()%>/resources/images/defaultHeadPortrait.png"/>
                 </div>
                 <h5 class="text-center">${username}</h5>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <button onclick=""><img src="<%=request.getContextPath()%>/resources/images/Looked.png"/>
-                        </button>
-                    </li>
-                    <li class="list-group-item">
-                        <button onclick=""><img src="<%=request.getContextPath()%>/resources/images/note.png"/></button>
-                    </li>
-                    <li class="list-group-item">
-                        <button onclick=""><img src="<%=request.getContextPath()%>/resources/images/comment.png"/>
-                        </button>
-                    </li>
-                    <li class="list-group-item">
-                        <button onclick=""><img src="<%=request.getContextPath()%>/resources/images/interest.png"/>
-                        </button>
-                    </li>
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation"><a href="#history"><img
+                            src="<%=request.getContextPath()%>/resources/images/Looked.png"/></a></li>
+                    <li role="presentation"><a href="#note"><img
+                            src="<%=request.getContextPath()%>/resources/images/note.png"/></a></li>
+                    <li role="presentation"><a href="#comments"><img
+                            src="<%=request.getContextPath()%>/resources/images/comment.png"/></a></li>
+                    <li role="presentation"><a href="#interest"><img
+                            src="<%=request.getContextPath()%>/resources/images/interest.png"/></a></li>
                 </ul>
             </aside>
         </div>
         <div class="col-md-9">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Tab history -->
+                <ul role="tabpanel" class="tab-pane fade" id="history" name="history">
+                    <div class="no-item">还没有看过视频</div>
+                </ul>
+                <!-- Tab note -->
+                <ul role="tabpanel" class="tab-pane fade" id="note" href="#note" name="note">
+                    <h5>笔记0</h5>
+                    <div class="seg">
+                        <div class="row">
+                        </div>
+                    </div>
+                    <h5>笔记1</h5>
+                    <div class="seg">
+                        <div class="row">
+                        </div>
+                    </div>
+                    <h5>笔记2</h5>
+                    <div class="seg">
+                        <div class="row">
+                        </div>
+                    </div>
+                </ul>
+                <!-- Tab comment -->
+                <ul role="tabpanel" class="tab-pane fade" id="comments" href="#comments" name="comments">
+                    <div class="row">
+                        <div class="no-item">还没有评价</div>
+                    </div>
+                </ul>
+                <!-- Tab interest -->
+                <ul role="tabpanel" class="tab-pane fade" id="interest" href="#interest" name="interest">
+                    <div class="row">
+                        <div class="no-item">暂无兴趣</div>
+                    </div>
+                </ul>
+            </div>
         </div>
-    </div>
 
-    <div class="guess_title">
-        <img src="<%=request.getContextPath()%>/resources/images/guessyoulike.png" height="45px"/>
-    </div>
-    <div class="guess_content clearfix">
-        <div class="add_convenient">
-            <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
-                   poster="<%=request.getContextPath()%>/resources/images/index1.png" data-setup="{}">
-                <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg"/>
-                <source src="MY_VIDEO.webm" type="video/webm"/>
-                <p class="vjs-no-js">
-                    To view this video please enable JavaScript, and consider upgrading to a web browser that
-                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                </p>
-            </video>
-        </div>
-        <div class="add_convenient">
-            <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
-                   poster="<%=request.getContextPath()%>/resources/images/index2.png" data-setup="{}">
-                <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
-                <source src="MY_VIDEO.webm" type='video/webm'>
-                <p class="vjs-no-js">
-                    To view this video please enable JavaScript, and consider upgrading to a web browser that
-                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                </p>
-            </video>
-        </div>
-        <div class="add_convenient">
-            <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
-                   poster="<%=request.getContextPath()%>/resources/images/index3.png" data-setup="{}">
-                <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
-                <source src="MY_VIDEO.webm" type='video/webm'>
-                <p class="vjs-no-js">
-                    To view this video please enable JavaScript, and consider upgrading to a web browser that
-                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                </p>
-            </video>
-        </div>
     </div>
 </div>
+
+<div class="guess_title">
+    <img src="<%=request.getContextPath()%>/resources/images/guessyoulike.png" height="45px"/>
+</div>
+<div class="guess_content clearfix">
+    <div class="add_convenient">
+        <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
+               poster="<%=request.getContextPath()%>/resources/images/index1.png" data-setup="{}">
+            <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg"/>
+            <source src="MY_VIDEO.webm" type="video/webm"/>
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+    </div>
+    <div class="add_convenient">
+        <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
+               poster="<%=request.getContextPath()%>/resources/images/index2.png" data-setup="{}">
+            <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
+            <source src="MY_VIDEO.webm" type='video/webm'>
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+    </div>
+    <div class="add_convenient">
+        <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
+               poster="<%=request.getContextPath()%>/resources/images/index3.png" data-setup="{}">
+            <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
+            <source src="MY_VIDEO.webm" type='video/webm'>
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+    </div>
+</div>
+</div>
+<script>
+    $('ul.nav-stacked>li>a').click(function(){
+        $href = $(this).attr('href');
+        $('.tab-content ul' + $href).show().siblings().hide();
+    })
+</script>
 </body>
 </html>

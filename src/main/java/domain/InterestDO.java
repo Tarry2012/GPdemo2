@@ -4,19 +4,19 @@ package domain;
  * Created by tqy on 16/4/4.
  */
 public class InterestDO {
-    private String interestId;
+    private int interestId;
     private String interestName;
 
-    public String getInterestId() {
+    public int getInterestId() {
         return interestId;
+    }
+
+    public void setInterestId(int interestId) {
+        this.interestId = interestId;
     }
 
     public String getInterestName() {
         return interestName;
-    }
-
-    public void setInterestId(String interestId) {
-        this.interestId = interestId;
     }
 
     public void setInterestName(String interestName) {
@@ -26,7 +26,7 @@ public class InterestDO {
     @Override
     public String toString() {
         return "InterestDO{" +
-                "interestId='" + interestId + '\'' +
+                "interestId=" + interestId +
                 ", interestName='" + interestName + '\'' +
                 '}';
     }

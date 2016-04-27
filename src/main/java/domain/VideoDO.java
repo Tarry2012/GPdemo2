@@ -4,7 +4,7 @@ package domain;
  * Created by tqy on 16/4/4.
  */
 public class VideoDO {
-    private String videoId;
+    private int videoId;
     private String videoName;
     private String videoDescribe;
     private String videoTime;
@@ -12,10 +12,7 @@ public class VideoDO {
     private String videoComment;
     private String videoLike;
     private String videoPlay;
-
-    public String getVideoId() {
-        return videoId;
-    }
+    private int interestId;
 
     public String getVideoName() {
         return videoName;
@@ -49,10 +46,6 @@ public class VideoDO {
         this.videoPlay = videoPlay;
     }
 
-    public void setVideoId(String videoId) {
-        this.videoId = videoId;
-    }
-
     public void setVideoName(String videoName) {
         this.videoName = videoName;
     }
@@ -77,17 +70,34 @@ public class VideoDO {
         this.videoLike = videoLike;
     }
 
+    public int getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(int videoId) {
+        this.videoId = videoId;
+    }
+
+    public int getInterestId() {
+        return interestId;
+    }
+
+    public void setInterestId(int interestId) {
+        this.interestId = interestId;
+    }
+
     @Override
     public String toString() {
         return "VideoDO{" +
-                "videoId='" + videoId + '\'' +
+                "videoId=" + videoId +
                 ", videoName='" + videoName + '\'' +
                 ", videoDescribe='" + videoDescribe + '\'' +
                 ", videoTime='" + videoTime + '\'' +
                 ", videoUrl='" + videoUrl + '\'' +
-                ", videoCommment='" + videoComment + '\'' +
+                ", videoComment='" + videoComment + '\'' +
                 ", videoLike='" + videoLike + '\'' +
                 ", videoPlay='" + videoPlay + '\'' +
+                ", interestId=" + interestId +
                 '}';
     }
 }

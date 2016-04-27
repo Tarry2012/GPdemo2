@@ -4,49 +4,49 @@ package domain;
  * Created by tqy on 16/4/4.
  */
 public class UserVideoDO {
-    private String userId;
-    private String videoId;
-    private String typeId;
+    private int id;
+    private int userId;
+    private int videoId;
     private boolean idDelete;
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public int getId() {
+        return id;
     }
 
-    public void setVideoId(String videoId) {
-        this.videoId = videoId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setTypeId(String typeId) {
-        this.typeId = typeId;
-    }
-
-    public void setIdDelete(boolean idDelete) {
-        this.idDelete = idDelete;
-    }
-
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public String getVideoId() {
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getVideoId() {
         return videoId;
     }
 
-    public String getTypeId() {
-        return typeId;
+    public void setVideoId(int videoId) {
+        this.videoId = videoId;
     }
 
     public boolean isIdDelete() {
         return idDelete;
     }
 
+    public void setIdDelete(boolean idDelete) {
+        this.idDelete = idDelete;
+    }
+
     @Override
     public String toString() {
         return "UserVideoDO{" +
-                "userId='" + userId + '\'' +
-                ", videoId='" + videoId + '\'' +
-                ", typeId='" + typeId + '\'' +
+                "id=" + id +
+                ", userId=" + userId +
+                ", videoId=" + videoId +
                 ", idDelete=" + idDelete +
                 '}';
     }

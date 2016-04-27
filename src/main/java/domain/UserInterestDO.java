@@ -4,30 +4,40 @@ package domain;
  * Created by tqy on 16/4/4.
  */
 public class UserInterestDO {
-    private String userUd;
-    private String interestId;
+    private int id;
+    private int userId;
+    private int interestId;
 
-    public void setUserUd(String userUd) {
-        this.userUd = userUd;
+    public int getId() {
+        return id;
     }
 
-    public void setInterestId(String interestId) {
-        this.interestId = interestId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getUserUd() {
-        return userUd;
+    public int getUserId() {
+        return userId;
     }
 
-    public String getInterestId() {
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getInterestId() {
         return interestId;
+    }
+
+    public void setInterestId(int interestId) {
+        this.interestId = interestId;
     }
 
     @Override
     public String toString() {
         return "UserInterestDO{" +
-                "userUd='" + userUd + '\'' +
-                ", interestId='" + interestId + '\'' +
+                "id=" + id +
+                ", userId=" + userId +
+                ", interestId=" + interestId +
                 '}';
     }
 }
