@@ -24,8 +24,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="<%=request.getContextPath()%>/resources/css/navigation.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/course.css" rel="stylesheet" type="text/css"/>
-
-    <title>课程</title>
+    <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
+    <title>计算机</title>
 </head>
 <body>
 <div class="top_content">
@@ -65,12 +65,12 @@
 <div class="navigation">
     <ul class="nav nav-pills">
         <li role="presentation"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
-        <li role="presentation" class="active"><a href="#">计算机</a></li>
-        <li role="presentation"><a href="#">文学</a></li>
-        <li role="presentation"><a href="#">科学</a></li>
-        <li role="presentation"><a href="#">经济</a></li>
-        <li role="presentation"><a href="#">艺术</a></li>
-        <li role="presentation"><a href="#">心理</a></li>
+        <li role="presentation" class="active"><a href="<%=request.getContextPath()%>/jsp/computer.jsp">计算机</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/literatrue.jsp">文学</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/science.jsp">科学</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/economy.jsp">经济</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/art.jsp">艺术</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/mentality.jsp">心理</a></li>
     </ul>
 </div>
 <%--loge结束--%>

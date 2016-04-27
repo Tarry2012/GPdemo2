@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: tqy
   Date: 16/4/27
-  Time: 下午1:26
+  Time: 下午4:11
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -23,27 +23,27 @@
     <%--让页面在高分辨率的手机上显示正确的尺寸，防止因为屏幕像素高而使得页面元素变得很小--%>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="<%=request.getContextPath()%>/resources/css/navigation.css" rel="stylesheet" type="text/css"/>
-    <link href="<%=request.getContextPath()%>/resources/css/bottom.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
-    <title>视频</title>
+
+    <title>搜索</title>
 </head>
 <body>
 <div class="top_content">
     <ul>
-        <%  if (session.getAttribute("username") == null) {
+        <% if (session.getAttribute("username") == null) {
         %>
         <li><a href="<%=request.getContextPath()%>/jsp/user/userLogin.jsp">登录</a></li>
         <li><a href="<%=request.getContextPath()%>/jsp/user/userRegister.jsp">注册</a></li>
-        <%  }
-        else  {
+        <% } else {
         %>
         <li><a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp">我的主页</a></li>
         <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
-        <%}
+        <%
+            }
         %>
     </ul>
     <div class="top_title">
-        欢迎 ${username} 来到 问道视频学习网站
+        欢迎 ${username} 来到问道视频学习网站
     </div>
 </div>
 <%--top结束--%>
@@ -62,17 +62,23 @@
         </form>
     </div>
 </div>
-<div class="top_content">
+<div class="navigation">
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/computer.jsp">计算机</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/literatrue.jsp">文学</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/science.jsp">科学</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/economy.jsp">经济</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/art.jsp">艺术</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/mentality.jsp">心理</a></li>
+    </ul>
 </div>
-<div class="container">
+<%--loge结束--%>
+<div class="contain">
     <div class="row">
-        <div class="col-md-1">hello</div>
-        <div class="col-md-7">
-            <img src="<%=request.getContextPath()%>/resources/images/ios7.png"/>
-        </div>
-        <div class="col-md-3"></div>
-        <div class="col-md-1">hello</div>
+
     </div>
+    搜索"",如下内容
 </div>
 </body>
 </html>
