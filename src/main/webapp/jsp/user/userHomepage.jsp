@@ -41,7 +41,7 @@
 <body>
 <div class="top_content">
     <ul>
-        <li><a href="#">修改信息</a></li>
+        <li><a href="<%=request.getContextPath()%>/jsp/user/base.jsp">修改信息</a></li>
         <li><a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp">我的主页</a></li>
     </ul>
     </ul>
@@ -68,14 +68,13 @@
 </div>
 <div class="navigation">
     <ul class="nav nav-pills">
-        <li role="presentation" ><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
-        <li role="presentation" ><a href="#">计算机</a></li>
-        <li role="presentation" ><a href="#">文学</a></li>
-        <li role="presentation" ><a href="#">科学</a></li>
-        <li role="presentation" ><a href="#">经济</a></li>
-        <li role="presentation" ><a href="#">艺术</a></li>
-        <li role="presentation" ><a href="#">心理</a></li>
-
+        <li role="presentation"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/computer.jsp">计算机</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/literatrue.jsp">文学</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/science.jsp">科学</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/economy.jsp">经济</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/art.jsp">艺术</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/mentality.jsp">心理</a></li>
     </ul>
 </div>
 
