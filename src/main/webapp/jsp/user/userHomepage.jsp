@@ -19,10 +19,12 @@
     <!--datatable-->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
+    <link href="<%=request.getContextPath()%>/resources/css/top.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/navigation.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/userHomepage.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/bottom.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/guess.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
     <title>问道 用户主页</title>
 
     <script>
@@ -82,7 +84,7 @@
         <div class="col-md-3">
             <aside>
                 <div class="avatar">
-                    <img src="<%=request.getContextPath()%>/resources/images/defaultHeadPortrait.png"/>
+                    <img src="<%=request.getContextPath()%>/resources/images/defaultHeadPortrait.png" class="img-circle"/>
                 </div>
                 <h5 class="text-center">${username}</h5>
                 <ul class="nav nav-pills nav-stacked">

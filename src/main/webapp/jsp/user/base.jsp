@@ -17,8 +17,9 @@
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link href="<%=request.getContextPath()%>/resources/css/navigation.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/top.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/base.css" rel="stylesheet" type="text/css"/>
     <title>修改信息</title>
 </head>
 <body>
@@ -60,13 +61,46 @@
 <div class="container">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-7">基本资料
-        <form class="form-group">
-            <label for="exampleInputName2">Name</label>
-            <input type="text" class="form-control" id="exampleInputName2" readonly="readonly">
-        </form>
+        <div class="col-md-7"><img src="<%=request.getContextPath()%>/resources/images/base.png" width="105px"/>
+            <form class="form-group" action="" method="">
+                <label for="exampleInputName2">Name</label>
+                <input type="text" class="form-control" id="exampleInputName2" readonly="readonly">
+                <div class="sex">
+                    <label for="exampleInputName2">Sex</label>
+                    <div class="select">
+                        <label class="checkbox-inline">
+                            <input type="radio" name="optionsRadiosinline" id="optionsRadios3"
+                                   value="option1" checked> 男 male
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="optionsRadiosinline" id="optionsRadios4"
+                                   value="option2"> 女 female
+                        </label>
+                    </div>
+                </div>
+                <div class="portrait">
+                    <img src="<%=request.getContextPath()%>/resources/images/portrait.png" width="105px"/>
+                    <div class="defaultPortrait">
+                        <img src="<%=request.getContextPath()%>/resources/images/defaultHeadPortrait.png"
+                             class="img-circle" width="105px">
+                    </div>
+                    <div class="upload">
+                        <label for="inputfile">上传头像</label>
+                        <input type="file" id="inputfile">
+                    </div>
+                </div>
+                <div class="submit">
+                    <button type="button" class="btn btn-default">修改</button>
+                    <button type="button" class="btn btn-default">取消</button>
+                </div>
+            </form>
         </div>
-        <div class="col-md-3">基本资料 修改密码</div>
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" class="active"><a href="#">基本资料</a></li>
+                <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/password.jsp">修改密码</a></li>
+            </ul>
+        </div>
         <div class="col-md-1"></div>
 
     </div>
