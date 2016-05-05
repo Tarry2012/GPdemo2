@@ -17,9 +17,9 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <%-- video.js--%>
-    <link href="http://vjs.zencdn.net/5.3.0/video-js.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/video.js/5.8.0/video-js.min.css" rel="stylesheet">
     <!-- If you'd like to support IE8 -->
-    <script src="http://vjs.zencdn.net/ie8/1.1.0/videojs-ie8.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/5.8.0/video.min.js"></script>
     <%--让页面在高分辨率的手机上显示正确的尺寸，防止因为屏幕像素高而使得页面元素变得很小--%>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="<%=request.getContextPath()%>/resources/css/top.css" rel="stylesheet" type="text/css"/>
@@ -70,11 +70,27 @@
     <div class="row">
         <div class="col-md-1">hello</div>
         <div class="col-md-7">
-            <img src="<%=request.getContextPath()%>/resources/images/ios7.png"/>
+            <div class="video">
+                <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
+                       poster="<%=request.getContextPath()%>/resources/images/index1.png" data-setup="{}">
+                    <source src="<%=request.getContextPath()%>/resources/video/test1.mp4" type="video/mp4"/>
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a web browser that
+                        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                </video>
+            </div>
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-1">hello</div>
     </div>
 </div>
+<script type="text/javascript">
+    var myPlayer = videojs('my-video');
+    videojs("my-video").ready(function(){
+        var myPlayer = this;
+        myPlayer.play();
+    });
+</script>
 </body>
 </html>

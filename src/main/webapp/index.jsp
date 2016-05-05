@@ -146,7 +146,6 @@
             <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
                    poster="<%=request.getContextPath()%>/resources/images/index1.png" data-setup="{}">
                 <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg"/>
-                <source src="MY_VIDEO.webm" type="video/webm"/>
                 <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a web browser that
                     <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -157,7 +156,6 @@
             <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
                    poster="<%=request.getContextPath()%>/resources/images/index2.png" data-setup="{}">
                 <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
-                <source src="MY_VIDEO.webm" type='video/webm'>
                 <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a web browser that
                     <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -168,7 +166,6 @@
             <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
                    poster="<%=request.getContextPath()%>/resources/images/index3.png" data-setup="{}">
                 <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
-                <source src="MY_VIDEO.webm" type='video/webm'>
                 <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a web browser that
                     <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
