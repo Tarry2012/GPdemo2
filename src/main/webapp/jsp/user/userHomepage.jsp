@@ -78,7 +78,7 @@
     </ul>
 </div>
 
-<div class="container">
+<div class="conta-iner">
     <div class="row">
         <div class="col-md-3">
             <aside>
@@ -86,56 +86,21 @@
                     <img src="<%=request.getContextPath()%>/resources/images/defaultHeadPortrait.png" class="img-circle"/>
                 </div>
                 <h5 class="text-center">${username}</h5>
-                <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation"><a href="#history"><img
+                <ul class="nav nav-pills nav-stacked" >
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/looked.jsp" ><img
                             src="<%=request.getContextPath()%>/resources/images/Looked.png"/></a></li>
-                    <li role="presentation"><a href="#note"><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/note.jsp" ><img
                             src="<%=request.getContextPath()%>/resources/images/note.png"/></a></li>
-                    <li role="presentation"><a href="#comments"><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/comments.jsp" ><img
                             src="<%=request.getContextPath()%>/resources/images/comment.png"/></a></li>
-                    <li role="presentation"><a href="#interest"><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/interest.jsp" ><img
                             src="<%=request.getContextPath()%>/resources/images/interest.png"/></a></li>
                 </ul>
             </aside>
         </div>
         <div class="col-md-9">
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <!-- Tab history -->
-                <ul role="tabpanel" class="tab-pane fade" id="history" name="history">
-                    <div class="no-item">还没有看过视频</div>
-                </ul>
-                <!-- Tab note -->
-                <ul role="tabpanel" class="tab-pane fade" id="note" href="#note" name="note">
-                    <h5>笔记0</h5>
-                    <div class="seg">
-                        <div class="row">
-                        </div>
-                    </div>
-                    <h5>笔记1</h5>
-                    <div class="seg">
-                        <div class="row">
-                        </div>
-                    </div>
-                    <h5>笔记2</h5>
-                    <div class="seg">
-                        <div class="row">
-                        </div>
-                    </div>
-                </ul>
-                <!-- Tab comment -->
-                <ul role="tabpanel" class="tab-pane fade" id="comments" href="#comments" name="comments">
-                    <div class="row">
-                        <div class="no-item">还没有评价</div>
-                    </div>
-                </ul>
-                <!-- Tab interest -->
-                <ul role="tabpanel" class="tab-pane fade" id="interest" href="#interest" name="interest">
-                    <div class="row">
-                        <div class="no-item">暂无兴趣</div>
-                    </div>
-                </ul>
-            </div>
+            <h2>没有历史记录</h2>
+        </div>
         </div>
 
     </div>
