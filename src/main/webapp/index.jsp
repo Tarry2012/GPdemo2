@@ -93,7 +93,7 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <a href="<%=request.getContextPath()%>/jsp/video.jsp"><img src="<%=request.getContextPath()%>/resources/images/index1.png"/></a>
+                <img src="<%=request.getContextPath()%>/resources/images/index1.png"/>
                 <div class="carousel-caption">
                     <h3>这是图片标题1</h3>
                 </div>
