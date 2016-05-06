@@ -66,7 +66,9 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-1"></div>
+        <div class="col-md-1">
+
+        </div>
         <div class="col-md-8">
             <div class="video">
                 <video id="my_video" class="video-js vjs-default-skin" controls preload="auto" width="820px" height="460px"
@@ -74,6 +76,9 @@
                        data-setup="{}">
                     <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
                 </video>
+            </div>
+            <div class="comments">
+                hello
             </div>
         </div>
         <div class="col-md-3">
@@ -91,6 +96,7 @@
                     <li class="list-group-item"><a href="<%=request.getContextPath()%>/jsp/noteWrite.jsp">创建笔记</a></li>
                 </ul>
             </div>
+
 
         </div>
     </div>

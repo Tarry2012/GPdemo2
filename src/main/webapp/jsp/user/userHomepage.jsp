@@ -42,7 +42,7 @@
 <div class="top_content">
     <ul>
         <li><a href="<%=request.getContextPath()%>/jsp/user/base.jsp">修改信息</a></li>
-        <li><a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp">我的主页</a></li>
+        <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
     </ul>
     </ul>
 
