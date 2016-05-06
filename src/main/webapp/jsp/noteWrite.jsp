@@ -59,7 +59,7 @@
     %>
   </ul>
   <div class="top_title">
-    欢迎来到 问道视频学习网站
+    欢迎${username}来到问道视频学习网站
   </div>
 </div>
 <%--top结束--%>
@@ -162,7 +162,7 @@
 </div>
 <div class="guessYouLike">
   <div class="guess_title">
-    <img src="<%=request.getContextPath()%>/resources/images/guessyoulike.png" height="45px"/>
+    <img src="<%=request.getContextPath()%>/resources/images/guessyoulike.png" style="height: 45px"/>
   </div>
   <div class="guess_content clearfix">
     <div class="add_convenient">
