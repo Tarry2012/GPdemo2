@@ -25,6 +25,7 @@
   <link href="<%=request.getContextPath()%>/resources/css/bottom.css" rel="stylesheet" type="text/css"/>
   <link href="<%=request.getContextPath()%>/resources/css/guess.css" rel="stylesheet" type="text/css"/>
   <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
+  <link href="<%=request.getContextPath()%>/resources/css/interest.css" rel="stylesheet" type="text/css"/>
   <title>问道 用户主页</title>
 
   <script>
@@ -99,13 +100,68 @@
       </aside>
     </div>
     <div class="col-md-9">
-      <h2>interest</h2>
+      <form action="" method="get">
+      <%--<div class="interest_top"><h2>interest</h2></div>--%>
+      <div class="interest_col_1" style="padding-top: 60px">
+        <div class="row">
+          <div class="col-md-4" >
+            <input type="checkbox" value="computer" onclick="changePic()" >
+            <img src="<%=request.getContextPath()%>/resources/images/interest_computer.jpg" height="200px" width="200px" class="img-circle">
+            <div class="h4">
+              <h4>计算机</h4>
+            </div>
+          </div>
+          <div class="col-md-4" >
+            <input type="checkbox" value="computer" onclick="changePic()">
+            <img src="<%=request.getContextPath()%>/resources/images/interest_literature.jpg" height="200px" width="200px" class="img-circle">
+            <div class="h4">
+              <h4>文学</h4>
+            </div>
+          </div>
+          <div class="col-md-4" >
+            <input type="checkbox" value="computer" onclick="changePic()">
+            <img src="<%=request.getContextPath()%>/resources/images/interest_science.jpg" height="200px" width="200px" class="img-circle">
+            <div class="h4">
+              <h4>科学</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="interest_col_2" style="padding-top: 40px">
+        <div class="row">
+          <div class="col-md-4" >
+            <input type="checkbox" value="computer" onclick="changePic()">
+            <img src="<%=request.getContextPath()%>/resources/images/interest_economy.jpg" height="200px" width="200px" class="img-circle">
+            <div class="h4">
+              <h4>经济</h4>
+            </div>
+          </div>
+          <div class="col-md-4" >
+            <input type="checkbox" value="computer" onclick="changePic()">
+            <img src="<%=request.getContextPath()%>/resources/images/interest_art.jpg" height="200px" width="200px" class="img-circle">
+            <div class="h4">
+              <h4>艺术</h4>
+            </div>
+          </div>
+          <div class="col-md-4" >
+            <input type="checkbox" value="computer" onclick="changePic()">
+            <img src="<%=request.getContextPath()%>/resources/images/interest_psychology.jpg" height="200px" width="200px" class="img-circle">
+            <div class="h4">
+              <h4>心理</h4>
+            </div>
+          </div>
+        </div>
     </div>
+        <div class="btn-submit" style="text-align:center">
+          <button type="button" class="btn btn-success">Submit</button>
+        </div>
+      </form>
   </div>
+
 </div>
 </div>
 
-<div class="guess_title">
+<div class="guess_title" style="padding:50px">
   <img src="<%=request.getContextPath()%>/resources/images/guessyoulike.png" height="45px"/>
 </div>
 <div class="guess_content clearfix">
@@ -149,6 +205,10 @@
     $href = $(this).attr('href');
     $('.tab-content ul' + $href).show().siblings().hide();
   })
+  function changePic()
+  {
+  //  alert();
+  }
 </script>
 </body>
 </html>

@@ -5,11 +5,11 @@
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- 可选的Bootstrap主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap-theme.min.css">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
     <%-- video.js--%>
     <link href="http://vjs.zencdn.net/5.3.0/video-js.css" rel="stylesheet">
     <!-- If you'd like to support IE8 -->
@@ -93,7 +93,7 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <a href="<%=request.getContextPath()%>/jsp/video.jsp"><img src="<%=request.getContextPath()%>/resources/images/index1.png"/></a>
+                <img src="<%=request.getContextPath()%>/resources/images/index1.png"/>
                 <div class="carousel-caption">
                     <h3>这是图片标题1</h3>
                 </div>
