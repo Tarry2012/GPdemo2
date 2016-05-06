@@ -93,7 +93,7 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="<%=request.getContextPath()%>/resources/images/index1.png"/>
+                <a href="<%=request.getContextPath()%>/jsp/video.jsp"><img src="<%=request.getContextPath()%>/resources/images/index1.png"/></a>
                 <div class="carousel-caption">
                     <h3>这是图片标题1</h3>
                 </div>
@@ -126,13 +126,13 @@
     <div class="rank">
         <img src="<%=request.getContextPath()%>/resources/images/hotvideo.png" height="60px"/>
         <span class="list-group">
-            <a href="#" class="list-group-item list-group-item-success">视频1</a>
-            <a href="#" class="list-group-item list-group-item-info">视频2</a>
-            <a href="#" class="list-group-item list-group-item-success">视频3</a>
-            <a href="#" class="list-group-item list-group-item-info">视频3</a>
-            <a href="#" class="list-group-item list-group-item-success">视频4</a>
-            <a href="#" class="list-group-item list-group-item-info">视频5</a>
-            <a href="#" class="list-group-item list-group-item-success">视频6</a>
+            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-success">视频1</a>
+            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-info">视频2</a>
+            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-success">视频3</a>
+            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-info">视频3</a>
+            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-success">视频4</a>
+            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-info">视频5</a>
+            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-success">视频6</a>
         </span>
     </div>
 </div>
