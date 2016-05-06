@@ -17,7 +17,6 @@
     <script src="<%=request.getContextPath()%>/resources/js/bootstrap-wysiwyg.js"></script>
   <%--让页面在高分辨率的手机上显示正确的尺寸，防止因为屏幕像素高而使得页面元素变得很小--%>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link href="<%=request.getContextPath()%>/resources/css/index.css" rel="stylesheet" type="text/css"/>
   <link href="<%=request.getContextPath()%>/resources/css/top.css" rel="stylesheet" type="text/css"/>
   <link href="<%=request.getContextPath()%>/resources/css/navigation.css" rel="stylesheet" type="text/css"/>
   <link href="<%=request.getContextPath()%>/resources/css/bottom.css" rel="stylesheet" type="text/css"/>
@@ -242,7 +241,7 @@
     });
     function submitText()
     {
-        var myText=document.getElementById("editor");
+        var myText=document.getElementById("editor").innerText;
         alert(myText);
     }
 </script>
