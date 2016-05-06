@@ -40,3 +40,7 @@ div[data-role="editor-toolbar"] {
 .dropdown-menu a {
     cursor: pointer;
 }
+
+.btn-submit{
+    float:right;
+}

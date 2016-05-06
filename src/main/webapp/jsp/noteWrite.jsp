@@ -30,7 +30,7 @@
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
-    <link href="note.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/css/note.css" rel="stylesheet">
 
 
   <title>问道学习视频网站</title>
@@ -154,7 +154,10 @@
         </div>
 
         <div id="editor">
-            Go ahead&hellip;
+            Go ahead...&hellip;
+        </div>
+        <div class="btn-submit">
+            <button type="submit" class="btn btn-default" onclick="submitText()">Submit</button>
         </div>
     </div>
 </div>
@@ -226,17 +229,22 @@
                 overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
             });
             $('#voiceBtn').hide();
-            // if ("onwebkitspeechchange"  in document.createElement("input")) {
-            //   var editorOffset = $('#editor').offset();
-            //   $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
-            // } else {
-            //   $('#voiceBtn').hide();
-            // }
+//             if ("onwebkitspeechchange"  in document.createElement("input")) {
+//               var editorOffset = $('#editor').offset();
+//               $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
+//             } else {
+//               $('#voiceBtn').hide();
+//             }
         };
         initToolbarBootstrapBindings();
         $('#editor').wysiwyg();
         window.prettyPrint && prettyPrint();
     });
+    function submitText()
+    {
+        var myText=document.getElementById("editor");
+        alert(myText);
+    }
 </script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
