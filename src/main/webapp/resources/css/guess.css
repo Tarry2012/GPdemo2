@@ -11,6 +11,9 @@
     margin-right: 5px;
     float: left;
 }
+.guess_title{
+    clear: both;
+}
 
 @media only screen and (min-width: 1200px) {
     .guess_content {
