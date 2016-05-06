@@ -19,3 +19,4 @@ src/main/profiles/local/log4j.properties
 src/main/resources/config.properties
 src/main/resources/log4j.properties
 src/main/webapp/resources/video/*
+src/main/resources/jdbc.properties

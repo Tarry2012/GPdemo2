@@ -12,14 +12,12 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- 可选的Bootstrap主题文件（一般不用引入） -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link href="//cdn.bootcss.com/video.js/5.8.0/alt/video-js-cdn.css" rel="stylesheet">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <%-- video.js--%>
-    <link href="//cdn.bootcss.com/video.js/5.8.0/video-js.min.css" rel="stylesheet">
-    <!-- If you'd like to support IE8 -->
-    <script src="//cdn.bootcss.com/video.js/5.8.0/video.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/5.8.0/video.js"></script>
     <%--让页面在高分辨率的手机上显示正确的尺寸，防止因为屏幕像素高而使得页面元素变得很小--%>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="<%=request.getContextPath()%>/resources/css/top.css" rel="stylesheet" type="text/css"/>
@@ -68,29 +66,42 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-1">hello</div>
-        <div class="col-md-7">
+        <div class="col-md-1"></div>
+        <div class="col-md-8">
             <div class="video">
-                <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
-                       poster="<%=request.getContextPath()%>/resources/images/index1.png" data-setup="{}">
-                    <source src="<%=request.getContextPath()%>/resources/video/test1.mp4" type="video/mp4"/>
-                    <p class="vjs-no-js">
-                        To view this video please enable JavaScript, and consider upgrading to a web browser that
-                        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                    </p>
+                <video id="my_video" class="video-js vjs-default-skin" controls preload="auto" width="820px" height="460px"
+                       poster="http://video-js.zencoder.com/oceans-clip.png"
+                       data-setup="{}">
+                    <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
                 </video>
             </div>
         </div>
-        <div class="col-md-3"></div>
-        <div class="col-md-1">hello</div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Ocean</div>
+                <div class="panel-body">
+                    <p>海洋blablablabla</p>
+                </div>
+                <!-- List group -->
+                <ul class="list-group">
+                    <li class="list-group-item"><span type="button" class="glyphicon glyphicon-heart"> 14</span>
+                        <span class="glyphicon glyphicon-play-circle"> 15</span></li>
+                    <li class="list-group-item">类型：自然</li>
+                    <li class="list-group-item"><a href="<%=request.getContextPath()%>/jsp/noteWrite.jsp">创建笔记</a></li>
+                </ul>
+            </div>
+
+        </div>
     </div>
 </div>
+
+</body>
 <script type="text/javascript">
-    var myPlayer = videojs('my-video');
-    videojs("my-video").ready(function(){
+    var myPlayer = videojs('my_video');
+    videojs("my_video").ready(function(){
         var myPlayer = this;
         myPlayer.play();
     });
 </script>
-</body>
 </html>

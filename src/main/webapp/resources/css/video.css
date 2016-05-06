@@ -16,3 +16,22 @@
     height: 10px;
     width: 10px;
 }
+
+.col-md-3{
+    padding: 200px;
+}
+
+.panel-default>.panel-heading{
+    color: #286A46;
+}
+
+.panel-default>.panel-body{
+    color: #286A46;
+}
+
+.panel>.list-group:last-child .list-group-item:last-child, .panel>.panel-collapse>.list-group:last-child .list-group-item:last-child{
+ color: #286A46;
+}
+
+
+
