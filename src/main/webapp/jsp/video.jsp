@@ -24,7 +24,9 @@
     <link href="<%=request.getContextPath()%>/resources/css/navigation.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/bottom.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/video.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/course.css" rel="stylesheet" type="text/css"/>
+
     <title>视频</title>
 </head>
 <body>
@@ -69,19 +71,18 @@
         <div class="col-md-1">
 
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="video">
-                <video id="my_video" class="video-js vjs-default-skin" controls preload="auto" width="820px" height="460px"
+                <video id="my_video" class="video-js vjs-default-skin" controls preload="auto"
                        poster="http://video-js.zencoder.com/oceans-clip.png"
                        data-setup="{}">
                     <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
                 </video>
             </div>
             <div class="comments">
-                hello
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <!-- Default panel contents -->
                 <div class="panel-heading">Ocean</div>
