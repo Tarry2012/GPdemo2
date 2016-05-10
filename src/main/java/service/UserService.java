@@ -19,4 +19,6 @@ public interface UserService {
     Integer add(UserDO userDO);
 
     List getNames();
+
+    Integer getIdByName(String userName);
 }

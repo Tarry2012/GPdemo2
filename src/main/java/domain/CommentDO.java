@@ -11,7 +11,7 @@ public class CommentDO {
     private int authorId;
     private int videoId;
     private int commentLike;
-    private String commentContext;
+    private String commentContent;
     private Date commentTime;
 
     public int getCommentId() {
@@ -54,12 +54,12 @@ public class CommentDO {
         this.commentLike = commentLike;
     }
 
-    public String getCommentContext() {
-        return commentContext;
+    public String getCommentContent() {
+        return commentContent;
     }
 
-    public void setCommentContext(String commentContext) {
-        this.commentContext = commentContext;
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
     }
 
     public Date getCommentTime() {
@@ -78,7 +78,7 @@ public class CommentDO {
                 ", authorId=" + authorId +
                 ", videoId=" + videoId +
                 ", commentLike=" + commentLike +
-                ", commentContext='" + commentContext + '\'' +
+                ", commentContent='" + commentContent + '\'' +
                 ", commentTime=" + commentTime +
                 '}';
     }
