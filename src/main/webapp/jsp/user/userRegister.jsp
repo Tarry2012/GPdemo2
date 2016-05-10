@@ -160,21 +160,21 @@
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon"
-                          id="sizing-addon1">密&nbsp&nbsp&nbsp&nbsp&nbsp码&nbsp&nbsp:&nbsp</span>
+                          id="sizing-addon2">密&nbsp&nbsp&nbsp&nbsp&nbsp码&nbsp&nbsp:&nbsp</span>
                     <input type="password" class="form-control" placeholder="6~18字节,只能包含字母,数字和下划线"
                            aria-describedby="sizing-addon1"
                            name="password1" id="password1" onblur="checkPassword1()"/>
 
                 </div>
                 <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="sizing-addon1">确认密码&nbsp:</span>
+                    <span class="input-group-addon" id="sizing-addon3">确认密码&nbsp:</span>
                     <input type="password" class="form-control" placeholder="6~18字节,只能包含字母,数字和下划线"
                            aria-describedby="sizing-addon1"
                            name="password2" id="password2" onblur="checkPassword2()"/>
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon"
-                          id="sizing-addon1">邮&nbsp&nbsp&nbsp&nbsp&nbsp箱&nbsp&nbsp:&nbsp</span>
+                          id="sizing-addon4">邮&nbsp&nbsp&nbsp&nbsp&nbsp箱&nbsp&nbsp:&nbsp</span>
                     <input type="email" class="form-control" placeholder="Mail" aria-describedby="sizing-addon1"
                            name="usermail" id="usermail"/>
                 </div>

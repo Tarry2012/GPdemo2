@@ -20,8 +20,54 @@
     <link href="<%=request.getContextPath()%>/resources/css/top.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/password.css" rel="stylesheet" type="text/css"/>
-
     <title>修改密码</title>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#InputPassword1").on('blur', function () {
+                /*提交验证，异步传输*/
+                $.ajax({
+                    url: '<%=request.getContextPath()%>/checkOldPassword', //处理测试页面,注意返回内容，成功返回OK
+                    dataType: 'text',
+                    type: 'POST',
+                    data: $("form").serialize(),
+                    success: function (msg) {
+                        msg = msg.replace(/rn/g, '');
+                        if (msg != "ok") {
+                            alert("旧密码不正确")
+                        }
+                    }
+                });
+                return false;
+            });
+            return false;
+        })
+
+        function checkPassword1() {
+            var re = /^[\dA-Za-z_]{5,17}$/;
+            var password = document.getElementById('InputPassword2').value;
+            if (password != null && password.length > 0) {
+                if (!re.test(password)) {
+                    alert("6~18字节,只能包含字母,数字和下划线")
+                }
+            } else {
+                alert("请输入密码")
+            }
+        }
+
+        function checkPassword2() {
+            var password1 = document.getElementById('InputPassword2').value;
+            var password2 = document.getElementById('InputPassword3').value;
+            if (password2 != null && password2.length > 0) {
+                if (password1 != password2) {
+                    alert("两次密码输入不一致")
+                }
+            } else {
+                alert("请输入密码")
+            }
+        }
+    </script>
+
 
 </head>
 <body>
@@ -64,22 +110,21 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-7"><img src="<%=request.getContextPath()%>/resources/images/password.png" width="105px"/>
-            <form class="form-group" action="<%=request.getContextPath()%>/checkOldPassword" method="post">
+            <form class="form-group" action="<%=request.getContextPath()%>/modifyPassword" method="post">
                 <div class="form-group">
                     <label for="InputPassword1">旧密码</label>
                     <input type="password" class="form-control" id="InputPassword1" name="InputPassword1" placeholder="旧密码">
                 </div>
                 <div class="form-group">
                     <label for="InputPassword2">新密码</label>
-                    <input type="password" class="form-control" id="InputPassword2" name="InputPassword2" placeholder="新密码">
+                    <input type="password" class="form-control" id="InputPassword2" name="InputPassword2" placeholder="新密码" onblur="checkPassword1()">
                 </div>
                 <div class="form-group">
                     <label for="InputPassword3">重复密码</label>
-                    <input type="password" class="form-control" id="InputPassword3" name="InputPassword3" placeholder="重复密码">
+                    <input type="password" class="form-control" id="InputPassword3" name="InputPassword3" placeholder="重复密码" onblur="checkPassword2()">
                 </div>
                 <div class="submit">
-                    <%--<button type="button" class="btn btn-default">修改</button>--%>
-                    <input type="submit" value="修改"/>
+                    <button type="button" class="btn btn-default">修改</button>
                     <button type="button" class="btn btn-default">取消</button>
                 </div>
             </form>
@@ -91,7 +136,6 @@
             </ul>
         </div>
         <div class="col-md-1"></div>
-
     </div>
 </div>
 </body>

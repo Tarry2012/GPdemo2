@@ -142,8 +142,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/checkOldPassword", method = RequestMethod.POST)
+    @ResponseBody
     public String verifyPassword(HttpServletRequest request, HttpServletResponse response){
-        System.out.println("hello!");
         String username = (String) request.getSession().getAttribute("username");
         if (StringUtils.isEmpty(username)){
             Cookie[] cookies = request.getCookies();
@@ -155,18 +155,22 @@ public class UserController {
         }
         if (StringUtils.isEmpty(username)){
             logger.error(username + "is empty");
-            return "index";
+            return "error";
         }
 
         UserAuthsDO userAuthsDO = userAuthsService.getByName(username);
-        System.out.println("username: " + username);
-
         String inputPassword1 = request.getParameter("InputPassword1");
         if (userAuthsDO == null || !BCrypt.checkpw(inputPassword1, userAuthsDO.getLoginPassword())){
-            return "index";
+            return "error";
         }else{
-            return "index";
+            return "ok";
         }
     }
 
+    @RequestMapping(value = "/modifyPassword", method=RequestMethod.POST)
+    @ResponseBody
+    public String modifyPassword(HttpServletRequest request){
+        String username = (String)request.getSession().getAttribute("username");
+        return "";
+    }
 }
