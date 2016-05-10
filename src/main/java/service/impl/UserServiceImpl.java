@@ -61,4 +61,12 @@ public class UserServiceImpl implements UserService{
         return names;
     }
 
+    public Integer getIdByName(String userName)
+    {
+        Integer userId =  this.userDAO.getIdByName(userName);
+
+        return userId;
+
+    }
+
 }
