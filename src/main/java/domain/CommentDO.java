@@ -10,7 +10,7 @@ public class CommentDO {
     private int parentId;
     private int authorId;
     private int videoId;
-    private int commentLike;
+    private int commentLikes;
     private String commentContent;
     private Date commentTime;
 
@@ -46,12 +46,12 @@ public class CommentDO {
         this.videoId = videoId;
     }
 
-    public int getCommentLike() {
-        return commentLike;
+    public int getCommentLikes() {
+        return commentLikes;
     }
 
-    public void setCommentLike(int commentLike) {
-        this.commentLike = commentLike;
+    public void setCommentLikes(int commentLike) {
+        this.commentLikes = commentLikes;
     }
 
     public String getCommentContent() {
@@ -77,7 +77,7 @@ public class CommentDO {
                 ", parentId=" + parentId +
                 ", authorId=" + authorId +
                 ", videoId=" + videoId +
-                ", commentLike=" + commentLike +
+                ", commentLike=" + commentLikes +
                 ", commentContent='" + commentContent + '\'' +
                 ", commentTime=" + commentTime +
                 '}';

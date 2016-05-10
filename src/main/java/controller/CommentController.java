@@ -1,13 +1,18 @@
 package controller;
 
-import dao.UserDAO;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import domain.CommentDO;
-import domain.UserDO;
+import domain.CommentTransDO;
+import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.CommentService;
 import service.UserService;
@@ -15,6 +20,8 @@ import service.UserService;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.crypto.Data;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,11 +40,18 @@ public class CommentController {
     @Resource
     private UserService userService;
 
-    //方法级别,所以处理这种url: /demo/addComment
-    @RequestMapping(value = "/addComment", method = RequestMethod.POST)
+    //方法级别,所以处理这种url: /demo/video/addComment
 
-    public String addComment(HttpServletRequest request) {
+    @RequestMapping(value = "/video/addComment", method = RequestMethod.POST)
+
+    public String addComment(@RequestParam("content") String content,
+                             @RequestParam("upvote_count") Integer upvote_count,
+                             HttpServletRequest request) {
+        System.out.println(content);
+        System.out.println(upvote_count);
+
         String username = null;
+
         Cookie[] cookies = request.getCookies();
         for(int i = 0; i < cookies.length; i++ ){
             if("username".equals(cookies[i].getName()))
@@ -45,22 +59,47 @@ public class CommentController {
                 username = cookies[i].getValue();
             }
         }
-        System.out.println(username);
-        String comment_content = request.getParameter("textarea");
-        System.out.println("content: " + comment_content);
+
         Integer userId = userService.getIdByName(username);
-        if(userId == null)
-            System.out.println("userid is null");
         System.out.print(userId);
 
         CommentDO commentDO = new CommentDO();
         commentDO.setParentId(1);
         commentDO.setAuthorId(userId);
-        commentDO.setCommentContent(comment_content);
-        commentDO.setCommentLike(3);
+        commentDO.setCommentContent(content);
+        commentDO.setCommentLikes(upvote_count);
         commentDO.setVideoId(123);
         commentService.add(commentDO);
 
         return "jsp/video";
+    }
+
+    //方法级别,所以处理这种url: /demo/getComment?videoId=123
+    @RequestMapping(value = "/video/getComment", method = RequestMethod.POST)
+    @ResponseBody
+    public String getComment(@RequestParam("videoId") Integer videoId) {
+        List<CommentDO> comments = commentService.getCommentsByVideoId(videoId);
+        List<CommentTransDO> commentTrans = new ArrayList<CommentTransDO>();
+
+        for(CommentDO comment : comments) {
+            CommentTransDO commentTransDO = new CommentTransDO();
+            commentTransDO.setId(comment.getAuthorId());
+            commentTransDO.setContent(comment.getCommentContent());
+            commentTransDO.setCreated(comment.getCommentTime());
+            String fullName = userService.getById(comment.getAuthorId()).getUserName();
+            commentTransDO.setFullname(fullName);
+            commentTransDO.setUpvote_count(comment.getCommentLikes());
+
+            commentTrans.add(commentTransDO);
+        }
+
+
+        System.out.println(commentTrans);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("data", commentTrans);
+        String json=jsonObject.toJSONString();
+
+        System.out.println("comment: " + json);
+        return json;
     }
 }
