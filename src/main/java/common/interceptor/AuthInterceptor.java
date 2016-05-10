@@ -1,5 +1,6 @@
 package common.interceptor;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,15 +18,18 @@ public class AuthInterceptor implements HandlerInterceptor {
         //获取url地址
         String reqUrl = httpServletRequest.getRequestURI().replace(httpServletRequest.getContextPath(), "");
         //当url地址为登录地址或者主页时跳过拦截器
-        if (reqUrl.contains("userLogin") || reqUrl.contains("index.jsp") || reqUrl.contains("userLogout")){
+        if (reqUrl.contains("userLogin") || reqUrl.contains("userLogout")){
             return true;
         }else{
             HttpSession session = httpServletRequest.getSession();
-            Object obj = session.getAttribute("username");
-            if (obj == null || "".equals(obj.toString())){
+            //为了调试，先把session验证去掉
+            session.setAttribute("username", "test2");
+            String obj = (String)session.getAttribute("username");
+            if (StringUtils.isEmpty(obj)){
                 logger.warn("未登录的: " + reqUrl);
                   httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
-
+            }else{
+                return true;
             }
         }
         return false;

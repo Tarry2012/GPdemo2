@@ -129,7 +129,7 @@
                     </article>
                 </section>
                 <h4 class="m-t-lg m-b">Leave a comment</h4>
-                <form>
+                <form action="/demo/addComment" method="post">
                     <%--<div class="form-group pull-in clearfix">--%>
                         <%--<div class="col-sm-6"><label>Your name</label> <input type="text"--%>
                                                                               <%--class="form-control"--%>

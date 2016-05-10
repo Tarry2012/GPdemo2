@@ -2,6 +2,7 @@ package controller;
 
 import domain.UserAuthsDO;
 import domain.UserDO;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.context.annotation.Scope;
@@ -137,6 +138,34 @@ public class UserController {
             response.addCookie(cookieUser);
             String msg = "ok";
             return msg;
+        }
+    }
+
+    @RequestMapping(value = "/checkOldPassword", method = RequestMethod.POST)
+    public String verifyPassword(HttpServletRequest request, HttpServletResponse response){
+        System.out.println("hello!");
+        String username = (String) request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error(username + "is empty");
+            return "index";
+        }
+
+        UserAuthsDO userAuthsDO = userAuthsService.getByName(username);
+        System.out.println("username: " + username);
+
+        String inputPassword1 = request.getParameter("InputPassword1");
+        if (userAuthsDO == null || !BCrypt.checkpw(inputPassword1, userAuthsDO.getLoginPassword())){
+            return "index";
+        }else{
+            return "index";
         }
     }
 

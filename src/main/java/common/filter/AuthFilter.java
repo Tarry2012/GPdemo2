@@ -1,5 +1,6 @@
 package common.filter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -23,21 +24,19 @@ public class AuthFilter  implements Filter{
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         HttpSession httpSession =  httpServletRequest.getSession();
         String reqUrl = httpServletRequest.getRequestURI();
-        if(reqUrl.contains("userLogin") || reqUrl.contains("index.jsp")){
+        if(reqUrl.contains("index.jsp")){
             filterChain.doFilter(servletRequest, servletResponse);
-            return;
         }
         if (reqUrl.endsWith(".png") || reqUrl.endsWith(".css") || reqUrl.endsWith(".js")){
             filterChain.doFilter(servletRequest,servletResponse);
-            return;
         }
         //判断用户是否登录，进行页面的处理
-        if(null == httpSession.getAttribute("username")){
+        //为了调式，先把session验证去掉了
+        httpSession.setAttribute("username", "test2");
+        String session = (String)httpSession.getAttribute("username");
+        if(StringUtils.isEmpty(session)){
             //未登录用户，重定向到登录页面
-            //httpServletResponse.setStatus(30);
-             //httpServletResponse.setHeader("location", httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
              httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
-            return;
         } else {
             //已登录用户，允许访问
             filterChain.doFilter(servletRequest, servletResponse);

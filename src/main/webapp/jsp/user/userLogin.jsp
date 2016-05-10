@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
     <title>问道 用户登录</title>
@@ -65,8 +64,8 @@
                            name="loginName" id="loginName">
                 </div>
                 <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="sizing-addon1">密&nbsp&nbsp&nbsp码:</span>
-                    <input type="password" class="form-control" placeholder="password" aria-describedby="sizing-addon1"
+                    <span class="input-group-addon" id="sizing-addon2">密&nbsp&nbsp&nbsp码:</span>
+                    <input type="password" class="form-control" placeholder="password" aria-describedby="sizing-addon2"
                            name="password" id="password">
                 </div>
                 <div class="button btn-group" role="group" aria-label="...">

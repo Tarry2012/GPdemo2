@@ -22,6 +22,7 @@
     <link href="<%=request.getContextPath()%>/resources/css/password.css" rel="stylesheet" type="text/css"/>
 
     <title>修改密码</title>
+
 </head>
 <body>
 <div class="top_content">
@@ -63,21 +64,22 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-7"><img src="<%=request.getContextPath()%>/resources/images/password.png" width="105px"/>
-            <form class="form-group" action="" method="">
+            <form class="form-group" action="<%=request.getContextPath()%>/checkOldPassword" method="post">
                 <div class="form-group">
-                    <label for="exampleInputPassword1">旧密码</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="旧密码">
+                    <label for="InputPassword1">旧密码</label>
+                    <input type="password" class="form-control" id="InputPassword1" name="InputPassword1" placeholder="旧密码">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword2">新密码</label>
-                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="新密码">
+                    <label for="InputPassword2">新密码</label>
+                    <input type="password" class="form-control" id="InputPassword2" name="InputPassword2" placeholder="新密码">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword3">重复密码</label>
-                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="重复密码">
+                    <label for="InputPassword3">重复密码</label>
+                    <input type="password" class="form-control" id="InputPassword3" name="InputPassword3" placeholder="重复密码">
                 </div>
                 <div class="submit">
-                    <button type="button" class="btn btn-default">修改</button>
+                    <%--<button type="button" class="btn btn-default">修改</button>--%>
+                    <input type="submit" value="修改"/>
                     <button type="button" class="btn btn-default">取消</button>
                 </div>
             </form>

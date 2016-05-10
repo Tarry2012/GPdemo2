@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html>
 <head>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
@@ -12,8 +11,7 @@
     <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
     <%-- video.js--%>
     <link href="http://vjs.zencdn.net/5.3.0/video-js.css" rel="stylesheet">
-    <!-- If you'd like to support IE8 -->
-    <script src="http://vjs.zencdn.net/ie8/1.1.0/videojs-ie8.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/5.8.0/video.js"></script>
     <%--让页面在高分辨率的手机上显示正确的尺寸，防止因为屏幕像素高而使得页面元素变得很小--%>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="<%=request.getContextPath()%>/resources/css/index.css" rel="stylesheet" type="text/css"/>
@@ -46,7 +44,7 @@
         %>
          <li><a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp">我的主页</a></li>
          <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
-            <%}
+        <%}
         %>
     </ul>
     <div class="top_title">
