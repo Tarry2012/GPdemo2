@@ -37,6 +37,7 @@
     <webmagic-extension-version>0.5.2</webmagic-extension-version>
     <apache-commons-version>3.4</apache-commons-version>
     <slf4j-log4j12-version>1.7.21</slf4j-log4j12-version>
+    <json-version>1.2.7</json-version>
   </properties>
 
   <repositories>
@@ -269,6 +270,13 @@
       <artifactId>commons-lang3</artifactId>
       <version>${apache-commons-version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>${json-version}</version>
+    </dependency>
+
 
 
   </dependencies>

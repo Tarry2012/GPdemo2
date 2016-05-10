@@ -105,5 +105,10 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
 
+    <bean id="commentDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="dao.CommentDAO"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
+
 </beans>
 
