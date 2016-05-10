@@ -18,4 +18,7 @@ public interface UserDAO {
     Integer add(UserDO userDO);
 
     List getNames();
+
+    Integer getIdByName(String userName);
+
 }

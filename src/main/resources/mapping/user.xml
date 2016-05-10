@@ -33,4 +33,9 @@
         select * from wd_user;
     </select>
 
+    <select id="getIdByName" parameterType="String" resultType="Integer">
+        select user_id from wd_user where user_name=#{userName}
+
+    </select>
+
 </mapper>

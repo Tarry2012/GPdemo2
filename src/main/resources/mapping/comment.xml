@@ -22,7 +22,7 @@
         <selectKey resultType="int" keyProperty="commentId">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into wd_comment(parent_id,author_id,video_id,comment_likes,comment_content) values(#{parentId},#{authorId},#{videoId},#{commentLikes},#{commentContent})
+        insert into wd_comment(parent_id,author_id,video_id,comment_likes,comment_content) values(#{parentId},#{authorId},#{videoId},#{commentLike},#{commentContent})
     </insert>
 
     <select id="getCommentsByVideoId" resultMap="CommentMap">
