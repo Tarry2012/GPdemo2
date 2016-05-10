@@ -15,4 +15,6 @@ public interface UserAuthsDAO {
     Integer add(UserAuthsDO userAuthsDO);
 
     UserAuthsDO getByName(String loginName);
+
+    Integer UpdatePassword(Map<String, Object> paramMap);
 }

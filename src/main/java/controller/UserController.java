@@ -2,6 +2,7 @@ package controller;
 
 import domain.UserAuthsDO;
 import domain.UserDO;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
@@ -10,20 +11,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import service.UserAuthsService;
 import service.UserService;
 
 import javax.annotation.Resource;
-import javax.mail.Session;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
+import java.io.File;
+import java.io.IOException;
+
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
+
 
 
 /**
@@ -34,7 +38,7 @@ import java.util.Random;
 //类级别的，处理根url
 @RequestMapping("")
 public class UserController {
-   Logger logger = Logger.getLogger(UserController.class);
+   private static Logger logger = Logger.getLogger(UserController.class);
 
     @Resource
     private UserService userService;
@@ -154,7 +158,7 @@ public class UserController {
             }
         }
         if (StringUtils.isEmpty(username)){
-            logger.error(username + "is empty");
+            logger.error("checkOldPassword username is null");
             return "error";
         }
 
@@ -171,6 +175,87 @@ public class UserController {
     @ResponseBody
     public String modifyPassword(HttpServletRequest request){
         String username = (String)request.getSession().getAttribute("username");
-        return "";
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("modifyPassword username is null");
+            return "error";
+        }
+        Integer userId = userService.getIdByName(username);
+        String password = request.getParameter("InputPassword2");
+        String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
+        if (userAuthsService.UpdatePassword(userId, passwordHash)){
+            return "ok";
+        }else{
+            return "error";
+        }
+    }
+
+    @RequestMapping(value="/modifyHead", method = RequestMethod.POST)
+    @ResponseBody
+    public String modifyInfo(HttpServletRequest request, @RequestParam("file")MultipartFile file){
+        String username = (String)request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("modifyPassword username is null");
+            return "error";
+        }
+        Integer userId = userService.getIdByName(username);
+        if (!file.isEmpty()){
+            logger.debug("process file ..." + file.getOriginalFilename());
+            try {
+                String realpath = request.getSession().getServletContext().getRealPath("/resources/upload");
+                System.out.println("aaaa" + realpath);
+                String[] postfix = file.getOriginalFilename().split(".");
+                System.out.println(postfix);
+                File newFile = new File(realpath + "/" + userId + "." + postfix);
+                System.out.println("file: " + newFile.getAbsolutePath());
+                FileUtils.copyInputStreamToFile(file.getInputStream(), newFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return "ok";
+    }
+
+    @RequestMapping(value = "/modifySex", method = RequestMethod.POST)
+    @ResponseBody
+    public String modifySex(HttpServletRequest request){
+        String sex = request.getParameter("sex");
+        String username = (String)request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("modifyPassword username is null");
+            return "error";
+        }
+        Integer userId = userService.getIdByName(username);
+        UserDO userDO = new UserDO();
+        userDO.setUserId(userId);
+        userDO.setUserSex(sex);
+        if (userService.update(userDO)){
+            return "ok";
+        }else{
+            return "error";
+        }
     }
 }

@@ -69,4 +69,12 @@ public class UserServiceImpl implements UserService{
 
     }
 
+    public boolean update(UserDO userDO){
+        if (userDAO.update(userDO) > 0 ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

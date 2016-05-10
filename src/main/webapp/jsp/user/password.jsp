@@ -21,54 +21,6 @@
     <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/password.css" rel="stylesheet" type="text/css"/>
     <title>修改密码</title>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#InputPassword1").on('blur', function () {
-                /*提交验证，异步传输*/
-                $.ajax({
-                    url: '<%=request.getContextPath()%>/checkOldPassword', //处理测试页面,注意返回内容，成功返回OK
-                    dataType: 'text',
-                    type: 'POST',
-                    data: $("form").serialize(),
-                    success: function (msg) {
-                        msg = msg.replace(/rn/g, '');
-                        if (msg != "ok") {
-                            alert("旧密码不正确")
-                        }
-                    }
-                });
-                return false;
-            });
-            return false;
-        })
-
-        function checkPassword1() {
-            var re = /^[\dA-Za-z_]{5,17}$/;
-            var password = document.getElementById('InputPassword2').value;
-            if (password != null && password.length > 0) {
-                if (!re.test(password)) {
-                    alert("6~18字节,只能包含字母,数字和下划线")
-                }
-            } else {
-                alert("请输入密码")
-            }
-        }
-
-        function checkPassword2() {
-            var password1 = document.getElementById('InputPassword2').value;
-            var password2 = document.getElementById('InputPassword3').value;
-            if (password2 != null && password2.length > 0) {
-                if (password1 != password2) {
-                    alert("两次密码输入不一致")
-                }
-            } else {
-                alert("请输入密码")
-            }
-        }
-    </script>
-
-
 </head>
 <body>
 <div class="top_content">
@@ -124,8 +76,8 @@
                     <input type="password" class="form-control" id="InputPassword3" name="InputPassword3" placeholder="重复密码" onblur="checkPassword2()">
                 </div>
                 <div class="submit">
-                    <button type="button" class="btn btn-default">修改</button>
-                    <button type="button" class="btn btn-default">取消</button>
+                    <button type="button" class="btn btn-default" id="modify">修改</button>
+                    <a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp"><button type="button" class="btn btn-default">取消</button></a>
                 </div>
             </form>
         </div>
@@ -139,4 +91,75 @@
     </div>
 </div>
 </body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#InputPassword1").on('blur', function () {
+            /*提交验证，异步传输*/
+            $.ajax({
+                url: '<%=request.getContextPath()%>/checkOldPassword', //处理测试页面,注意返回内容，成功返回OK
+                dataType: 'text',
+                type: 'POST',
+                data: $("form").serialize(),
+                success: function (msg) {
+                    msg = msg.replace(/rn/g, '');
+                    if (msg != "ok") {
+                        alert("旧密码不正确")
+                    }
+                }
+            });
+            return false;
+        });
+        return false;
+    })
+
+    function checkPassword1() {
+        var re = /^[\dA-Za-z_]{5,17}$/;
+        var password = document.getElementById('InputPassword2').value;
+        if (password != null && password.length > 0) {
+            if (!re.test(password)) {
+                alert("6~18字节,只能包含字母,数字和下划线")
+            }
+        } else {
+            alert("请输入密码")
+        }
+    }
+
+    function checkPassword2() {
+        var password1 = document.getElementById('InputPassword2').value;
+        var password2 = document.getElementById('InputPassword3').value;
+        if (password2 != null && password2.length > 0) {
+            if (password1 != password2) {
+                alert("两次密码输入不一致")
+            }
+        } else {
+            alert("请输入密码")
+        }
+    }
+
+    $(document).ready(function () {
+        $("#modify").click(function () {
+            /*提交验证，异步传输*/
+            $.ajax({
+                url: '<%=request.getContextPath()%>/modifyPassword', //处理测试页面,注意返回内容，成功返回OK
+                dataType: 'text',
+                type: 'POST',
+                data: $("form").serialize(),
+                success: function (msg) {
+                    msg = msg.replace(/rn/g, '');
+                    if (msg == "ok") {
+                        alert("修改成功")
+                        window.location.href = "<%=request.getContextPath()%>/jsp/user/password.jsp";
+                    }
+                    else {
+                        alert("修改失败");
+                        return;
+                    }
+                }
+            });
+            return false;
+        });
+        return false;
+    });
+</script>
+
 </html>

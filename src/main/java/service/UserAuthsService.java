@@ -15,4 +15,5 @@ public interface UserAuthsService {
     List getMails();
     boolean add(UserAuthsDO userAuthsDO);
     UserAuthsDO getByName(String loginName);
+    boolean UpdatePassword(Integer userId, String password);
 }

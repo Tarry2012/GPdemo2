@@ -23,4 +23,7 @@
         select * from wd_user_auths where login_name = #{loginName};
     </select>
 
+    <update id="UpdatePassword" parameterType="Map" >
+        update wd_user_auths set login_password = #{password} where user_id = #{userId}
+    </update>
 </mapper>

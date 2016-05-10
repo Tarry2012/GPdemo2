@@ -21,4 +21,6 @@ public interface UserService {
     List getNames();
 
     Integer getIdByName(String userName);
+
+    boolean update(UserDO userDO);
 }

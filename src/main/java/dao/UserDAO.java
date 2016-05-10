@@ -21,4 +21,5 @@ public interface UserDAO {
 
     Integer getIdByName(String userName);
 
+    Integer update(UserDO userDO);
 }

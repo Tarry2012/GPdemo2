@@ -7,6 +7,7 @@ import service.UserAuthsService;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,5 +39,16 @@ public class UserAuthsServiceImpl implements UserAuthsService{
 
     public UserAuthsDO getByName(String loginName){
         return userAuthsDAO.getByName(loginName);
+    }
+
+    public boolean UpdatePassword(Integer userId, String password){
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("userId", userId);
+        paramMap.put("password", password);
+        if (userAuthsDAO.UpdatePassword(paramMap) > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
