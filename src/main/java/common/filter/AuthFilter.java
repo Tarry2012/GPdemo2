@@ -32,7 +32,7 @@ public class AuthFilter  implements Filter{
         }
         //判断用户是否登录，进行页面的处理
         //为了调式，先把session验证去掉了
-        httpSession.setAttribute("username", "test2");
+        httpSession.setAttribute("username", "test7");
         String session = (String)httpSession.getAttribute("username");
         if(StringUtils.isEmpty(session)){
             //未登录用户，重定向到登录页面
