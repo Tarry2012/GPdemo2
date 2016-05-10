@@ -129,7 +129,7 @@
                     </article>
                 </section>
                 <h4 class="m-t-lg m-b">Leave a comment</h4>
-                <form>
+                <form action="<%=request.getContextPath()%>/addComment." method="post">
                     <%--<div class="form-group pull-in clearfix">--%>
                         <%--<div class="col-sm-6"><label>Your name</label> <input type="text"--%>
                                                                               <%--class="form-control"--%>
@@ -141,7 +141,7 @@
                     <%--</div>--%>
                     <div class="form-group"><label>Comment</label> <textarea class="form-control"
                                                                              rows="5"
-                                                                             placeholder="Type your comment"></textarea>
+                                                                             placeholder="Type your comment" name="textarea"></textarea>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Submit comment</button>
@@ -178,4 +178,5 @@
         myPlayer.play();
     });
 </script>
+
 </html>

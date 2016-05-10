@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.CommentDAO">
+    <resultMap id="CommentMap" type="domain.CommentDO">
+        <result column="comment_id" property="commentId"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="author_id" property="authorId"/>
+        <result column="video_id" property="videoId"/>
+        <result column="comment_likes" property="commentLikes"/>
+        <result column="comment_content" property="commentContent"/>
+        <result column="comment_time" property="commentTime"/>
+    </resultMap>
+
+
+    <update id="updateCommentById" parameterType="Integer">
+        update wd_comment set comment_likes = comment_likes + 1 where comment_id= #{commentId}
+    </update>
+
+    <insert id="add" parameterType="domain.CommentDO">
+        <selectKey resultType="int" keyProperty="commentId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into wd_comment(parent_id,author_id,video_id,comment_likes,comment_content) values(#{parentId},#{authorId},#{videoId},#{commentLikes},#{commentContent})
+    </insert>
+
+    <select id="getCommentsByVideoId" resultMap="CommentMap">
+        select * from wd_comment where video_id=#{videoId};
+    </select>
+
+</mapper>
