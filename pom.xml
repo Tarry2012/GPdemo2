@@ -40,6 +40,10 @@
     <json-version>1.2.7</json-version>
     <commons-fileupload-version>1.3.1</commons-fileupload-version>
       <commons-io-version>2.4</commons-io-version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.locales>zh_CN</project.build.locales>
+    <project.build.jdk>1.8</project.build.jdk>
+    <plugin.maven-compiler>3.1</plugin.maven-compiler>
   </properties>
 
   <repositories>
@@ -303,6 +307,16 @@
     <finalName>demo</finalName>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${plugin.maven-compiler}</version>
+        <configuration>
+          <source>${project.build.jdk}</source>
+          <target>${project.build.jdk}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>maven-jetty-plugin</artifactId>
         <version>${jetty-plugin-version}</version>
@@ -313,6 +327,12 @@
             </connector>
           </connectors>
           <scanIntervalSeconds>10</scanIntervalSeconds>
+          <systemProperties>
+            <systemProperty>
+              <name>org.mortbay.util.URI.charset</name>
+              <value>UTF-8</value>
+            </systemProperty>
+          </systemProperties>
         </configuration>
       </plugin>
       <plugin>

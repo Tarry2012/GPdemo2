@@ -12,9 +12,19 @@ public class CommentTransDO {
     private int upvote_count;
     private String content;
     private Date created;
+    private String profilePictureURL;
     private boolean user_has_upvoted = false;
 
+    public String getProfilePictureURL() {
+        return profilePictureURL;
+    }
+
+    public void setProfilePictureURL(String profilePictureURL) {
+        this.profilePictureURL = profilePictureURL;
+    }
+
     public int getId() {
+
         return id;
     }
 
