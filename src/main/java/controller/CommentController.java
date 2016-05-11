@@ -20,6 +20,7 @@ import service.UserService;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,52 +44,58 @@ public class CommentController {
     //方法级别,所以处理这种url: /demo/video/addComment
 
     @RequestMapping(value = "/video/addComment", method = RequestMethod.POST)
-
-    public String addComment(@RequestParam("content") String content,
-                             @RequestParam("upvote_count") Integer upvote_count,
-                             HttpServletRequest request) {
-        System.out.println(content);
-        System.out.println(upvote_count);
-
+    public String addComment(@RequestParam("comment") String comment,
+                             HttpServletRequest request){
+        JSONObject jsonObject = JSON.parseObject(comment, JSONObject.class);
+        System.out.println("~~~~~~~~~~~~");
+        System.out.println(jsonObject);
+        System.out.println("@@@@@@@@@");
         String username = null;
+//
+//        Cookie[] cookies = request.getCookies();
+//        for(int i = 0; i < cookies.length; i++ ){
+//            if("username".equals(cookies[i].getName()))
+//            {
+//                username = cookies[i].getValue();
+//            }
+//        }
+//
+//        Integer userId = userService.getIdByName(username);
+//
+//        CommentDO commentDO = new CommentDO();
+//        commentDO.setParentId(1);
+//        commentDO.setAuthorId(userId);
+//        commentDO.setCommentContent(jsonObject);
+//        commentDO.setCommentLikes(jsonObject['upvote_count']);
+//        commentDO.setVideoId(123);
+//        commentService.add(commentDO);
 
-        Cookie[] cookies = request.getCookies();
-        for(int i = 0; i < cookies.length; i++ ){
-            if("username".equals(cookies[i].getName()))
-            {
-                username = cookies[i].getValue();
-            }
-        }
-
-        Integer userId = userService.getIdByName(username);
-        System.out.print(userId);
-
-        CommentDO commentDO = new CommentDO();
-        commentDO.setParentId(1);
-        commentDO.setAuthorId(userId);
-        commentDO.setCommentContent(content);
-        commentDO.setCommentLikes(upvote_count);
-        commentDO.setVideoId(123);
-        commentService.add(commentDO);
-
-        return "jsp/video";
+        return "/jsp/video";
     }
 
     //方法级别,所以处理这种url: /demo/getComment?videoId=123
-    @RequestMapping(value = "/video/getComment", method = RequestMethod.POST)
+    @RequestMapping(value = "/video/getComment", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String getComment(@RequestParam("videoId") Integer videoId) {
+    public String getComment(@RequestParam("videoId") Integer videoId , HttpServletResponse response) {
         List<CommentDO> comments = commentService.getCommentsByVideoId(videoId);
         List<CommentTransDO> commentTrans = new ArrayList<CommentTransDO>();
 
         for(CommentDO comment : comments) {
             CommentTransDO commentTransDO = new CommentTransDO();
-            commentTransDO.setId(comment.getAuthorId());
-            commentTransDO.setContent(comment.getCommentContent());
-            commentTransDO.setCreated(comment.getCommentTime());
+            //commend_id
+            commentTransDO.setId(comment.getCommentId());
+            //fullname
             String fullName = userService.getById(comment.getAuthorId()).getUserName();
             commentTransDO.setFullname(fullName);
+            //content
+            commentTransDO.setContent(comment.getCommentContent());
+            //time
+            commentTransDO.setCreated(comment.getCommentTime());
+            //likes
             commentTransDO.setUpvote_count(comment.getCommentLikes());
+            //profilePictureURL
+            String profilePictureURL = userService.getById(comment.getAuthorId()).getUserPicture();
+            commentTransDO.setProfilePictureURL(profilePictureURL);
 
             commentTrans.add(commentTransDO);
         }
@@ -100,6 +107,7 @@ public class CommentController {
         String json=jsonObject.toJSONString();
 
         System.out.println("comment: " + json);
+
         return json;
     }
 }
