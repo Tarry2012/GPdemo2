@@ -27,18 +27,12 @@ CREATE TABLE `wd_comment` (
   `parent_id` int(11) DEFAULT NULL,
   `author_id` int(11) DEFAULT NULL,
   `video_id` int(11) NOT NULL,
-  `comment_like` int(10) unsigned DEFAULT NULL,
+  `comment_likes` int(10) unsigned DEFAULT NULL,
   `comment_content` varchar(1024) NOT NULL,
   `comment_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `is_reply` int(11) NOT NULL,
-  PRIMARY KEY (`comment_id`),
-  KEY `user_id` (`author_id`),
-  KEY `video_id` (`video_id`),
-  CONSTRAINT `Comment_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `User` (`user_id`),
-  CONSTRAINT `Comment_ibfk_2` FOREIGN KEY (`video_id`) REFERENCES `Video` (`video_id`),
-  CONSTRAINT `wd_comment_ibfk_1` FOREIGN KEY (`video_id`) REFERENCES `wd_video` (`video_id`),
-  CONSTRAINT `wd_comment_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `wd_user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `is_reply` int(11) DEFAULT NULL,
+  PRIMARY KEY (`comment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,15 +75,13 @@ DROP TABLE IF EXISTS `wd_note`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `wd_note` (
+  `note_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `video_id` int(11) DEFAULT NULL,
   `note_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `note_content` longtext,
   `note_name` varchar(30) DEFAULT NULL,
-  KEY `noteuser` (`user_id`),
-  KEY `notevid` (`video_id`),
-  CONSTRAINT `wd_note_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`),
-  CONSTRAINT `wd_note_ibfk_2` FOREIGN KEY (`video_id`) REFERENCES `wd_video` (`video_id`)
+  PRIMARY KEY (`note_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -113,14 +105,14 @@ CREATE TABLE `wd_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(20) NOT NULL,
   `user_sex` char(2) DEFAULT NULL,
-  `user_picture` varchar(100) DEFAULT NULL,
+  `user_picture` varchar(100) DEFAULT 'default.png',
   `user_home_page` varchar(100) DEFAULT NULL,
   `last_login_time` datetime DEFAULT NULL,
   `login_times` int(11) DEFAULT '0',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
   UNIQUE KEY `user_home_page` (`user_home_page`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +121,7 @@ CREATE TABLE `wd_user` (
 
 LOCK TABLES `wd_user` WRITE;
 /*!40000 ALTER TABLE `wd_user` DISABLE KEYS */;
-INSERT INTO `wd_user` VALUES (1,'test1','女',NULL,NULL,'2016-04-12 23:36:46',NULL),(2,'test2','?',NULL,NULL,'2016-05-10 14:05:27',NULL),(3,'test3',NULL,NULL,NULL,NULL,NULL),(4,'test4',NULL,NULL,NULL,NULL,0),(5,'test5',NULL,NULL,NULL,NULL,0),(6,'test7','0','6-2.png',NULL,NULL,0),(7,'test8',NULL,NULL,NULL,NULL,0);
+INSERT INTO `wd_user` VALUES (1,'test1','女',NULL,NULL,'2016-04-12 23:36:46',NULL),(2,'test2','0','2-3.jpg',NULL,'2016-05-11 16:19:54',NULL),(3,'test3',NULL,NULL,NULL,NULL,NULL),(4,'test4',NULL,NULL,NULL,NULL,0),(5,'test5',NULL,NULL,NULL,NULL,0),(6,'test7','0','6-2.png',NULL,NULL,0),(7,'test8',NULL,NULL,NULL,NULL,0),(8,'hahhah',NULL,NULL,NULL,NULL,0),(9,'hello',NULL,NULL,NULL,'2016-05-11 16:48:49',1),(10,'world',NULL,NULL,NULL,NULL,0),(11,'songry',NULL,NULL,NULL,NULL,0),(12,'tangqy',NULL,'default.png',NULL,NULL,0);
 /*!40000 ALTER TABLE `wd_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +144,7 @@ CREATE TABLE `wd_user_auths` (
   KEY `auths` (`user_id`),
   CONSTRAINT `wd_user_auths_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`),
   CONSTRAINT `wd_user_auths_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +153,7 @@ CREATE TABLE `wd_user_auths` (
 
 LOCK TABLES `wd_user_auths` WRITE;
 /*!40000 ALTER TABLE `wd_user_auths` DISABLE KEYS */;
-INSERT INTO `wd_user_auths` VALUES (1,1,0,'用户昵称','123456',NULL,0),(2,1,0,'test','123456',NULL,0),(3,1,0,'test1','123456',NULL,0),(4,2,0,'test2','$2a$10$RqjBl.cJxeybK4/mPXJ9lOsTGnUZLtlOeUZXIIzE.T62qw8lyoPIi',NULL,0),(5,2,1,'353216134@qq.com','$2a$10$RqjBl.cJxeybK4/mPXJ9lOsTGnUZLtlOeUZXIIzE.T62qw8lyoPIi',NULL,0),(6,3,0,'test3','$2a$10$O8LTnxGdlyoyMP2rEcf90O.U/Eck7Sq9yJ6Sr0HE6hdqLW9897bp6',NULL,0),(7,3,1,'njtangqy@163.com','$2a$10$O8LTnxGdlyoyMP2rEcf90O.U/Eck7Sq9yJ6Sr0HE6hdqLW9897bp6',NULL,0),(8,4,0,'test4','$2a$10$SQ49B50nGA73mMgeurv0H.fToAeoPLMcsn9m4qbFAPdVYkHzOej/a',NULL,0),(9,4,1,'1234@qq.com','$2a$10$SQ49B50nGA73mMgeurv0H.fToAeoPLMcsn9m4qbFAPdVYkHzOej/a',NULL,0),(10,5,0,'test5','$2a$10$kv6JBBiu546npSf4md7f0.tLwGRXieUOjX4qllvdGaHDEpIhcSlt.',NULL,0),(11,5,1,'34567@qq.com','$2a$10$kv6JBBiu546npSf4md7f0.tLwGRXieUOjX4qllvdGaHDEpIhcSlt.',NULL,0),(12,6,0,'test7','$2a$10$7EoHe0VmzCZl9AY/cwt.SeiOCBBw5Lj9nWfoZlfglLqlrNJysTLfW',NULL,0),(13,6,1,'456789@qq.com','$2a$10$7EoHe0VmzCZl9AY/cwt.SeiOCBBw5Lj9nWfoZlfglLqlrNJysTLfW',NULL,0),(14,7,0,'test8','$2a$10$X3zJyLIGkAmCb6xtGmMhTe3JB/yQybdMdYeuaYWO3d01GMLBm5Uve',NULL,0),(15,7,1,'123456789@qq.com','$2a$10$X3zJyLIGkAmCb6xtGmMhTe3JB/yQybdMdYeuaYWO3d01GMLBm5Uve',NULL,0);
+INSERT INTO `wd_user_auths` VALUES (1,1,0,'用户昵称','123456',NULL,0),(2,1,0,'test','123456',NULL,0),(3,1,0,'test1','123456',NULL,0),(4,2,0,'test2','$2a$10$RqjBl.cJxeybK4/mPXJ9lOsTGnUZLtlOeUZXIIzE.T62qw8lyoPIi',NULL,0),(5,2,1,'353216134@qq.com','$2a$10$RqjBl.cJxeybK4/mPXJ9lOsTGnUZLtlOeUZXIIzE.T62qw8lyoPIi',NULL,0),(6,3,0,'test3','$2a$10$O8LTnxGdlyoyMP2rEcf90O.U/Eck7Sq9yJ6Sr0HE6hdqLW9897bp6',NULL,0),(7,3,1,'njtangqy@163.com','$2a$10$O8LTnxGdlyoyMP2rEcf90O.U/Eck7Sq9yJ6Sr0HE6hdqLW9897bp6',NULL,0),(8,4,0,'test4','$2a$10$SQ49B50nGA73mMgeurv0H.fToAeoPLMcsn9m4qbFAPdVYkHzOej/a',NULL,0),(9,4,1,'1234@qq.com','$2a$10$SQ49B50nGA73mMgeurv0H.fToAeoPLMcsn9m4qbFAPdVYkHzOej/a',NULL,0),(10,5,0,'test5','$2a$10$kv6JBBiu546npSf4md7f0.tLwGRXieUOjX4qllvdGaHDEpIhcSlt.',NULL,0),(11,5,1,'34567@qq.com','$2a$10$kv6JBBiu546npSf4md7f0.tLwGRXieUOjX4qllvdGaHDEpIhcSlt.',NULL,0),(12,6,0,'test7','$2a$10$7EoHe0VmzCZl9AY/cwt.SeiOCBBw5Lj9nWfoZlfglLqlrNJysTLfW',NULL,0),(13,6,1,'456789@qq.com','$2a$10$7EoHe0VmzCZl9AY/cwt.SeiOCBBw5Lj9nWfoZlfglLqlrNJysTLfW',NULL,0),(14,7,0,'test8','$2a$10$X3zJyLIGkAmCb6xtGmMhTe3JB/yQybdMdYeuaYWO3d01GMLBm5Uve',NULL,0),(15,7,1,'123456789@qq.com','$2a$10$X3zJyLIGkAmCb6xtGmMhTe3JB/yQybdMdYeuaYWO3d01GMLBm5Uve',NULL,0),(16,8,0,'hahhah','$2a$10$vfEUn8G9kM5BhgsADUkH4.K./SH3INzp7cCkOLYnjYFWa1Yy2MKSW',NULL,0),(17,8,1,'qqqqqqq@qq.com','$2a$10$vfEUn8G9kM5BhgsADUkH4.K./SH3INzp7cCkOLYnjYFWa1Yy2MKSW',NULL,0),(18,9,0,'hello','$2a$10$qEHuQyoEGF6SMCuSoSeKUux./eORFJITAk1trQcC6xLbb9Cg9XhzW',NULL,0),(19,9,1,'hello@qq.com','$2a$10$qEHuQyoEGF6SMCuSoSeKUux./eORFJITAk1trQcC6xLbb9Cg9XhzW',NULL,0),(20,10,0,'world','$2a$10$5Jc8Ph3qzM3DZFxwOzG9q.1J0G.Pfn8tfwO77tj1I9a9TdpZ104.m',NULL,0),(21,10,1,'world@qq.com','$2a$10$5Jc8Ph3qzM3DZFxwOzG9q.1J0G.Pfn8tfwO77tj1I9a9TdpZ104.m',NULL,0),(22,11,0,'songry','$2a$10$WELcGwqipJwGDmx.VMleHuplDggNyBfSUWkeUWyGOP9QWFRsimmha',NULL,0),(23,11,1,'songry@163.com','$2a$10$WELcGwqipJwGDmx.VMleHuplDggNyBfSUWkeUWyGOP9QWFRsimmha',NULL,0),(24,12,0,'tangqy','$2a$10$qzaVXc9bYqRYwEudZJGPb.jWOUgrT6i5G.UjYYVGep0sTpnS0zDhe',NULL,0),(25,12,1,'njtangq@163.com','$2a$10$qzaVXc9bYqRYwEudZJGPb.jWOUgrT6i5G.UjYYVGep0sTpnS0zDhe',NULL,0);
 /*!40000 ALTER TABLE `wd_user_auths` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,12 +165,10 @@ DROP TABLE IF EXISTS `wd_user_interest`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `wd_user_interest` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `interest_id` int(11) NOT NULL,
-  PRIMARY KEY (`user_id`,`interest_id`),
-  KEY `interest` (`interest_id`),
-  CONSTRAINT `wd_user_interest_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`),
-  CONSTRAINT `wd_user_interest_ibfk_2` FOREIGN KEY (`interest_id`) REFERENCES `wd_interest` (`interest_id`)
+  `interest_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -199,18 +189,11 @@ DROP TABLE IF EXISTS `wd_user_video`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `wd_user_video` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0',
   `video_id` int(11) NOT NULL DEFAULT '0',
-  `type_id` int(11) NOT NULL,
-  `is_delete` int(11) NOT NULL,
-  PRIMARY KEY (`user_id`,`video_id`),
-  KEY `video_id` (`video_id`),
-  KEY `type_id` (`type_id`),
-  CONSTRAINT `User_Video_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`user_id`),
-  CONSTRAINT `User_Video_ibfk_2` FOREIGN KEY (`video_id`) REFERENCES `Video` (`video_id`),
-  CONSTRAINT `User_Video_ibfk_3` FOREIGN KEY (`type_id`) REFERENCES `Video_Type` (`type_id`),
-  CONSTRAINT `wd_user_video_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`),
-  CONSTRAINT `wd_user_video_ibfk_2` FOREIGN KEY (`video_id`) REFERENCES `wd_video` (`video_id`)
+  `is_delete` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -239,6 +222,7 @@ CREATE TABLE `wd_video` (
   `video_comment` int(10) unsigned DEFAULT NULL,
   `video_like` int(10) unsigned DEFAULT NULL,
   `video_play` int(10) unsigned DEFAULT NULL,
+  `interest_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`video_id`),
   UNIQUE KEY `video_name` (`video_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -252,32 +236,6 @@ LOCK TABLES `wd_video` WRITE;
 /*!40000 ALTER TABLE `wd_video` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wd_video` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `wd_video_interest`
---
-
-DROP TABLE IF EXISTS `wd_video_interest`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `wd_video_interest` (
-  `video_id` int(11) NOT NULL,
-  `interest_id` int(11) NOT NULL,
-  PRIMARY KEY (`video_id`,`interest_id`),
-  KEY `inter` (`interest_id`),
-  CONSTRAINT `wd_video_interest_ibfk_1` FOREIGN KEY (`video_id`) REFERENCES `wd_video` (`video_id`),
-  CONSTRAINT `wd_video_interest_ibfk_2` FOREIGN KEY (`interest_id`) REFERENCES `wd_interest` (`interest_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `wd_video_interest`
---
-
-LOCK TABLES `wd_video_interest` WRITE;
-/*!40000 ALTER TABLE `wd_video_interest` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wd_video_interest` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -288,4 +246,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-11 11:21:40
+-- Dump completed on 2016-05-11 17:35:45
