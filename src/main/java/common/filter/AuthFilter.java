@@ -27,7 +27,7 @@ public class AuthFilter  implements Filter{
         if(reqUrl.contains("index.jsp")){
             filterChain.doFilter(servletRequest, servletResponse);
         }
-        if (reqUrl.endsWith(".png") || reqUrl.endsWith(".css") || reqUrl.endsWith(".js")){
+        if (reqUrl.endsWith(".png") || reqUrl.endsWith(".css") || reqUrl.endsWith(".js") || reqUrl.endsWith(".jpg")){
             filterChain.doFilter(servletRequest,servletResponse);
         }
         //判断用户是否登录，进行页面的处理

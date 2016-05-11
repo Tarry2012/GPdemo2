@@ -83,7 +83,7 @@
         <div class="col-md-3">
             <aside>
                 <div class="avatar">
-                    <img src="<%=request.getContextPath()%>/resources/images/defaultHeadPortrait.png" class="img-circle"/>
+                    <img src="<%=request.getContextPath()%>/resources/upload/${picture}" class="img-circle"/>
                 </div>
                 <h5 class="text-center">${username}</h5>
                 <ul class="nav nav-pills nav-stacked" >

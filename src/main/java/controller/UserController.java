@@ -215,20 +215,26 @@ public class UserController {
         }
         Integer userId = userService.getIdByName(username);
         if (!file.isEmpty()){
-            logger.debug("process file ..." + file.getOriginalFilename());
             try {
                 String realpath = request.getSession().getServletContext().getRealPath("/resources/upload");
-                System.out.println("aaaa" + realpath);
-                String[] postfix = file.getOriginalFilename().split(".");
-                System.out.println(postfix);
-                File newFile = new File(realpath + "/" + userId + "." + postfix);
-                System.out.println("file: " + newFile.getAbsolutePath());
+                String filename = file.getOriginalFilename();
+                File newFile = new File(realpath + "/" + userId + "-" + filename);
+                UserDO userDO = new UserDO();
+                userDO.setUserId(userId);
+                userDO.setUserPicture(newFile.getName());
+                System.out.println("file: " + newFile.getName());
                 FileUtils.copyInputStreamToFile(file.getInputStream(), newFile);
+                if (userService.update(userDO)){
+                    return "ok";
+                }else{
+                    return "error";
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("upload " + file.getOriginalFilename() + " error");
+                return "error";
             }
         }
-        return "ok";
+        return "error";
     }
 
     @RequestMapping(value = "/modifySex", method = RequestMethod.POST)
@@ -257,5 +263,27 @@ public class UserController {
         }else{
             return "error";
         }
+    }
+
+    @RequestMapping(value="/userHomepage")
+    public String userHomepage(HttpServletRequest request, HttpServletResponse response, Model model){
+        String username = (String)request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("username is null");
+            return "error";
+        }
+        Integer userId = userService.getIdByName(username);
+        UserDO userDO = userService.getById(userId);
+        model.addAttribute("username", username);
+        model.addAttribute("picture", userDO.getUserPicture());
+        return "jsp/user/userHomepage";
     }
 }

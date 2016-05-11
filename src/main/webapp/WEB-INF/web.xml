@@ -1,9 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://java.sun.com/xml/ns/j2ee"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
-         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         version="2.4">
+<!DOCTYPE web-app PUBLIC   "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app>
     <display-name>Archetype Created Web Application</display-name>
     <!-- applicationContext.xml 这里是spring和mybatis结合的配置文件 Spring应用的上下文-->
     <context-param>

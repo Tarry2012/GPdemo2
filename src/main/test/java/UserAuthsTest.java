@@ -30,4 +30,5 @@ public class UserAuthsTest {
         UserAuthsDO userAuthsDO = userAuthsService.getByName("test2");
         System.out.println(userAuthsDO);
     }
+
 }

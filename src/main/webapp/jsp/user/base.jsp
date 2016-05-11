@@ -71,11 +71,11 @@
                     <div class="select" id="sexSelect">
                         <label class="checkbox-inline">
                             <input type="radio" name="optionsRadiosinline" id="optionsRadios3"
-                                   value="男" checked> 男 male
+                                   value="0" checked> 男 male
                         </label>
                         <label class="checkbox-inline">
                             <input type="radio" name="optionsRadiosinline" id="optionsRadios4"
-                                   value="女"> 女 female
+                                   value="1"> 女 female
                         </label>
                     </div>
                 </div>
