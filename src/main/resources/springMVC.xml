@@ -54,9 +54,14 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**" />
-            <mvc:exclude-mapping path="/resources/css/*"/>
-            <mvc:exclude-mapping path="/resources/images/*"/>
-            <mvc:exclude-mapping path="/resources/js/*"/>
+            <mvc:exclude-mapping path="/resources/css/**"/>
+            <mvc:exclude-mapping path="/resources/images/**"/>
+            <mvc:exclude-mapping path="/resources/js/**"/>
+            <mvc:exclude-mapping path="/resources/video/**"/>
+            <mvc:exclude-mapping path="/resources/upload/**"/>
+            <mvc:exclude-mapping path="/resources/data/**"/>
+            <mvc:exclude-mapping path="/resources/fonts/**"/>
+            <mvc:exclude-mapping path="/resources/Viima-jquery-comments-d6283aa/**"/>
             <bean class="common.interceptor.AuthInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

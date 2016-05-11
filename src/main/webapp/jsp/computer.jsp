@@ -34,7 +34,7 @@
         <li><a href="<%=request.getContextPath()%>/jsp/user/userRegister.jsp">注册</a></li>
         <% } else {
         %>
-        <li><a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp">我的主页</a></li>
+        <li><a href="<%=request.getContextPath()%>/userHomepage">我的主页</a></li>
         <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
         <%
             }

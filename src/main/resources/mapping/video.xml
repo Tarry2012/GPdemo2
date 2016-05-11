@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.VideoDAO">
+    <resultMap id="VideoMap" type="domain.VideoDO">
+        <result column="video_id" property="videoId"/>
+        <result column="video_name" property="videoName"/>
+        <result column="video_describe" property="videoDescribe"/>
+        <result column="video_time" property="videoTime"/>
+        <result column="video_url" property="videoUrl"/>
+        <result column="video_like" property="videoLike"/>
+        <result column="video_play" property="videoPlay"/>
+        <result column="interest_id" property="interestId"/>
+        <result column="video_picture" property="videoPicture"/>
+    </resultMap>
+
+    <select id="select" parameterType="domain.VideoQuery" resultMap="VideoMap">
+        SELECT video_id,video_name,video_describe,video_time,video_url,video_like,video_play,interest_id,video_picture
+        FROM  wd_video
+        where 1=1
+        <if test="videoId > 0">
+            and video_id = #{video_id}
+        </if>
+        <if test="videoName != null">
+            and video_name LIKE '%${videoName}%'
+        </if>
+        <if test="interestId > 0">
+            and interest_id=#{interestId}
+        </if>
+       <if test="limit>=0 and offset>0">
+           LiMiT #{limit},#{offset}
+       </if>
+
+    </select>
+
+    </mapper>

@@ -19,130 +19,6 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
-
-        function checkEmail() {
-            var re = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
-            var email = document.getElementById('usermail').value;
-            if (email != null && email.length > 0) {
-                if (!re.test(email)) {
-                    alert("你输入的email不合法");
-                }
-            }
-            else {
-                alert("请输入Email!");
-            }
-        }
-
-        function checkPassword1() {
-            var re = /^[\dA-Za-z_]{5,17}$/;
-            var password = document.getElementById('password1').value;
-            if (password != null && password.length > 0) {
-                if (!re.test(password)) {
-                    alert("6~18字节,只能包含字母,数字和下划线")
-                }
-            } else {
-                alert("请输入密码")
-            }
-        }
-
-        function checkPassword2() {
-            var password1 = document.getElementById('password1').value;
-            var password2 = document.getElementById('password2').value;
-            if (password2 != null && password2.length > 0) {
-                if (password1 != password2) {
-                    alert("两次密码输入不一致")
-                }
-            } else {
-                alert("请输入密码")
-            }
-        }
-
-        $(document).ready(function () {
-            $("#username").on('blur', function () {
-                /*提交验证，异步传输*/
-                var user = $("#username").val();
-                var ref = /^[\u4e00-\u9fa5]{1,7}$|^[\dA-Za-z_]{1,15}$/;
-                if (user == '') {
-                    alert("用户名称为空")
-                    return false;
-                } else if (!ref.test(user)) {
-                    alert("不得超过7个汉字，或14个字节(数字，字母和下划线)")
-                    return false;
-                } else {
-                    $.ajax({
-                        url: '<%=request.getContextPath()%>/userIsExist.', //处理测试页面,注意返回内容，成功返回OK
-                        dataType: 'text',
-                        type: 'GET',
-                        data: $("form").serialize(),
-                        success: function (msg) {
-                            msg = msg.replace(/rn/g, '');
-                            if (msg != "ok") {
-                                alert("用户名已存在")
-                            }
-                        }
-                    });
-                }
-                return false;
-            });
-            return false;
-        });
-
-        $(document).ready(function () {
-            $("#usermail").on('blur', function () {
-                var re = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
-                var email = document.getElementById('usermail').value;
-                if (email == '') {
-                    alert("邮箱为空")
-                    return false;
-                } else if (!re.test(email)) {
-                    alert("邮箱输入不合法")
-                    return false;
-                } else {
-                    $.ajax({
-                        url: '<%=request.getContextPath()%>/mailIsExist.', //处理测试页面,注意返回内容，成功返回OK
-                        dataType: 'text',
-                        type: 'GET',
-                        data: $("form").serialize(),
-                        success: function (msg) {
-                            msg = msg.replace(/rn/g, '');
-                            if (msg != "ok") {
-                                alert("邮箱已存在")
-                            }
-                        }
-                    });
-                }
-                return false;
-            });
-            return false;
-        });
-
-        $(document).ready(function () {
-            $("#subuser").click(function () {
-                /*提交验证，异步传输*/
-                $.ajax({
-                    url: '<%=request.getContextPath()%>/userRegister.', //处理测试页面,注意返回内容，成功返回OK
-                    dataType: 'text',
-                    type: 'POST',
-                    data: $("form").serialize(),
-                    success: function (msg) {
-                        msg = msg.replace(/rn/g, '');
-                        if (msg == "ok") {
-                            alert("注册成功")
-                            window.location.href = "<%=request.getContextPath()%>/index.jsp";
-                        }
-                        else {
-                            alert("您输入的用户名或邮箱已存在,请重新输入");
-                            return;
-                        }
-                    }
-                });
-                return false;
-            });
-            return false;
-        });
-
-    </script>
 </head>
 <body>
 <div class="container page-container">
@@ -188,6 +64,129 @@
         </div>
     </div>
 </div>
-
 </body>
+<script type="text/javascript">
+
+    function checkEmail() {
+        var re = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+        var email = document.getElementById('usermail').value;
+        if (email != null && email.length > 0) {
+            if (!re.test(email)) {
+                alert("你输入的email不合法");
+            }
+        }
+        else {
+            alert("请输入Email!");
+        }
+    }
+
+    function checkPassword1() {
+        var re = /^[\dA-Za-z_]{5,17}$/;
+        var password = document.getElementById('password1').value;
+        if (password != null && password.length > 0) {
+            if (!re.test(password)) {
+                alert("6~18字节,只能包含字母,数字和下划线")
+            }
+        } else {
+            alert("请输入密码")
+        }
+    }
+
+    function checkPassword2() {
+        var password1 = document.getElementById('password1').value;
+        var password2 = document.getElementById('password2').value;
+        if (password2 != null && password2.length > 0) {
+            if (password1 != password2) {
+                alert("两次密码输入不一致")
+            }
+        } else {
+            alert("请输入密码")
+        }
+    }
+
+    $(document).ready(function () {
+        $("#username").on('blur', function () {
+            /*提交验证，异步传输*/
+            var user = $("#username").val();
+            var ref = /^[\u4e00-\u9fa5]{1,7}$|^[\dA-Za-z_]{1,15}$/;
+            if (user == '') {
+                alert("用户名称为空")
+                return false;
+            } else if (!ref.test(user)) {
+                alert("不得超过7个汉字，或14个字节(数字，字母和下划线)")
+                return false;
+            } else {
+                $.ajax({
+                    url: '<%=request.getContextPath()%>/userIsExist.', //处理测试页面,注意返回内容，成功返回OK
+                    dataType: 'text',
+                    type: 'GET',
+                    data: $("form").serialize(),
+                    success: function (msg) {
+                        msg = msg.replace(/rn/g, '');
+                        if (msg != "ok") {
+                            alert("用户名已存在")
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+        return false;
+    });
+
+    $(document).ready(function () {
+        $("#usermail").on('blur', function () {
+            var re = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+            var email = document.getElementById('usermail').value;
+            if (email == '') {
+                alert("邮箱为空")
+                return false;
+            } else if (!re.test(email)) {
+                alert("邮箱输入不合法")
+                return false;
+            } else {
+                $.ajax({
+                    url: '<%=request.getContextPath()%>/mailIsExist.', //处理测试页面,注意返回内容，成功返回OK
+                    dataType: 'text',
+                    type: 'GET',
+                    data: $("form").serialize(),
+                    success: function (msg) {
+                        msg = msg.replace(/rn/g, '');
+                        if (msg != "ok") {
+                            alert("邮箱已存在")
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+        return false;
+    });
+
+    $(document).ready(function () {
+        $("#subuser").click(function () {
+            /*提交验证，异步传输*/
+            $.ajax({
+                url: '<%=request.getContextPath()%>/userRegister.', //处理测试页面,注意返回内容，成功返回OK
+                dataType: 'text',
+                type: 'POST',
+                data: $("form").serialize(),
+                success: function (msg) {
+                    msg = msg.replace(/rn/g, '');
+                    if (msg == "ok") {
+                        alert("注册成功")
+                        window.location.href = "<%=request.getContextPath()%>/index.jsp";
+                    }
+                    else {
+                        alert("您输入的用户名或邮箱已存在,请重新输入");
+                        return;
+                    }
+                }
+            });
+            return false;
+        });
+        return false;
+    });
+
+</script>
 </html>

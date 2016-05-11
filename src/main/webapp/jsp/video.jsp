@@ -18,17 +18,12 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
     <%-- video.js--%>
-    <link href="http://vjs.zencdn.net/5.3.0/video-js.css" rel="stylesheet">
-    <script src="//cdn.bootcss.com/video.js/5.8.0/video.js"></script>
-
+    <link href="//cdn.bootcss.com/video.js/5.10.1/video-js.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/video.js/5.10.1/video.min.js"></script>
     <!-- jquery-comments文件 -->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/jquery-comments.css">
-    <link rel="stylesheet" type="text/css"
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-    <!-- Data -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"><!-- Data -->
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/data/comments-data.js"></script>
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-comments.js"></script>
 
@@ -62,7 +57,7 @@
         <li><a href="<%=request.getContextPath()%>/jsp/user/userRegister.jsp">注册</a></li>
         <% } else {
         %>
-        <li><a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp">我的主页</a></li>
+        <li><a href="<%=request.getContextPath()%>/userHomepage">我的主页</a></li>
         <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
         <%
             }
@@ -96,71 +91,17 @@
         </div>
         <div class="col-md-7">
             <div class="video">
-                <video id="my_video" class="video-js vjs-default-skin" controls preload="auto"
-                       poster="http://video-js.zencoder.com/oceans-clip.png"
-                       data-setup="{}">
-                    <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
+                <video id="my_video" class="video-js" controls preload="auto" width="350" height="208"
+                       poster="<%=request.getContextPath()%>/resources/images/index3.png" data-setup="{}">
+                    <source src="<%=request.getContextPath()%>/resources/video/oceans.mp4" type="video/mp4"/>
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a web browser that
+                        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
                 </video>
             </div>
             <div class="comments">
                 <div id="comments-container"></div>
-                <%--<h4 class="m-t-lg m-b" style="padding-top: 30px">3 Comments</h4>--%>
-                <%--<section class="comment-list block">--%>
-                <%--<article id="comment-id-1" class="comment-item"><a class="pull-left thumb-sm"> <img--%>
-                <%--src="<%=request.getContextPath()%>/resources/images/interest_art_choose.jpg" height="20px" width="20px" class="img-circle"> </a>--%>
-                <%--<section class="comment-body m-b">--%>
-                <%--<header><a href="#"><strong>John smith</strong></a> <label--%>
-                <%--class="label bg-info m-l-xs">Editor</label> <span--%>
-                <%--class="text-muted text-xs block m-t-xs"> 24 minutes ago </span>--%>
-                <%--</header>--%>
-                <%--<div class="m-t-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.--%>
-                <%--Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat.--%>
-                <%--Vestibulum.--%>
-                <%--</div>--%>
-                <%--</section>--%>
-                <%--</article>--%>
-                <%--<!-- .comment-reply -->--%>
-                <%--<article id="comment-id-2" class="comment-item comment-reply"><a--%>
-                <%--class="pull-left thumb-sm"> <img src="<%=request.getContextPath()%>/resources/images/interest_art_choose.jpg" height="20px" width="20px" class="img-circle">--%>
-                <%--</a>--%>
-                <%--<section class="comment-body m-b">--%>
-                <%--<header><a href="#"><strong>John smith</strong></a> <label--%>
-                <%--class="label bg-dark m-l-xs">Admin</label> <span--%>
-                <%--class="text-muted text-xs block m-t-xs"> 26 minutes ago </span>--%>
-                <%--</header>--%>
-                <%--<div class="m-t-sm">Lorem ipsum dolor sit amet, consecteter adipiscing elit,--%>
-                <%--sed diam nonummy nibh euismod tincidunt ut laoreet.--%>
-                <%--</div>--%>
-                <%--</section>--%>
-                <%--</article>--%>
-                <%--<!-- / .comment-reply -->--%>
-                <%--<article id="comment-id-3" class="comment-item"><a class="pull-left thumb-sm"> <img--%>
-                <%--src="<%=request.getContextPath()%>/resources/images/interest_art_choose.jpg" height="20px" width="20px" class="img-circle"> </a>--%>
-                <%--<section class="comment-body m-b">--%>
-                <%--<header><a href="#"><strong>John smith</strong></a> <label--%>
-                <%--class="label bg-dark m-l-xs">Admin</label> <span--%>
-                <%--class="text-muted text-xs block m-t-xs"> 26 minutes ago </span>--%>
-                <%--</header>--%>
-                <%--<blockquote class="m-t"><p>Lorem ipsum dolor sit amet, consectetur--%>
-                <%--adipiscing elit. Integer posuere erat a ante.</p>--%>
-                <%--<small>Someone famous in <cite title="Source Title">Source Title</cite>--%>
-                <%--</small>--%>
-                <%--</blockquote>--%>
-                <%--<div class="m-t-sm">Lorem ipsum dolor sit amet, consecteter adipiscing elit,--%>
-                <%--sed diam nonummy nibh euismod tincidunt ut laoreet.--%>
-                <%--</div>--%>
-                <%--</section>--%>
-                <%--</article>--%>
-                <%--</section>--%>
-                <%--<h4 class="m-t-lg m-b">Leave a comment</h4>--%>
-                <%--<form action="<%=request.getContextPath()%>/addComment" method="post">--%>
-                <%--<div class="form-group"><label>Comment</label> <textarea class="form-control"--%>
-                <%--rows="5"--%>
-                <%--placeholder="Type your comment" name="textarea"></textarea>--%>
-                <%--</div>--%>
-                <%--<div class="form-group">--%>
-                <%--&lt;%&ndash;<button type="submit" class="btn btn-success">Submit comment</button>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
             </div>
         </div>
         <div class="col-md-4">
@@ -183,13 +124,13 @@
 </div>
 
 </body>
-<script type="text/javascript">
-    var myPlayer = videojs('my_video');
-    videojs("my_video").ready(function () {
-        var myPlayer = this;
-        myPlayer.play();
-    });
-</script>
+<%--<script type="text/javascript">--%>
+    <%--var myPlayer = videojs('my_video');--%>
+    <%--videojs("my_video").ready(function () {--%>
+        <%--var myPlayer = this;--%>
+        <%--myPlayer.play();--%>
+    <%--});--%>
+<%--</script>--%>
 
 <script type="text/javascript">
     $(document).ready(function () {

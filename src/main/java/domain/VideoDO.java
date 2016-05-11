@@ -9,7 +9,7 @@ public class VideoDO {
     private String videoDescribe;
     private String videoTime;
     private String videoUrl;
-    private String videoComment;
+    private String videoPicture;
     private String videoLike;
     private String videoPlay;
     private int interestId;
@@ -28,10 +28,6 @@ public class VideoDO {
 
     public String getVideoUrl() {
         return videoUrl;
-    }
-
-    public String getVideoComment() {
-        return videoComment;
     }
 
     public String getVideoLike() {
@@ -62,10 +58,6 @@ public class VideoDO {
         this.videoUrl = videoUrl;
     }
 
-    public void setVideoComment(String videoCommment) {
-        this.videoComment = videoCommment;
-    }
-
     public void setVideoLike(String videoLike) {
         this.videoLike = videoLike;
     }
@@ -86,6 +78,14 @@ public class VideoDO {
         this.interestId = interestId;
     }
 
+    public String getVideoPicture() {
+        return videoPicture;
+    }
+
+    public void setVideoPicture(String videoPicture) {
+        this.videoPicture = videoPicture;
+    }
+
     @Override
     public String toString() {
         return "VideoDO{" +
@@ -94,7 +94,7 @@ public class VideoDO {
                 ", videoDescribe='" + videoDescribe + '\'' +
                 ", videoTime='" + videoTime + '\'' +
                 ", videoUrl='" + videoUrl + '\'' +
-                ", videoComment='" + videoComment + '\'' +
+                ", videoPicture='" + videoPicture + '\'' +
                 ", videoLike='" + videoLike + '\'' +
                 ", videoPlay='" + videoPlay + '\'' +
                 ", interestId=" + interestId +

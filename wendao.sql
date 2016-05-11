@@ -219,13 +219,14 @@ CREATE TABLE `wd_video` (
   `video_describe` varchar(1024) DEFAULT NULL,
   `video_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `video_url` varchar(100) DEFAULT NULL,
-  `video_comment` int(10) unsigned DEFAULT NULL,
   `video_like` int(10) unsigned DEFAULT NULL,
   `video_play` int(10) unsigned DEFAULT NULL,
   `interest_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`video_id`),
   UNIQUE KEY `video_name` (`video_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+alter table wd_video add column video_picture varchar(100);
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
