@@ -10,8 +10,8 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
     <%-- video.js--%>
-    <link href="http://vjs.zencdn.net/5.3.0/video-js.css" rel="stylesheet">
-    <script src="//cdn.bootcss.com/video.js/5.8.0/video.js"></script>
+    <link href="//cdn.bootcss.com/video.js/5.10.1/video-js.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/video.js/5.10.1/video.min.js"></script>
     <%--让页面在高分辨率的手机上显示正确的尺寸，防止因为屏幕像素高而使得页面元素变得很小--%>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="<%=request.getContextPath()%>/resources/css/index.css" rel="stylesheet" type="text/css"/>

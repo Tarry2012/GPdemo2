@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <link href="<%=request.getContextPath()%>/resources/css/userLogin.css" rel="stylesheet" type="text/css"/>
@@ -32,7 +33,7 @@
         <li><a href="<%=request.getContextPath()%>/jsp/user/userRegister.jsp">注册</a></li>
         <% } else {
         %>
-        <li><a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp">我的主页</a></li>
+        <li><a href="<%=request.getContextPath()%>/userHomepage">我的主页</a></li>
         <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
         <%
             }
@@ -63,11 +64,14 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-7"><img src="<%=request.getContextPath()%>/resources/images/base.png" width="105px"/>
+
             <form class="form-group" action="" method="" enctype="multipart/form-data">
                 <label for="exampleInputName2">Name</label>
                 <input type="text" class="form-control" id="exampleInputName2" readonly="readonly" value=${username}>
+
                 <div class="sex">
                     <label for="exampleInputName2">Sex</label>
+
                     <div class="select" id="sexSelect">
                         <label class="checkbox-inline">
                             <input type="radio" name="optionsRadiosinline" id="optionsRadios3"
@@ -81,9 +85,10 @@
                 </div>
                 <div class="portrait">
                     <img src="<%=request.getContextPath()%>/resources/images/portrait.png" width="105px"/>
+
                     <div class="defaultPortrait">
-                        <img src="<%=request.getContextPath()%>/resources/images/defaultHeadPortrait.png"
-                             class="img-circle" width="105px">
+                        <img src="<%=request.getContextPath()%>/resources/upload/${picture}"
+                             class="img-circle" width="105px"/>
                     </div>
                     <div class="upload">
                         <label for="file">上传头像</label>
@@ -92,7 +97,7 @@
                 </div>
                 <div class="submit">
                     <button type="button" class="btn btn-default" id="modsubmit">修改</button>
-                    <button type="button" class="btn btn-default">取消</button>
+                    <a href="<%=request.getContextPath()%>/userHomepage"><button type="button" class="btn btn-default">取消</button></a>
                 </div>
             </form>
         </div>
@@ -108,31 +113,28 @@
 </div>
 </body>
 <script type="text/javascript">
-    $("#modsubmit").click(function(){
+    $("#modsubmit").click(function () {
         $.post("<%=request.getContextPath()%>/modifySex",
                 {
-                    sex:$('#sexSelect input:radio:checked').val(),
+                    sex: $('#sexSelect input:radio:checked').val(),
                 },
-                function(data,status){
-//                   if (data == "ok"){
-//                       alert("修改成功");
-//                   }else{
-//                       alert("修改失败");
-//                   }
+                function (data, status) {
+                    if (data !== "ok") {
+                        alert("修改失败")
+                    }
                 });
     });
 
-    $("#modsubmit").click(function(){
+    $("#modsubmit").click(function () {
         $.ajaxFileUpload
         (
                 {
-                    url:'<%=request.getContextPath()%>/modifyHead', //你处理上传文件的服务端
-                    secureuri:false,
-                    fileElementId:'file',
+                    url: '<%=request.getContextPath()%>/modifyHead', //你处理上传文件的服务端
+                    secureuri: false,
+                    fileElementId: 'file',
                     dataType: 'text',
-                    success: function (data)
-                    {
-                       // alert(data.file_infor);
+                    success: function (data) {
+                        alert("图片上传成功");
                     }
                 }
         )

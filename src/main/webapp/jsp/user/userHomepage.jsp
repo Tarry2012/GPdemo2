@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tqy
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
@@ -16,6 +18,9 @@
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <%-- video.js--%>
+    <link href="//cdn.bootcss.com/video.js/5.10.1/video-js.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/video.js/5.10.1/video.min.js"></script>
     <!--datatable-->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
@@ -28,10 +33,10 @@
     <title>问道 用户主页</title>
 
     <script>
-        function aboutUs(){
+        function aboutUs() {
             alert("软件1204 汤秋媛 \n软件1203 宋润雨")
         }
-        function contactUs(){
+        function contactUs() {
             alert("宋润雨邮箱：songrunyu1993@gmail.com \n" +
                     "汤秋媛邮箱：njtangqy@163.com")
         }
@@ -41,13 +46,13 @@
 <body>
 <div class="top_content">
     <ul>
-        <li><a href="<%=request.getContextPath()%>/jsp/user/base.jsp">修改信息</a></li>
+        <li><a href="<%=request.getContextPath()%>/baseInfo">修改信息</a></li>
         <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
     </ul>
     </ul>
 
     <div class="top_title">
-        欢迎 ${username} 来到问道视频学习网站
+        欢迎 <c:out value="${username}"/>来到问道视频学习网站
     </div>
 </div>
 <%--top结束--%>
@@ -83,17 +88,18 @@
         <div class="col-md-3">
             <aside>
                 <div class="avatar">
-                    <img src="<%=request.getContextPath()%>/resources/upload/${picture}" class="img-circle"/>
+                    <img src="<%=request.getContextPath()%>/resources/upload/${picture}"
+                         class="img-circle" width="105px"/>
                 </div>
                 <h5 class="text-center">${username}</h5>
-                <ul class="nav nav-pills nav-stacked" >
-                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/looked.jsp" ><img
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/looked.jsp"><img
                             src="<%=request.getContextPath()%>/resources/images/Looked.png"/></a></li>
-                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/note.jsp" ><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/note.jsp"><img
                             src="<%=request.getContextPath()%>/resources/images/note.png"/></a></li>
-                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/comments.jsp" ><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/comments.jsp"><img
                             src="<%=request.getContextPath()%>/resources/images/comment.png"/></a></li>
-                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/interest.jsp" ><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/interest.jsp"><img
                             src="<%=request.getContextPath()%>/resources/images/interest.png"/></a></li>
                 </ul>
             </aside>
@@ -101,9 +107,9 @@
         <div class="col-md-9">
             <h2>没有历史记录</h2>
         </div>
-        </div>
-
     </div>
+
+</div>
 </div>
 
 <div class="guess_title">
@@ -146,7 +152,7 @@
 </div>
 </div>
 <script>
-    $('ul.nav-stacked>li>a').click(function(){
+    $('ul.nav-stacked>li>a').click(function () {
         $href = $(this).attr('href');
         $('.tab-content ul' + $href).show().siblings().hide();
     })

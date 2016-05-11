@@ -31,7 +31,7 @@
         <li><a href="<%=request.getContextPath()%>/jsp/user/userRegister.jsp">注册</a></li>
         <% } else {
         %>
-        <li><a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp">我的主页</a></li>
+        <li><a href="<%=request.getContextPath()%>/userHomepage">我的主页</a></li>
         <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
         <%
             }
@@ -77,7 +77,7 @@
                 </div>
                 <div class="submit">
                     <button type="button" class="btn btn-default" id="modify">修改</button>
-                    <a href="<%=request.getContextPath()%>/jsp/user/userHomepage.jsp"><button type="button" class="btn btn-default">取消</button></a>
+                    <a href="<%=request.getContextPath()%>/userHomepage"><button type="button" class="btn btn-default">取消</button></a>
                 </div>
             </form>
         </div>

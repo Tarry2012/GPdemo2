@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import service.UserAuthsService;
 import service.UserService;
 
@@ -26,8 +27,9 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 
 /**
@@ -71,7 +73,6 @@ public class UserController {
     @RequestMapping(value = "/userLogout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().invalidate();
-        //String reUrl = request.getContextPath() + "/index";
         return "index";
     }
 
@@ -137,6 +138,9 @@ public class UserController {
             String msg = "error2";
             return msg;
         } else {
+            userDO.setUserId(userId);
+            userDO.setUserPicture("default.png");
+            userService.update(userDO);
             request.getSession().setAttribute("username", username);
             Cookie cookieUser = new Cookie("username", username);
             response.addCookie(cookieUser);
@@ -278,12 +282,35 @@ public class UserController {
         }
         if (StringUtils.isEmpty(username)){
             logger.error("username is null");
-            return "error";
+            return "index";
         }
         Integer userId = userService.getIdByName(username);
         UserDO userDO = userService.getById(userId);
         model.addAttribute("username", username);
         model.addAttribute("picture", userDO.getUserPicture());
+        System.out.println("picture: " + userDO.getUserPicture());
         return "jsp/user/userHomepage";
+    }
+
+    @RequestMapping(value="baseInfo")
+    public String baseInfo(HttpServletRequest request, Model model){
+        String username = (String)request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("username is null");
+            return "index";
+        }
+        Integer userId = userService.getIdByName(username);
+        UserDO userDO = userService.getById(userId);
+        model.addAttribute("username", username);
+        model.addAttribute("picture", userDO.getUserPicture());
+        return "jsp/user/base";
     }
 }

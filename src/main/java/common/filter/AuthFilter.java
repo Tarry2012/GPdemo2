@@ -24,19 +24,22 @@ public class AuthFilter  implements Filter{
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         HttpSession httpSession =  httpServletRequest.getSession();
         String reqUrl = httpServletRequest.getRequestURI();
-        if(reqUrl.contains("index.jsp")){
+        if(reqUrl.contains("index.jsp") || reqUrl.contains("userLogin.jsp") || reqUrl.contains("userLogout.jsp")){
             filterChain.doFilter(servletRequest, servletResponse);
+            return;
         }
         if (reqUrl.endsWith(".png") || reqUrl.endsWith(".css") || reqUrl.endsWith(".js") || reqUrl.endsWith(".jpg")){
             filterChain.doFilter(servletRequest,servletResponse);
+            return;
         }
         //判断用户是否登录，进行页面的处理
         //为了调式，先把session验证去掉了
-        httpSession.setAttribute("username", "test7");
+      //  httpSession.setAttribute("username", "test7");
         String session = (String)httpSession.getAttribute("username");
         if(StringUtils.isEmpty(session)){
             //未登录用户，重定向到登录页面
              httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
+            return;
         } else {
             //已登录用户，允许访问
             filterChain.doFilter(servletRequest, servletResponse);
