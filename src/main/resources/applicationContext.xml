@@ -110,5 +110,11 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
 
+    <bean id="noteDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="dao.NoteDAO"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
+
+
 </beans>
 
