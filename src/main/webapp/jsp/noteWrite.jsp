@@ -6,11 +6,6 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- 可选的Bootstrap主题文件（一般不用引入） -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap-theme.min.css">
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/bootstrap-wysiwyg.js"></script>
   <%--让页面在高分辨率的手机上显示正确的尺寸，防止因为屏幕像素高而使得页面元素变得很小--%>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="<%=request.getContextPath()%>/resources/css/top.css" rel="stylesheet" type="text/css"/>
@@ -145,13 +140,14 @@
             </div>
             <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
         </div>
-
-        <div id="editor">
+        <form action="<%=request.getContextPath()%>/note/addNote" method="post">
+        <div id="editor" name="editor">
             Go ahead...&hellip;
         </div>
         <div class="btn-submit">
             <button type="submit" class="btn btn-default" onclick="submitText()">Submit</button>
         </div>
+            </form>
     </div>
 </div>
 <div class="guessYouLike">
@@ -201,7 +197,12 @@
   <input type="button" onclick="contactUs()" value="联系我们">
 </div>
 
-
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery.hotkeys.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/bootstrap-wysiwyg.js"></script>
 <script>
     $(function(){
         function initToolbarBootstrapBindings() {
@@ -222,12 +223,6 @@
                 overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
             });
             $('#voiceBtn').hide();
-//             if ("onwebkitspeechchange"  in document.createElement("input")) {
-//               var editorOffset = $('#editor').offset();
-//               $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
-//             } else {
-//               $('#voiceBtn').hide();
-//             }
         };
         initToolbarBootstrapBindings();
         $('#editor').wysiwyg();
@@ -236,6 +231,7 @@
     function submitText()
     {
         var myText=document.getElementById("editor").innerText;
+
         alert(myText);
     }
 </script>

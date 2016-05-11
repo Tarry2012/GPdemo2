@@ -46,29 +46,28 @@ public class CommentController {
     @RequestMapping(value = "/video/addComment", method = RequestMethod.POST)
     public String addComment(@RequestParam("comment") String comment,
                              HttpServletRequest request){
-        JSONObject jsonObject = JSON.parseObject(comment, JSONObject.class);
-        System.out.println("~~~~~~~~~~~~");
+        JSONObject jsonObject = JSON.parseObject(comment);
         System.out.println(jsonObject);
-        System.out.println("@@@@@@@@@");
         String username = null;
-//
-//        Cookie[] cookies = request.getCookies();
-//        for(int i = 0; i < cookies.length; i++ ){
-//            if("username".equals(cookies[i].getName()))
-//            {
-//                username = cookies[i].getValue();
-//            }
-//        }
-//
-//        Integer userId = userService.getIdByName(username);
-//
-//        CommentDO commentDO = new CommentDO();
-//        commentDO.setParentId(1);
-//        commentDO.setAuthorId(userId);
-//        commentDO.setCommentContent(jsonObject);
-//        commentDO.setCommentLikes(jsonObject['upvote_count']);
-//        commentDO.setVideoId(123);
-//        commentService.add(commentDO);
+
+        Cookie[] cookies = request.getCookies();
+        for(int i = 0; i < cookies.length; i++ ){
+            if("username".equals(cookies[i].getName()))
+            {
+                username = cookies[i].getValue();
+            }
+        }
+
+        Integer userId = userService.getIdByName(username);
+
+        CommentDO commentDO = new CommentDO();
+        commentDO.setParentId(1);
+        commentDO.setAuthorId(userId);
+        commentDO.setCommentContent( jsonObject.getString("content"));
+        commentDO.setCommentLikes(jsonObject.getInteger("upvote_count"));
+        commentDO.setVideoId(123);
+
+        commentService.add(commentDO);
 
         return "/jsp/video";
     }

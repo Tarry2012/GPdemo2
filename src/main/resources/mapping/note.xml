@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.NoteDAO">
+    <resultMap id="NoteMap" type="domain.NoteDO">
+        <result column="note_id" property="noteId"/>
+        <result column="user_id" property="userId"/>
+        <result column="video_id" property="videoId"/>
+        <result column="note_name" property="noteName"/>
+        <result column="note_time" property="noteTime"/>
+        <result column="note_content" property="noteContent"/>
+    </resultMap>
+
+
+    <update id="updateNoteById" parameterType="Integer">
+        update wd_note set note_Content = #{noteContent} where note_id= #{noteId}
+    </update>
+
+    <insert id="add" parameterType="domain.NoteDO">
+        <selectKey resultType="int" keyProperty="noteId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into wd_note(user_id,video_id,note_content) values(#{userId},#{videoId},#{noteContent})
+    </insert>
+
+    <select id="getContentById" resultMap="NoteMap">
+        select * from wd_note where user_id=#{userId};
+    </select>
+
+</mapper>
