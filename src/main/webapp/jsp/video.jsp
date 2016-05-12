@@ -26,35 +26,6 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/data/comments-data.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-comments.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            getUserPic: function (success, error) {
-                $.post("<%=request.getContextPath()%>/video/getComment",
-                        {
-                            videoId: "123"
-                        },
-                        function (jsonArray) {
-//                            obj = JSON.parse(jsonArray);
-                            success(jsonArray['data']);
-                        })
-            })
-        });
-
-            $('#comments-container').comments({
-                getPic: function (success, error) {
-                $.ajax({
-                        type: 'post',
-                        url: '<%=request.getContextPath()%>/video/getPicUrl',
-                        data: null,
-                        success: function (picUrl) {
-                            success(commentJSON);
-                        },
-                        error: error
-                    });
-                profilePictureURL: '<%=request.getContextPath()%>/resources/upload/#{picUrl}';
-            });
-        });
-    </script>
     <style type="text/css">
         body {
             padding: 20px;
