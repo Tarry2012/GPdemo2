@@ -35,15 +35,16 @@ public class NoteController {
 
     //方法级别,所以处理这种url: /demo/video/videoId/addNote
 
-    @RequestMapping(value = "/video/{videoId}/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
-//    @RequestMapping(value = "/video/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
+   // @RequestMapping(value = "/video/{videoId}/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
+    @RequestMapping(value = "/video/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
     @ResponseBody
     public String addNote(@RequestParam(value = "note", required = false) String content,
-                          @PathVariable("videoId") Integer videoId,
+//                          @PathVariable("videoId") Integer videoId,
+                          @RequestParam(value = "videoId", required = false) Integer videoId,
                           HttpServletRequest request){
         Map<String, String[]> params = request.getParameterMap();
         System.out.println("~~~~~" + content);
-        System.out.println("````````````");
+        System.out.println("````````````" + videoId);
 
         String username = null;
 
@@ -59,7 +60,7 @@ public class NoteController {
 
         NoteDO noteDO = new NoteDO();
         noteDO.setUserId(userId);
-        noteDO.setVideoId(videoId);
+        noteDO.setVideoId(1);
         noteDO.setNoteContent(content);
 
         noteService.add(noteDO);

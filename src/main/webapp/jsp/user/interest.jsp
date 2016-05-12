@@ -112,14 +112,14 @@
             </div>
           </div>
           <div class="col-md-4" >
-            <input type="checkbox" value="computer" onclick="changePic()">
+            <input type="checkbox" value="literatrue" onclick="changePic()">
             <img src="<%=request.getContextPath()%>/resources/images/interest_literature.jpg" height="200px" width="200px" class="img-circle">
             <div class="h4">
               <h4>文学</h4>
             </div>
           </div>
           <div class="col-md-4" >
-            <input type="checkbox" value="computer" onclick="changePic()">
+            <input type="checkbox" value="science" onclick="changePic()">
             <img src="<%=request.getContextPath()%>/resources/images/interest_science.jpg" height="200px" width="200px" class="img-circle">
             <div class="h4">
               <h4>科学</h4>
@@ -130,21 +130,21 @@
       <div class="interest_col_2" style="padding-top: 40px">
         <div class="row">
           <div class="col-md-4" >
-            <input type="checkbox" value="computer" onclick="changePic()">
+            <input type="checkbox" value="economy" onclick="changePic()">
             <img src="<%=request.getContextPath()%>/resources/images/interest_economy.jpg" height="200px" width="200px" class="img-circle">
             <div class="h4">
               <h4>经济</h4>
             </div>
           </div>
           <div class="col-md-4" >
-            <input type="checkbox" value="computer" onclick="changePic()">
+            <input type="checkbox" value="art" onclick="changePic()">
             <img src="<%=request.getContextPath()%>/resources/images/interest_art.jpg" height="200px" width="200px" class="img-circle">
             <div class="h4">
               <h4>艺术</h4>
             </div>
           </div>
           <div class="col-md-4" >
-            <input type="checkbox" value="computer" onclick="changePic()">
+            <input type="checkbox" value="mentality" onclick="changePic()">
             <img src="<%=request.getContextPath()%>/resources/images/interest_psychology.jpg" height="200px" width="200px" class="img-circle">
             <div class="h4">
               <h4>心理</h4>
@@ -153,7 +153,7 @@
         </div>
     </div>
         <div class="btn-submit" style="text-align:center">
-          <button type="button" class="btn btn-success">Submit</button>
+          <button type="button" class="btn btn-success" id="submit">Submit</button>
         </div>
       </form>
   </div>
@@ -205,6 +205,30 @@
     $href = $(this).attr('href');
     $('.tab-content ul' + $href).show().siblings().hide();
   })
+  $("#submit").click(function () {
+    var arr = [];
+    //遍历每一个类型为checkbox的复选框，选中的执行函数
+    $('input[type="checkbox"]:checked').each(function(){
+      arr.push($(this).val());//将选中的值添加到数组arr中
+    });
+    alert(arr[0]);
+    alert(arr[1]);
+
+    $.ajax({
+      type: 'post',
+      url: '<%=request.getContextPath()%>/user/addInterest',
+      data: {
+        "interest":arr
+      },
+
+      success: function (msg) {
+        msg = msg.replace(/rn/g, '');
+        window.location.href = "<%=request.getContextPath()%>/jsp/user/interest.jsp";
+      }
+
+    });
+    alert("已保存到我感兴趣的");
+  });
   function changePic()
   {
   //  alert();
