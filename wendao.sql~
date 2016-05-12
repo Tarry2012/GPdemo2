@@ -234,15 +234,6 @@ insert into wd_video(video_name, video_describe, video_picture, video_url,video_
 alter table wd_video change video_play video_play int(10) unsigned DEFAULT 0;
 alter table wd_video change video_like video_like int(10) unsigned DEFAULT 0;
 
-update wd_video set video_picture='oceans.jpg' where video_id=1;
-update wd_video set video_picture='oceans.jpg' where video_id=2;
-update wd_video set video_picture='oceans.jpg' where video_id=3;
-update wd_video set video_picture='oceans.jpg' where video_id=4;
-update wd_video set video_picture='oceans.jpg' where video_id=5;
-update wd_video set video_picture='oceans.jpg' where video_id=6;
-update wd_video set video_picture='oceans.jpg' where video_id=7;
-update wd_video set video_picture='oceans.jpg' where video_id=8;
-update wd_video set video_picture='oceans.jpg' where video_id=9;
 
 /*!40101 SET character_set_client = @saved_cs_client */;
 

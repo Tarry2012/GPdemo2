@@ -2,6 +2,7 @@ package dao;
 
 import domain.VideoDO;
 import domain.VideoQuery;
+import domain.VideoUpdate;
 
 import java.util.List;
 
@@ -10,4 +11,7 @@ import java.util.List;
  */
 public interface VideoDAO {
     List<VideoDO> select(VideoQuery videoQuery);
+    List<VideoDO> selctHotVideo(Integer limit);
+    Integer updatePlayOrLike(VideoUpdate videoUpdate);
+    List<VideoDO> selectNewVideo();
 }

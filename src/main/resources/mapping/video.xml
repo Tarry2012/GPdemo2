@@ -34,4 +34,27 @@
 
     </select>
 
+    <select id="selctHotVideo" resultMap="VideoMap" parameterType="java.lang.Integer">
+        SELECT video_id,video_name,video_describe,video_time,video_url,video_like,video_play,interest_id,video_picture
+        FROM  wd_video
+        ORDER BY video_play DESC
+        limit #{limit};
+    </select>
+
+    <update id="updatePlayOrLike" parameterType="domain.VideoUpdate">
+        UPDATE wd_video
+        <set>
+            <if test="videoPlay == true" >video_play=video_play+1</if>
+            <if test="videoLike == true">video_like=video_like+1</if>
+        </set>
+        where
+        <if test="videoId > 0">video_id=#{videoId}</if>
+    </update>
+
+    <select id="selectNewVideo"  resultMap="VideoMap">
+       SELECT video_id,video_name,video_describe,video_time,video_url,video_like,video_play,interest_id,video_picture
+       FROM wd_video
+       ORDER BY video_id DESC
+       LIMIT 3;
+    </select>
     </mapper>

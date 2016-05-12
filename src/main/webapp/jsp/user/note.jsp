@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
   <!-- 新 Bootstrap 核心 CSS 文件 -->
@@ -42,8 +43,8 @@
 <body>
 <div class="top_content">
   <ul>
-    <li><a href="<%=request.getContextPath()%>/jsp/user/base.jsp">修改信息</a></li>
-    <li><a href="<%=request.getContextPath()%>/userHomepage">我的主页</a></li>
+    <li><a href="<%=request.getContextPath()%>/baseInfo">修改信息</a></li>
+    <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
   </ul>
   </ul>
 
@@ -84,17 +85,17 @@
     <div class="col-md-3">
       <aside>
         <div class="avatar">
-          <img src="<%=request.getContextPath()%>/resources/images/defaultHeadPortrait.png" class="img-circle"/>
+          <img src="<%=request.getContextPath()%>/resources/upload/${picture}" class="img-circle"/>
         </div>
-        <h5 class="text-center">${username}</h5>
+        <h5 class="text-center"><c:out value="${username}"/></h5>
         <ul class="nav nav-pills nav-stacked" >
-          <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/looked.jsp" ><img
+          <li role="presentation"><a href="<%=request.getContextPath()%>/looked" ><img
                   src="<%=request.getContextPath()%>/resources/images/Looked.png"/></a></li>
-          <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/note.jsp" ><img
+          <li role="presentation"><a href="<%=request.getContextPath()%>/note" ><img
                   src="<%=request.getContextPath()%>/resources/images/note.png"/></a></li>
-          <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/comments.jsp" ><img
+          <li role="presentation"><a href="<%=request.getContextPath()%>/comments" ><img
                   src="<%=request.getContextPath()%>/resources/images/comment.png"/></a></li>
-          <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/interest.jsp" ><img
+          <li role="presentation"><a href="<%=request.getContextPath()%>/interest" ><img
                   src="<%=request.getContextPath()%>/resources/images/interest.png"/></a></li>
         </ul>
       </aside>

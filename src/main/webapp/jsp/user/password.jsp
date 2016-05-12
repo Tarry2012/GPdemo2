@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <link href="<%=request.getContextPath()%>/resources/css/userLogin.css" rel="stylesheet" type="text/css"/>
@@ -83,8 +84,8 @@
         </div>
         <div class="col-md-3">
             <ul class="nav nav-pills nav-stacked">
-                <li role="presentation" ><a href="<%=request.getContextPath()%>/jsp/user/base.jsp">基本资料</a></li>
-                <li role="presentation" class="active"><a href="#">修改密码</a></li>
+                <li role="presentation" ><a href="<%=request.getContextPath()%>/baseInfo">基本资料</a></li>
+                <li role="presentation" class="active"><a href="<%=request.getContextPath()%>/password">修改密码</a></li>
             </ul>
         </div>
         <div class="col-md-1"></div>
@@ -139,6 +140,13 @@
     $(document).ready(function () {
         $("#modify").click(function () {
             /*提交验证，异步传输*/
+            var password1 = document.getElementById('InputPassword1').value;
+            var password2 = document.getElementById('InputPassword2').value;
+            var password3 = document.getElementById('InputPassword3').value;
+            if (password1.length==0 || password2.length==0 || password3.length == 0){
+                alert("输入内容");
+                return;
+            }
             $.ajax({
                 url: '<%=request.getContextPath()%>/modifyPassword', //处理测试页面,注意返回内容，成功返回OK
                 dataType: 'text',
@@ -148,7 +156,6 @@
                     msg = msg.replace(/rn/g, '');
                     if (msg == "ok") {
                         alert("修改成功")
-                        window.location.href = "<%=request.getContextPath()%>/jsp/user/password.jsp";
                     }
                     else {
                         alert("修改失败");

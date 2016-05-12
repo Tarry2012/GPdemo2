@@ -93,13 +93,13 @@
                 </div>
                 <h5 class="text-center">${username}</h5>
                 <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/looked.jsp"><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/looked" ><img
                             src="<%=request.getContextPath()%>/resources/images/Looked.png"/></a></li>
-                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/note.jsp"><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/note" ><img
                             src="<%=request.getContextPath()%>/resources/images/note.png"/></a></li>
-                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/comments.jsp"><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/comments" ><img
                             src="<%=request.getContextPath()%>/resources/images/comment.png"/></a></li>
-                    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/interest.jsp"><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/interest" ><img
                             src="<%=request.getContextPath()%>/resources/images/interest.png"/></a></li>
                 </ul>
             </aside>

@@ -188,7 +188,7 @@ public class UserController {
             }
         }
         if (StringUtils.isEmpty(username)){
-            logger.error("modifyPassword username is null");
+            logger.error("username is null");
             return "error";
         }
         Integer userId = userService.getIdByName(username);
@@ -288,7 +288,6 @@ public class UserController {
         UserDO userDO = userService.getById(userId);
         model.addAttribute("username", username);
         model.addAttribute("picture", userDO.getUserPicture());
-        System.out.println("picture: " + userDO.getUserPicture());
         return "jsp/user/userHomepage";
     }
 
@@ -312,5 +311,112 @@ public class UserController {
         model.addAttribute("username", username);
         model.addAttribute("picture", userDO.getUserPicture());
         return "jsp/user/base";
+    }
+
+    @RequestMapping(value = "/password",produces = {"application/json;charset=UTF-8"})
+    public String interPassword(HttpServletRequest request, Model model){
+        String username = (String)request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("username is null");
+            return "index";
+        }
+        model.addAttribute("username", username);
+        return "jsp/user/password";
+    }
+
+    @RequestMapping(value="/interest",produces = {"application/json;charset=UTF-8"})
+    public String inerest(HttpServletRequest request, Model model){
+        String username = (String)request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("username is null");
+            return "index";
+        }
+        Integer userId = userService.getIdByName(username);
+        UserDO userDO = userService.getById(userId);
+        model.addAttribute("username", username);
+        model.addAttribute("picture", userDO.getUserPicture());
+        return "jsp/user/interest";
+    }
+
+    @RequestMapping(value="/comments",produces = {"application/json;charset=UTF-8"})
+    public String comments(HttpServletRequest request, Model model){
+        String username = (String)request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("username is null");
+            return "index";
+        }
+        Integer userId = userService.getIdByName(username);
+        UserDO userDO = userService.getById(userId);
+        model.addAttribute("username", username);
+        model.addAttribute("picture", userDO.getUserPicture());
+        return "jsp/user/comments";
+    }
+
+    @RequestMapping(value="/note",produces = {"application/json;charset=UTF-8"})
+    public String note(HttpServletRequest request, Model model){
+        String username = (String)request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("username is null");
+            return "index";
+        }
+        Integer userId = userService.getIdByName(username);
+        UserDO userDO = userService.getById(userId);
+        model.addAttribute("username", username);
+        model.addAttribute("picture", userDO.getUserPicture());
+        return "jsp/user/note";
+    }
+
+    @RequestMapping(value="/looked",produces = {"application/json;charset=UTF-8"})
+    public String looked(HttpServletRequest request, Model model){
+        String username = (String)request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("username is null");
+            return "index";
+        }
+        Integer userId = userService.getIdByName(username);
+        UserDO userDO = userService.getById(userId);
+        model.addAttribute("username", username);
+        model.addAttribute("picture", userDO.getUserPicture());
+        return "jsp/user/looked";
     }
 }

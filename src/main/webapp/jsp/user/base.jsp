@@ -103,8 +103,8 @@
         </div>
         <div class="col-md-3">
             <ul class="nav nav-pills nav-stacked">
-                <li role="presentation" class="active"><a href="#">基本资料</a></li>
-                <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/password.jsp">修改密码</a></li>
+                <li role="presentation" class="active"><a href="<%=request.getContextPath()%>/baseInfo">基本资料</a></li>
+                <li role="presentation"><a href="<%=request.getContextPath()%>/password">修改密码</a></li>
             </ul>
         </div>
         <div class="col-md-1"></div>

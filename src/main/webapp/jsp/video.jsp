@@ -94,7 +94,7 @@
         <div class="col-md-7">
             <div class="video">
                 <video id="my_video" class="video-js" controls preload="auto" width="350" height="208"
-                       poster="<%=request.getContextPath()%>/resources/images/index3.png" data-setup="{}">
+                       poster="<%=request.getContextPath()%>/${videoPicture}" data-setup="{}">
                     <source src="<%=request.getContextPath()%>/${videoUrl}" type="video/mp4"/>
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a web browser that

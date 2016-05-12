@@ -7,7 +7,7 @@ public class UserVideoDO {
     private int id;
     private int userId;
     private int videoId;
-    private boolean idDelete;
+    private boolean isDelete;
 
     public int getId() {
         return id;
@@ -33,12 +33,12 @@ public class UserVideoDO {
         this.videoId = videoId;
     }
 
-    public boolean isIdDelete() {
-        return idDelete;
+    public boolean isDelete() {
+        return isDelete;
     }
 
-    public void setIdDelete(boolean idDelete) {
-        this.idDelete = idDelete;
+    public void setIsDelete(boolean isDelete) {
+        this.isDelete = isDelete;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class UserVideoDO {
                 "id=" + id +
                 ", userId=" + userId +
                 ", videoId=" + videoId +
-                ", idDelete=" + idDelete +
+                ", isDelete=" + isDelete +
                 '}';
     }
 }

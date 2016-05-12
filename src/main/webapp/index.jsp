@@ -91,21 +91,21 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="<%=request.getContextPath()%>/resources/images/index1.png"/>
+                <img id="picture1" src=""/>
                 <div class="carousel-caption">
-                    <h3>这是图片标题1</h3>
+                    <h3 id="text1"></h3>
                 </div>
             </div>
             <div class="item">
-                <img src="<%=request.getContextPath()%>/resources/images/index2.png"/>
+                <img id="picture2" src=""/>
                 <div class="carousel-caption">
-                    <h3>这是图片标题2</h3>
+                    <h3 id="text2"></h3>
                 </div>
             </div>
             <div class="item">
-                <img src="<%=request.getContextPath()%>/resources/images/index3.png"/>
+                <img id="picture3" src=""/>
                 <div class="carousel-caption">
-                    <h3>这是图片标题3</h3>
+                    <h3 id="text3"></h3>
                 </div>
             </div>
         </div>
@@ -123,14 +123,14 @@
 
     <div class="rank">
         <img src="<%=request.getContextPath()%>/resources/images/hotvideo.png" height="60px"/>
-        <span class="list-group">
-            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-success">视频1</a>
-            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-info">视频2</a>
-            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-success">视频3</a>
-            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-info">视频3</a>
-            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-success">视频4</a>
-            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-info">视频5</a>
-            <a href="<%=request.getContextPath()%>/jsp/video.jsp" class="list-group-item list-group-item-success">视频6</a>
+        <span class="list-group" id="hotVideos">
+            <a href="" class="list-group-item list-group-item-success" id="video1"></a>
+            <a href="" class="list-group-item list-group-item-info" id="video2"></a>
+            <a href="" class="list-group-item list-group-item-success" id="video3"></a>
+            <a href="" class="list-group-item list-group-item-info" id="video4"></a>
+            <a href="" class="list-group-item list-group-item-success" id="video5"></a>
+            <a href="" class="list-group-item list-group-item-info" id="video6"></a>
+            <a href="" class="list-group-item list-group-item-success" id="video7"></a>
         </span>
     </div>
 </div>
@@ -179,4 +179,31 @@
     <input type="button" onclick="contactUs()" value="联系我们">
 </div>
 </body>
+<script>
+    $(document).ready(function () {
+        var url = "<%=request.getContextPath()%>/video/hotVideo";
+        $.get(url,function(data,status){
+           for (var i= 1; i <= data.videoList.length; i++){
+               var video = '#video'+i;
+               $(video).text(data.videoList[i-1]['videoName']);
+               var url1 = "<%=request.getContextPath()%>/video/"+data.videoList[i-1]['videoId'];
+               $(video).attr("href",url1);
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        var url = "<%=request.getContextPath()%>/video/indexVideo";
+        $.get(url,function(data,status){
+            for (var i= 1; i <= data.videoList.length; i++){
+                var text = '#text'+i;
+                $(text).text(data.videoList[i-1]['videoName']);
+                var picture ='#picture'+i;
+                var url1 = "<%=request.getContextPath()%>/resources/images/video/"+data.videoList[i-1]['videoPicture'];
+                $(picture).attr("src", url1);
+            }
+        });
+    });
+</script>
+
 </html>

@@ -19,7 +19,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         String reqUrl = httpServletRequest.getRequestURI().replace(httpServletRequest.getContextPath(), "");
         //当url地址为登录地址或者主页时跳过拦截器
         if (reqUrl.contains("userLogin") || reqUrl.contains("userLogout") || reqUrl.contains("userRegister") || reqUrl.contains("userIsExist")
-                || reqUrl.contains("mailIsExist")){
+                || reqUrl.contains("mailIsExist") || reqUrl.contains("video/indexVideo") || reqUrl.contains("video/hotVideo")){
             return true;
         }else{
             HttpSession session = httpServletRequest.getSession();
@@ -27,6 +27,7 @@ public class AuthInterceptor implements HandlerInterceptor {
  //           session.setAttribute("username", "hello");
             String obj = (String)session.getAttribute("username");
             if (StringUtils.isEmpty(obj)){
+
                 logger.warn("未登录的: " + reqUrl);
                   httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
                   return false;
