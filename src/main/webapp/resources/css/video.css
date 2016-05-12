@@ -149,3 +149,19 @@
     -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
+
+body {
+    padding: 0;
+    margin: 0px;
+    font-size: 14px;
+    font-family: "Arial", Georgia, Serif;
+}
+
+.blank{
+    padding-top: 35px;
+    background-color: transparent;
+}
+
+.navigation-wrapper{
+    background-color:#65934A;
+}

@@ -31,7 +31,35 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-comments.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            getUserPic: function (success, error) {
+                $.post("<%=request.getContextPath()%>/video/getComment",
+                        {
+                            videoId: "123"
+                        },
+                        function (jsonArray) {
+//                            obj = JSON.parse(jsonArray);
+                            success(jsonArray['data']);
+                        })
+            })
+        });
 
+            $('#comments-container').comments({
+                getPic: function (success, error) {
+                $.ajax({
+                        type: 'post',
+                        url: '<%=request.getContextPath()%>/video/getPicUrl',
+                        data: null,
+                        success: function (picUrl) {
+                            success(commentJSON);
+                        },
+                        error: error
+                    });
+                profilePictureURL: '<%=request.getContextPath()%>/resources/upload/#{picUrl}';
+            });
+        });
+    </script>
     <style type="text/css">
         body {
             padding: 20px;
@@ -102,65 +130,10 @@
                     <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
                 </video>
             </div>
+            <div class="blank">
+            </div>
             <div class="comments">
                 <div id="comments-container"></div>
-                <%--<h4 class="m-t-lg m-b" style="padding-top: 30px">3 Comments</h4>--%>
-                <%--<section class="comment-list block">--%>
-                <%--<article id="comment-id-1" class="comment-item"><a class="pull-left thumb-sm"> <img--%>
-                <%--src="<%=request.getContextPath()%>/resources/images/interest_art_choose.jpg" height="20px" width="20px" class="img-circle"> </a>--%>
-                <%--<section class="comment-body m-b">--%>
-                <%--<header><a href="#"><strong>John smith</strong></a> <label--%>
-                <%--class="label bg-info m-l-xs">Editor</label> <span--%>
-                <%--class="text-muted text-xs block m-t-xs"> 24 minutes ago </span>--%>
-                <%--</header>--%>
-                <%--<div class="m-t-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.--%>
-                <%--Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat.--%>
-                <%--Vestibulum.--%>
-                <%--</div>--%>
-                <%--</section>--%>
-                <%--</article>--%>
-                <%--<!-- .comment-reply -->--%>
-                <%--<article id="comment-id-2" class="comment-item comment-reply"><a--%>
-                <%--class="pull-left thumb-sm"> <img src="<%=request.getContextPath()%>/resources/images/interest_art_choose.jpg" height="20px" width="20px" class="img-circle">--%>
-                <%--</a>--%>
-                <%--<section class="comment-body m-b">--%>
-                <%--<header><a href="#"><strong>John smith</strong></a> <label--%>
-                <%--class="label bg-dark m-l-xs">Admin</label> <span--%>
-                <%--class="text-muted text-xs block m-t-xs"> 26 minutes ago </span>--%>
-                <%--</header>--%>
-                <%--<div class="m-t-sm">Lorem ipsum dolor sit amet, consecteter adipiscing elit,--%>
-                <%--sed diam nonummy nibh euismod tincidunt ut laoreet.--%>
-                <%--</div>--%>
-                <%--</section>--%>
-                <%--</article>--%>
-                <%--<!-- / .comment-reply -->--%>
-                <%--<article id="comment-id-3" class="comment-item"><a class="pull-left thumb-sm"> <img--%>
-                <%--src="<%=request.getContextPath()%>/resources/images/interest_art_choose.jpg" height="20px" width="20px" class="img-circle"> </a>--%>
-                <%--<section class="comment-body m-b">--%>
-                <%--<header><a href="#"><strong>John smith</strong></a> <label--%>
-                <%--class="label bg-dark m-l-xs">Admin</label> <span--%>
-                <%--class="text-muted text-xs block m-t-xs"> 26 minutes ago </span>--%>
-                <%--</header>--%>
-                <%--<blockquote class="m-t"><p>Lorem ipsum dolor sit amet, consectetur--%>
-                <%--adipiscing elit. Integer posuere erat a ante.</p>--%>
-                <%--<small>Someone famous in <cite title="Source Title">Source Title</cite>--%>
-                <%--</small>--%>
-                <%--</blockquote>--%>
-                <%--<div class="m-t-sm">Lorem ipsum dolor sit amet, consecteter adipiscing elit,--%>
-                <%--sed diam nonummy nibh euismod tincidunt ut laoreet.--%>
-                <%--</div>--%>
-                <%--</section>--%>
-                <%--</article>--%>
-                <%--</section>--%>
-                <%--<h4 class="m-t-lg m-b">Leave a comment</h4>--%>
-                <%--<form action="<%=request.getContextPath()%>/addComment" method="post">--%>
-                <%--<div class="form-group"><label>Comment</label> <textarea class="form-control"--%>
-                <%--rows="5"--%>
-                <%--placeholder="Type your comment" name="textarea"></textarea>--%>
-                <%--</div>--%>
-                <%--<div class="form-group">--%>
-                <%--&lt;%&ndash;<button type="submit" class="btn btn-success">Submit comment</button>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
             </div>
         </div>
         <div class="col-md-4">
