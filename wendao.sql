@@ -227,6 +227,14 @@ CREATE TABLE `wd_video` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 alter table wd_video add column video_picture varchar(100);
 
+insert into wd_video(video_name, video_describe, video_picture, video_url,video_like, video_play, interest_id)values("oceans2", "海洋", "oceans.jsp", "oceans.mp4",4,5,1);
+insert into wd_video(video_name, video_describe, video_picture, video_url,video_like, video_play, interest_id)values("oceans3", "海洋", "oceans.jsp", "oceans.mp4",4,5,1);
+insert into wd_video(video_name, video_describe, video_picture, video_url,video_like, video_play, interest_id)values("oceans4", "海洋", "oceans.jsp", "oceans.mp4",4,5,1);
+insert into wd_video(video_name, video_describe, video_picture, video_url,video_like, video_play, interest_id)values("oceans5", "海洋", "oceans.jsp", "oceans.mp4",4,5,1);
+alter table wd_video change video_play video_play int(10) unsigned DEFAULT 0;
+alter table wd_video change video_like video_like int(10) unsigned DEFAULT 0;
+
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
