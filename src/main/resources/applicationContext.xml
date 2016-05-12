@@ -126,6 +126,10 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
 
+    <bean id="interestDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="dao.InterestDAO"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
 
 </beans>
 
