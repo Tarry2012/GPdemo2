@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tqy
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
 
@@ -27,33 +29,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-comments.js"></script>
     <script type="text/javascript">
-        $(function() {
-            getUserPic: function (success, error) {
-                $.post("<%=request.getContextPath()%>/video/getComment",
-                        {
-                            videoId: "123"
-                        },
-                        function (jsonArray) {
-//                            obj = JSON.parse(jsonArray);
-                            success(jsonArray['data']);
-                        })
-            })
-        });
-
-            $('#comments-container').comments({
-                getPic: function (success, error) {
-                $.ajax({
-                        type: 'post',
-                        url: '<%=request.getContextPath()%>/video/getPicUrl',
-                        data: null,
-                        success: function (picUrl) {
-                            success(commentJSON);
-                        },
-                        error: error
-                    });
-                profilePictureURL: '<%=request.getContextPath()%>/resources/upload/#{picUrl}';
-            });
-        });
     </script>
     <style type="text/css">
         body {
@@ -92,7 +67,7 @@
         %>
     </ul>
     <div class="top_title">
-        欢迎 ${username} 来到 问道视频学习网站
+        欢迎 <c:out value="${username}"/> 来到 问道视频学习网站
     </div>
 </div>
 <%--top结束--%>
@@ -137,16 +112,16 @@
         <div class="col-md-4">
             <div class="panel panel-default">
                 <!-- Default panel contents -->
-                <div class="panel-heading">Ocean</div>
+                <div class="panel-heading"><c:out value="${videoName}"/></div>
                 <div class="panel-body">
-                    <p>海洋blablablabla</p>
+                    <p><c:out value="${videoDescribe}"/></p>
                 </div>
                 <!-- List group -->
                 <ul class="list-group">
-                    <li class="list-group-item"><span type="button" class="glyphicon glyphicon-heart"> 14</span>
-                        <span class="glyphicon glyphicon-play-circle"> 15</span></li>
-                    <li class="list-group-item">类型：自然</li>
-                    <li class="list-group-item"><a href="<%=request.getContextPath()%>/jsp/noteWrite.jsp">创建笔记</a></li>
+                    <li class="list-group-item"><span type="button" class="glyphicon glyphicon-heart"> <c:out value="${videoLikes}"/></span>
+                        <span class="glyphicon glyphicon-play-circle"> <c:out value="${videoPlays}"/> </span></li>
+                    <li class="list-group-item">类型： <c:out value="${videoType}"/></li>
+                    <li class="list-group-item"><a href="<%=request.getContextPath()%>/${videoUrl}">创建笔记</a></li>
                 </ul>
             </div>
         </div>
@@ -154,14 +129,6 @@
 </div>
 
 </body>
-<%--<script type="text/javascript">--%>
-    <%--var myPlayer = videojs('my_video');--%>
-    <%--videojs("my_video").ready(function () {--%>
-        <%--var myPlayer = this;--%>
-        <%--myPlayer.play();--%>
-    <%--});--%>
-<%--</script>--%>
-
 <script type="text/javascript">
     $(document).ready(function () {
         $('#comments-container').comments({

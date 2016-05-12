@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
@@ -81,7 +82,7 @@
                 <a href="#" class="list-group-item">
                     <h4 class="list-group-item-heading">IOS7 应用开发</h4>
                     <div class="tag"><span class="glyphicon glyphicon-heart"> 14</span>
-                        <span class="glyphicon glyphicon-comment"> 15</span>
+                        <span class="glyphicon glyphicon-play-circle"> 15</span>
                     </div>
                     <div class="image"><img
                             src="<%=request.getContextPath()%>/resources/images/ios7.png"/></div>

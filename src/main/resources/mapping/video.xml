@@ -20,7 +20,7 @@
         FROM  wd_video
         where 1=1
         <if test="videoId > 0">
-            and video_id = #{video_id}
+            and video_id = #{videoId}
         </if>
         <if test="videoName != null">
             and video_name LIKE '%${videoName}%'

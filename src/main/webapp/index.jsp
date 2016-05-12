@@ -70,7 +70,7 @@
 <div class="navigation">
     <ul class="nav nav-pills">
         <li role="presentation" class="active"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
-        <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/computer.jsp">计算机</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=1" >计算机</a></li>
         <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/literatrue.jsp">文学</a></li>
         <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/science.jsp">科学</a></li>
         <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/economy.jsp">经济</a></li>
