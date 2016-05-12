@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS `wd_interest`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `wd_interest` (
-  `interest_id` int(11) NOT NULL,
+  `interest_id` int(11) NOT NULL auto_increment,
   `interest_name` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`interest_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -63,6 +63,12 @@ CREATE TABLE `wd_interest` (
 --
 
 LOCK TABLES `wd_interest` WRITE;
+INSERT INTO `wd_interest` VALUES (1,'计算机');
+INSERT INTO `wd_interest` VALUES (2,'文学');
+INSERT INTO `wd_interest` VALUES (3,'科学');
+INSERT INTO `wd_interest` VALUES (4,'经济');
+INSERT INTO `wd_interest` VALUES (5,'艺术');
+INSERT INTO `wd_interest` VALUES (6,'心理');
 /*!40000 ALTER TABLE `wd_interest` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wd_interest` ENABLE KEYS */;
 UNLOCK TABLES;

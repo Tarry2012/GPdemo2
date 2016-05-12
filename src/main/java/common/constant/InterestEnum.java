@@ -37,4 +37,13 @@ public enum InterestEnum {
         }
         return null;
     }
+
+    public static Integer getIndex(String name){
+        for (InterestEnum interestEnum : InterestEnum.values()){
+            if (interestEnum.getName().equals(name)){
+                return interestEnum.getIndex();
+            }
+        }
+        return 1;
+    }
 }

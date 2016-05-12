@@ -37,4 +37,12 @@ public enum ChineseInterestEnum {
         }
         return null;
     }
+    public static Integer getIndex(String name){
+        for (ChineseInterestEnum chineseInterestEnum : ChineseInterestEnum.values()){
+            if (chineseInterestEnum.getName().equals(name)){
+                return chineseInterestEnum.getIndex();
+            }
+        }
+        return 1;
+    }
 }

@@ -237,6 +237,10 @@
         $("#submit").click(function () {
             /*提交验证，异步传输*/
             var myText = document.getElementById("editor").innerText;
+            var url = window.location.pathname;
+            var arr = url.split("/");
+//            var videoId = window.location.pathname.substring(12,13);
+//            alert(videoId);
 //            if (myText.val() == '') {
 //                return false;
 //            }
@@ -245,13 +249,16 @@
                 type: 'post',
                 url: '<%=request.getContextPath()%>/video/addNote',
                 data: {
+                    "videoId":arr[3],
                     "note": myText
                 },
                 success: function (msg) {
                     msg = msg.replace(/rn/g, '');
                         window.location.href = "<%=request.getContextPath()%>/jsp/noteWrite.jsp";
                 }
+
             });
+            alert("已保存到我的笔记");
         });
     });
 </script>
