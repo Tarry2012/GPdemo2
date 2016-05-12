@@ -82,7 +82,7 @@ public class VideoController {
         String type = ChineseInterestEnum.getName(videoDO.getInterestId());
         model.addAttribute("videoType", type);
         model.addAttribute("username",username);
-        String videoUrl = "video/"+ videoDO.getVideoId()+ "/addNote";
+        String videoUrl = "video/"+ videoDO.getVideoId()+ "/Note";
         model.addAttribute("videoUrl", videoUrl);
 //        JSONObject jsonObject = new JSONObject();
 //        jsonObject.put("video", videoDO);
