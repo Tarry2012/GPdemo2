@@ -144,7 +144,7 @@
             postComment: function (commentJSON, success, error) {
                 $.ajax({
                     type: 'post',
-                    url: '<%=request.getContextPath()%>/video/addComment',
+                    url: '<%=request.getContextPath()%>/video/{videoId}/addComment',
                     data: {'comment': JSON.stringify(commentJSON)},
                     success: function () {
                         success(commentJSON);
