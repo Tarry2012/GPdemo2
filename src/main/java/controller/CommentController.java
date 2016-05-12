@@ -63,7 +63,7 @@ public class CommentController {
         CommentDO commentDO = new CommentDO();
         commentDO.setParentId(1);
         commentDO.setAuthorId(userId);
-        commentDO.setCommentContent( jsonObject.getString("content"));
+        commentDO.setCommentContent(jsonObject.getString("content"));
         commentDO.setCommentLikes(jsonObject.getInteger("upvote_count"));
         commentDO.setVideoId(123);
 
@@ -94,7 +94,8 @@ public class CommentController {
             commentTransDO.setUpvote_count(comment.getCommentLikes());
             //profilePictureURL
             String profilePictureURL = userService.getById(comment.getAuthorId()).getUserPicture();
-            commentTransDO.setProfilePictureURL(profilePictureURL);
+            commentTransDO.setProfilePictureURL("/demo/src/main/webapp/resources/upload/"+profilePictureURL);
+            System.out.println("~~~~" + commentTransDO.getProfilePictureURL() + "~~~~~~~~~~");
 
             commentTrans.add(commentTransDO);
         }

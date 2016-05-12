@@ -1,16 +1,19 @@
 package controller;
 
+import domain.NoteDO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import service.NoteService;
 import service.UserService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
+
+import java.util.Map;
 
 /**
  * Created by songrunyu on 16-5-11.
@@ -28,13 +31,38 @@ public class NoteController {
     @Resource
     private UserService userService;
 
-    //方法级别,所以处理这种url: /demo/video/addComment
+    //方法级别,所以处理这种url: /demo/video/videoId/addNote
 
-    @RequestMapping(value = "/note/addNote", method = RequestMethod.POST)
-    public String addNote(HttpServletRequest request){
-        String note_content = request.getParameter("editor");
-        System.out.println("~~~~~" + note_content);
+//    @RequestMapping(value = "/video/{videoId}/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
+    @RequestMapping(value = "/video/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
+    @ResponseBody
+    public String addNote(@RequestParam(value = "note", required = false) String content,
+//                          @PathVariable("videoId") Integer videoId,
+                          HttpServletRequest request){
+        Map<String, String[]> params = request.getParameterMap();
+        System.out.println("~~~~~" + content);
+        System.out.println("````````````");
 
-        return "";
+        String username = null;
+
+        Cookie[] cookies = request.getCookies();
+        for(int i = 0; i < cookies.length; i++ ){
+            if("username".equals(cookies[i].getName()))
+            {
+                username = cookies[i].getValue();
+            }
+        }
+
+        Integer userId = userService.getIdByName(username);
+
+        NoteDO noteDO = new NoteDO();
+        noteDO.setUserId(userId);
+        noteDO.setVideoId(1);
+        noteDO.setNoteContent(content);
+
+        noteService.add(noteDO);
+
+        return "ok";
     }
+
 }

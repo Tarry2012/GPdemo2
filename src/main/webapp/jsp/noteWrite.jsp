@@ -140,12 +140,12 @@
             </div>
             <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
         </div>
-        <form action="<%=request.getContextPath()%>/note/addNote" method="post">
+        <form action="" method="">
         <div id="editor" name="editor">
             Go ahead...&hellip;
         </div>
         <div class="btn-submit">
-            <button type="submit" class="btn btn-default" onclick="submitText()">Submit</button>
+            <button type="button" class="btn btn-default" id="submit" >Submit</button>
         </div>
             </form>
     </div>
@@ -228,12 +228,30 @@
         $('#editor').wysiwyg();
         window.prettyPrint && prettyPrint();
     });
-    function submitText()
-    {
-        var myText=document.getElementById("editor").innerText;
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
 
-        alert(myText);
-    }
+        $("#submit").click(function () {
+            /*提交验证，异步传输*/
+            var myText = document.getElementById("editor").innerText;
+//            if (myText.val() == '') {
+//                return false;
+//            }
+//            else {
+            $.ajax({
+                type: 'post',
+                url: '<%=request.getContextPath()%>/video/addNote',
+                data: {
+                    "note": myText
+                },
+                success: function (msg) {
+                    msg = msg.replace(/rn/g, '');
+                        window.location.href = "<%=request.getContextPath()%>/jsp/noteWrite.jsp";
+                }
+            });
+        });
+    });
 </script>
 
 </body>
