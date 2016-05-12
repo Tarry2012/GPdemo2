@@ -28,11 +28,7 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/data/comments-data.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-comments.js"></script>
-<<<<<<< HEAD
-    <script type="text/javascript">
-    </script>
-=======
->>>>>>> abe356ed2bd66f8d5b4fa8d742bc3274ac345708
+
     <style type="text/css">
         body {
             padding: 20px;
@@ -99,7 +95,7 @@
             <div class="video">
                 <video id="my_video" class="video-js" controls preload="auto" width="350" height="208"
                        poster="<%=request.getContextPath()%>/resources/images/index3.png" data-setup="{}">
-                    <source src="<%=request.getContextPath()%>/resources/video/oceans.mp4" type="video/mp4"/>
+                    <source src="<%=request.getContextPath()%>/${videoUrl}" type="video/mp4"/>
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a web browser that
                         <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -124,7 +120,7 @@
                     <li class="list-group-item"><span type="button" class="glyphicon glyphicon-heart"> <c:out value="${videoLikes}"/></span>
                         <span class="glyphicon glyphicon-play-circle"> <c:out value="${videoPlays}"/> </span></li>
                     <li class="list-group-item">类型： <c:out value="${videoType}"/></li>
-                    <li class="list-group-item"><a href="<%=request.getContextPath()%>/${videoUrl}">创建笔记</a></li>
+                    <li class="list-group-item"><a href="<%=request.getContextPath()%>/${noteUrl}">创建笔记</a></li>
                 </ul>
             </div>
         </div>
