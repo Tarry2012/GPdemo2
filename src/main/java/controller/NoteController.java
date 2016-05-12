@@ -1,9 +1,11 @@
 package controller;
 
 import domain.NoteDO;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.NoteService;
 import service.UserService;
@@ -33,11 +35,11 @@ public class NoteController {
 
     //方法级别,所以处理这种url: /demo/video/videoId/addNote
 
-//    @RequestMapping(value = "/video/{videoId}/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
-    @RequestMapping(value = "/video/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
+    @RequestMapping(value = "/video/{videoId}/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
+//    @RequestMapping(value = "/video/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
     @ResponseBody
     public String addNote(@RequestParam(value = "note", required = false) String content,
-//                          @PathVariable("videoId") Integer videoId,
+                          @PathVariable("videoId") Integer videoId,
                           HttpServletRequest request){
         Map<String, String[]> params = request.getParameterMap();
         System.out.println("~~~~~" + content);
@@ -57,12 +59,31 @@ public class NoteController {
 
         NoteDO noteDO = new NoteDO();
         noteDO.setUserId(userId);
-        noteDO.setVideoId(1);
+        noteDO.setVideoId(videoId);
         noteDO.setNoteContent(content);
 
         noteService.add(noteDO);
 
         return "ok";
+    }
+
+    @RequestMapping(value = "/video/{videoId}/Note")
+    public  String  Note(HttpServletRequest request, Model model){
+        String username = (String)request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("username is null");
+            return "index";
+        }
+        model.addAttribute("username", username);
+        return "jsp/noteWrite";
     }
 
 }

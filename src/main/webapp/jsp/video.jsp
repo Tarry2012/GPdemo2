@@ -28,11 +28,6 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/data/comments-data.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-comments.js"></script>
-<<<<<<< HEAD
-    <script type="text/javascript">
-    </script>
-=======
->>>>>>> abe356ed2bd66f8d5b4fa8d742bc3274ac345708
     <style type="text/css">
         body {
             padding: 20px;
@@ -148,7 +143,7 @@
             postComment: function (commentJSON, success, error) {
                 $.ajax({
                     type: 'post',
-                    url: '<%=request.getContextPath()%>/video/addComment',
+                    url: '<%=request.getContextPath()%>/video/{videoId}/addComment',
                     data: {'comment': JSON.stringify(commentJSON)},
                     success: function () {
                         success(commentJSON);

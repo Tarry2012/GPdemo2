@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tqy
@@ -47,7 +48,7 @@
   </ul>
 
   <div class="top_title">
-    欢迎 ${username} 来到问道视频学习网站
+    欢迎 <c:out value="${username}"/> 来到问道视频学习网站
   </div>
 </div>
 <%--top结束--%>
