@@ -1,7 +1,10 @@
 package controller;
 
+import com.alibaba.fastjson.JSONObject;
 import domain.UserAuthsDO;
 import domain.UserDO;
+import domain.UserVideoDO;
+import domain.VideoDO;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -17,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import service.UserAuthsService;
 import service.UserService;
+import service.UserVideoService;
+import service.VideoService;
 
 import javax.annotation.Resource;
 
@@ -27,6 +32,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +52,10 @@ public class UserController {
     private UserService userService;
     @Resource
     private UserAuthsService userAuthsService;
+    @Resource
+    private UserVideoService userVideoService;
+    @Resource
+    private VideoService videoService;
 
     //方法级别,所以处理这种url: /demo/userLogin
     @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
@@ -288,6 +298,16 @@ public class UserController {
         UserDO userDO = userService.getById(userId);
         model.addAttribute("username", username);
         model.addAttribute("picture", userDO.getUserPicture());
+        List<UserVideoDO> userVideoDOList = userVideoService.selectVideos(userId);
+        List<Integer> videoList = new ArrayList<>();
+        for (UserVideoDO userVideoDO : userVideoDOList){
+            videoList.add(userVideoDO.getVideoId());
+        }
+        System.out.println("videoId: " + videoList);
+        List<VideoDO> videoDOList = videoService.selectVideos(videoList);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("videoDOList", videoDOList);
+        model.addAttribute("videoDOList", jsonObject.toJSONString());
         return "jsp/user/userHomepage";
     }
 
@@ -398,9 +418,11 @@ public class UserController {
         return "jsp/user/note";
     }
 
-    @RequestMapping(value="/looked",produces = {"application/json;charset=UTF-8"})
-    public String looked(HttpServletRequest request, Model model){
+    @RequestMapping(value="/userHomepage2{format}")
+    public String userHomepageLimit(HttpServletRequest request, HttpServletResponse response, Model model){
         String username = (String)request.getSession().getAttribute("username");
+        int limit = StringUtils.isEmpty(request.getParameter("limit"))? 0: Integer.parseInt(request.getParameter("limit"));
+        int offset = StringUtils.isEmpty(request.getParameter("offset"))? 3: Integer.parseInt(request.getParameter("offset"));
         if (StringUtils.isEmpty(username)){
             Cookie[] cookies = request.getCookies();
             for (Cookie cookie : cookies){
@@ -417,6 +439,22 @@ public class UserController {
         UserDO userDO = userService.getById(userId);
         model.addAttribute("username", username);
         model.addAttribute("picture", userDO.getUserPicture());
-        return "jsp/user/looked";
+        List<UserVideoDO> userVideoDOList = userVideoService.selectVideos(userId);
+        List<Integer> videoList = new ArrayList<>();
+        for (UserVideoDO userVideoDO : userVideoDOList){
+            videoList.add(userVideoDO.getVideoId());
+        }
+        System.out.println("videoId: " + videoList);
+        List<VideoDO> videoDOs = videoService.selectVideos(videoList);
+        List<VideoDO> videoDOList = new ArrayList<>();
+        //在内存中处理分页
+        for (int i = limit; i < limit + offset; i++){
+            videoDOList.add(videoDOs.get(i));
+        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("videoDOList", videoDOList);
+        model.addAttribute("videoDOList", jsonObject.toJSONString());
+       // return jsonObject.toJSONString();
+        return "jsp/user/userHomepage";
     }
 }

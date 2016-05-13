@@ -90,8 +90,8 @@
             <div class="nav">
                 <nav>
                     <ul class="pager">
-                        <li class="previous" id="previousId"><a href="">上一页<span aria-hidden="true"></span></a></li>
-                        <li class="next" id="nextId"><a href="">下一页<span aria-hidden="true"></span></a></li>
+                        <li class="previous" id="previousId"><a href="" id="previousHref">上一页<span aria-hidden="true"></span></a></li>
+                        <li class="next" id="nextId"><a href="" id="nextHref">下一页<span aria-hidden="true"></span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -105,7 +105,7 @@
         var data = ${videoDOList};
         if (data.videoDOList.length == 0) {
             var divParent = $('#parentDiv');
-            divParent.append("该类目下没有数据");
+            divParent.append("没有数据……");
         } else {
             var msg = data['videoDOList'];
             var divParent = $('#parentDiv');
@@ -124,9 +124,35 @@
         }
     });
 
-    $('#previousId').click(function(){
-        var  = window.location.search;
+    $('#previousId').click(function () {
+        var location = window.location.search;
+        var str = location.substr(1);
+        var param = str.split('&');
+        var limit1 = param[0].split('=');
+        var offset2 = param[1].split('=');
+        var interestId3 = param[2].split('=');
+        var startLimit = parseInt(limit1[1]);
+        if (startLimit == 0){
+            var limit = 0;
+        }else{
+            var limit = parseInt(limit1[1]) - parseInt(offset2[1]);
+        }
+        var interestid = interestId3[1];
+        var url = "<%=request.getContextPath()%>/video/type?limit=" + limit + "&offset=5&interestid=" + interestid;
+        $('#previousHref').attr("href",url);
+    });
 
+    $('#nextId').click(function () {
+        var location = window.location.search;
+        var str = location.substr(1);
+        var param = str.split('&');
+        var limit1 = param[0].split('=');
+        var offset2 = param[1].split('=');
+        var interestId3 = param[2].split('=');
+        var limit = parseInt(limit1[1]) + parseInt(offset2[1]);
+        var interestid = interestId3[1];
+        var url = "<%=request.getContextPath()%>/video/type?limit=" + limit + "&offset=5&interestid=" + interestid;
+        $('#nextHref').attr("href",url);
     });
 </script>
 </body>

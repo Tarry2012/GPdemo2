@@ -42,7 +42,7 @@
         <%  }
         else  {
         %>
-         <li><a href="<%=request.getContextPath()%>/userHomepage">我的主页</a></li>
+         <li><a href="<%=request.getContextPath()%>/userHomepage2?limit=0&offset=3">我的主页</a></li>
          <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
         <%}
         %>

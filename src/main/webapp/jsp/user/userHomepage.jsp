@@ -93,7 +93,7 @@
                 </div>
                 <h5 class="text-center">${username}</h5>
                 <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation"><a href="<%=request.getContextPath()%>/looked" ><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/userHomepage"><img
                             src="<%=request.getContextPath()%>/resources/images/Looked.png"/></a></li>
                     <li role="presentation"><a href="<%=request.getContextPath()%>/note" ><img
                             src="<%=request.getContextPath()%>/resources/images/note.png"/></a></li>
@@ -105,7 +105,8 @@
             </aside>
         </div>
         <div class="col-md-9">
-            <h2>没有历史记录</h2>
+            <div class="listVideo" id="parentDiv">
+            </div>
         </div>
     </div>
 
@@ -151,11 +152,34 @@
     </div>
 </div>
 </div>
+</body>
 <script>
     $('ul.nav-stacked>li>a').click(function () {
         $href = $(this).attr('href');
         $('.tab-content ul' + $href).show().siblings().hide();
     })
+
+    $(document).ready(function () {
+        var data = ${videoDOList};
+        if (data.videoDOList.length == 0) {
+            var divParent = $('#parentDiv');
+            divParent.append("没有数据……");
+        } else {
+            var msg = data['videoDOList'];
+            var divParent = $('#parentDiv');
+            for (var i = 0; i < data.videoDOList.length; i++) {
+                var videoName = data.videoDOList[i]['videoName'];
+                var videoLikes = data.videoDOList[i]['videoLike'];
+                var videoPlay = data.videoDOList[i]['videoPlay'];
+                var videoPictureUrl = "<%=request.getContextPath()%>" + "/resources/images/video/" + msg[i]['videoPicture'];
+                var videoUrl = "<%=request.getContextPath()%>" + "/video/" + msg[i]["videoId"];
+                var videoDescribe = data.videoDOList[i]['videoDescribe'];
+                var obj = "<div class='list-group'> <a href='" + videoUrl + "' class='list-group-item'> <h4 class='list-group-item-heading'>" + videoName +
+                        "</h4> <div class='tag'><span class='glyphicon glyphicon-heart'>" + videoLikes + "</span> <span class='glyphicon glyphicon-play-circle'>" + videoPlay +
+                        "</span> </div> <div class='image'><img src='" + videoPictureUrl + "'/></div> <div class='list-group-item-tex'>" + videoDescribe + "</div> </a> </div>"
+                divParent.append(obj);
+            }
+        }
+    });
 </script>
-</body>
 </html>

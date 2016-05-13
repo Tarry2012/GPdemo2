@@ -14,4 +14,5 @@ public interface VideoDAO {
     List<VideoDO> selctHotVideo(Integer limit);
     Integer updatePlayOrLike(VideoUpdate videoUpdate);
     List<VideoDO> selectNewVideo();
+    List<VideoDO> selectVideos(List<Integer> videoList);
 }

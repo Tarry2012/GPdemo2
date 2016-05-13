@@ -38,4 +38,9 @@ public class VideoServiceImpl implements VideoService {
             return videoDAO.selectNewVideo();
     }
 
+    public List<VideoDO> selectVideos(List<Integer> videoList){
+        return videoDAO.selectVideos(videoList);
+    }
+
+
 }

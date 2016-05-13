@@ -89,7 +89,7 @@
         </div>
         <h5 class="text-center"><c:out value="${username}"/></h5>
         <ul class="nav nav-pills nav-stacked" >
-          <li role="presentation"><a href="<%=request.getContextPath()%>/looked" ><img
+          <li role="presentation"><a href="<%=request.getContextPath()%>/userHomepage"><img
                   src="<%=request.getContextPath()%>/resources/images/Looked.png"/></a></li>
           <li role="presentation"><a href="<%=request.getContextPath()%>/note" ><img
                   src="<%=request.getContextPath()%>/resources/images/note.png"/></a></li>

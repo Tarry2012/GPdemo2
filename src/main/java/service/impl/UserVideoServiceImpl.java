@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import service.UserVideoService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by tqy on 16-5-12.
@@ -20,5 +21,9 @@ public class UserVideoServiceImpl implements UserVideoService{
         }else{
             return false;
         }
+    }
+
+    public List<UserVideoDO> selectVideos(Integer userId){
+        return userVideoDAO.selectVideos(userId);
     }
 }
