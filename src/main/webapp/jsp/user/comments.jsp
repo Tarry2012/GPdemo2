@@ -27,6 +27,7 @@
   <link href="<%=request.getContextPath()%>/resources/css/bottom.css" rel="stylesheet" type="text/css"/>
   <link href="<%=request.getContextPath()%>/resources/css/guess.css" rel="stylesheet" type="text/css"/>
   <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
+
   <title>问道 用户主页</title>
 
   <script>
@@ -102,6 +103,7 @@
     </div>
     <div class="col-md-9">
       <h2>暂无评论</h2>
+
     </div>
   </div>
 </div>

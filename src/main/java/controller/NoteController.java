@@ -1,5 +1,7 @@
 package controller;
 
+import com.alibaba.fastjson.JSONObject;
+import domain.CommentTransDO;
 import domain.NoteDO;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
@@ -13,8 +15,12 @@ import service.UserService;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,13 +44,14 @@ public class NoteController {
    // @RequestMapping(value = "/video/{videoId}/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
     @RequestMapping(value = "/video/addNote", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"} )
     @ResponseBody
-    public String addNote(@RequestParam(value = "note", required = false) String content,
+    public String addNote(@RequestParam(value = "title", required = false) String title,
+                          @RequestParam(value = "note", required = false) String content,
 //                          @PathVariable("videoId") Integer videoId,
                           @RequestParam(value = "videoId", required = false) Integer videoId,
                           HttpServletRequest request){
         Map<String, String[]> params = request.getParameterMap();
         System.out.println("~~~~~" + content);
-        System.out.println("````````````" + videoId);
+        System.out.println("````````````" + videoId + "@@@@@@@" + title);
 
         String username = null;
 
@@ -60,13 +67,43 @@ public class NoteController {
 
         NoteDO noteDO = new NoteDO();
         noteDO.setUserId(userId);
-        noteDO.setVideoId(1);
+        noteDO.setNoteName(title);
+        noteDO.setVideoId(videoId);
         noteDO.setNoteContent(content);
 
         noteService.add(noteDO);
 
         return "ok";
     }
+
+    //方法级别,所以处理这种url: /demo/note/getNote
+    @RequestMapping(value = "/note/getNote", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getNote(HttpServletRequest request) {
+
+        String username = null;
+
+        Cookie[] cookies = request.getCookies();
+        for(int i = 0; i < cookies.length; i++ ){
+            if("username".equals(cookies[i].getName()))
+            {
+                username = cookies[i].getValue();
+            }
+        }
+
+        Integer userId = userService.getIdByName(username);
+
+        List<NoteDO> noteDOs = noteService.getContentById(userId);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("note", noteDOs);
+        String json=jsonObject.toJSONString();
+
+        System.out.println("note: " + noteDOs);
+
+        return json;
+    }
+
 
     @RequestMapping(value = "/video/{videoId}/Note")
     public  String  Note(HttpServletRequest request, Model model){

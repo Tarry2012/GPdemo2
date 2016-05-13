@@ -21,7 +21,7 @@
         <selectKey resultType="int" keyProperty="noteId">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into wd_note(user_id,video_id,note_content) values(#{userId},#{videoId},#{noteContent})
+        insert into wd_note(user_id,video_id,note_content, note_name) values(#{userId},#{videoId},#{noteContent},#{noteName})
     </insert>
 
     <select id="getContentById" resultMap="NoteMap">
