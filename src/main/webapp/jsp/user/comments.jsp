@@ -71,12 +71,12 @@
 <div class="navigation">
   <ul class="nav nav-pills">
     <li role="presentation"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
-    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/computer.jsp">计算机</a></li>
-    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/literatrue.jsp">文学</a></li>
-    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/science.jsp">科学</a></li>
-    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/economy.jsp">经济</a></li>
-    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/art.jsp">艺术</a></li>
-    <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/mentality.jsp">心理</a></li>
+    <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=1">计算机</a></li>
+    <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=2">文学</a></li>
+    <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=3">科学</a></li>
+    <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=4">经济</a></li>
+    <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=5">艺术</a></li>
+    <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=6">心理</a></li>
   </ul>
 </div>
 
@@ -89,11 +89,11 @@
         </div>
         <h5 class="text-center"><c:out value="${username}"/></h5>
         <ul class="nav nav-pills nav-stacked" >
-          <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/looked.jsp" ><img
+          <li role="presentation"><a href="<%=request.getContextPath()%>/looked" ><img
                   src="<%=request.getContextPath()%>/resources/images/Looked.png"/></a></li>
-          <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/note.jsp" ><img
+          <li role="presentation"><a href="<%=request.getContextPath()%>/note" ><img
                   src="<%=request.getContextPath()%>/resources/images/note.png"/></a></li>
-          <li role="presentation"><a href="<%=request.getContextPath()%>/jsp/user/comments.jsp" ><img
+          <li role="presentation"><a href="<%=request.getContextPath()%>/comments" ><img
                   src="<%=request.getContextPath()%>/resources/images/comment.png"/></a></li>
           <li role="presentation"><a href="<%=request.getContextPath()%>/interest" ><img
                   src="<%=request.getContextPath()%>/resources/images/interest.png"/></a></li>

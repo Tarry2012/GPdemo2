@@ -43,7 +43,20 @@ public class VideoController {
     UserVideoService userVideoService;
 
     @RequestMapping(value = "/video/type{format}",produces = {"application/json;charset=UTF-8"},method = RequestMethod.GET)
-    public String computer(HttpServletRequest request, Model model){
+    public String course(HttpServletRequest request, Model model){
+        String username = (String)request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals("username")){
+                    username = cookie.getValue();
+                }
+            }
+        }
+        if (StringUtils.isEmpty(username)){
+            logger.error("username is null");
+            return "index";
+        }
         int limit = StringUtils.isEmpty(request.getParameter("limit"))? 0: Integer.parseInt(request.getParameter("limit"));
         int offset = StringUtils.isEmpty(request.getParameter("offset"))? 0: Integer.parseInt(request.getParameter("offset"));
         int interestId = StringUtils.isEmpty(request.getParameter("interestid"))? 1: Integer.parseInt(request.getParameter("interestid"));
@@ -52,16 +65,17 @@ public class VideoController {
         videoQuery.setLimit(limit);
         videoQuery.setOffset(offset);
         List<VideoDO> videoDOList = videoService.select(videoQuery);
-        System.out.println("list： " + videoDOList);
         if (videoDOList == null){
             logger.error("videoList is null");
             return "index";
         }else{
-            JSONArray jsonArray = new JSONArray();
-            jsonArray.add(videoDOList);
-            model.addAttribute("list",jsonArray);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("videoDOList",videoDOList);
+            model.addAttribute("videoDOList", jsonObject);
+            model.addAttribute("username",username);
+            System.out.println("jsonObject" + jsonObject);
             String page = InterestEnum.getName(interestId);
-            return "jsp/"+page;
+            return "jsp/course";
         }
     }
 
