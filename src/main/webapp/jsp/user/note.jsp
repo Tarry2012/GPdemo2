@@ -27,6 +27,7 @@
   <link href="<%=request.getContextPath()%>/resources/css/bottom.css" rel="stylesheet" type="text/css"/>
   <link href="<%=request.getContextPath()%>/resources/css/guess.css" rel="stylesheet" type="text/css"/>
   <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
+  <link href="<%=request.getContextPath()%>/resources/css/course.css" rel="stylesheet" type="text/css"/>
   <title>问道 用户主页</title>
 
   <script>
@@ -100,8 +101,7 @@
         </ul>
       </aside>
     </div>
-    <div class="col-md-9">
-
+    <div class="col-md-9" id = "parentDiv">
       <h2>暂无笔记</h2>
     </div>
   </div>
@@ -152,6 +152,27 @@
     $href = $(this).attr('href');
     $('.tab-content ul' + $href).show().siblings().hide();
   })
+</script>
+<script>
+  $(document).ready(function () {
+    var url = "<%=request.getContextPath()%>/note/getNote";
+    $.get(url,function(data,status){
+
+      var parentdiv = $('#parentDiv');
+      for (var i= 1; i <= data.note.length; i++){
+        var noteName = data.note[i]['noteName'];
+        var noteContent = data.note[i]['noteContent'];
+        var dateObj = new Date(data.note[i]['noteTime']);
+        var UnixTimeToDate = dateObj.getUTCFullYear() + '年' + (dateObj.getUTCMonth() +1 ) + '月' + dateObj.getUTCDate() + '日  ' + dateObj.getUTCHours() + ':' + dateObj.getUTCMinutes() + ':' + dateObj.getUTCSeconds();
+        alert(noteName);
+        var obj = "<div class='list-group'> <a href='#' class='list-group-item'> <h4 class='list-group-item-heading'>"
+                + noteName + "</h4> <div class='tag'><span class='glyphicon glyphicon-time'>"
+                + UnixTimeToDate +"</span></div> <div class='list-group-item-tex'>" + noteContent +"</div> </a> </div>";
+        parentdiv.append(obj);
+      }
+    });
+  })
+
 </script>
 </body>
 </html>

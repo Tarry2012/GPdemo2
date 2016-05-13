@@ -90,6 +90,12 @@
         <%--<h2>我的笔记--%>
         <img src="<%=request.getContextPath()%>/resources/images/notewrite.png" /> <br/> <small>&nbsp;&nbsp;记录点滴......</small></h2>
         <hr/>
+        <form action="" method="">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">title</span>
+            <input type="text" class="form-control" placeholder="title" aria-describedby="basic-addon1" id="title">
+        </div>
+        </form>
         <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
             <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
@@ -236,6 +242,7 @@
 
         $("#submit").click(function () {
             /*提交验证，异步传输*/
+            var title = document.getElementById("title").value;
             var myText = document.getElementById("editor").innerText;
             var url = window.location.pathname;
             var arr = url.split("/");
@@ -249,14 +256,15 @@
                 type: 'post',
                 url: '<%=request.getContextPath()%>/video/addNote',
                 data: {
+                    "title":title,
                     "videoId":arr[3],
                     "note": myText
                 },
                 success: function (msg) {
-                    msg = msg.replace(/rn/g, '');
-                        window.location.href = "<%=request.getContextPath()%>/jsp/noteWrite.jsp";
+//                    if(msg == "ok") {
+//                        alert("已保存到我的笔记");
+//                    }
                 }
-
             });
             alert("已保存到我的笔记");
         });
