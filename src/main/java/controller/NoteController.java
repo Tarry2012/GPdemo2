@@ -49,9 +49,6 @@ public class NoteController {
 //                          @PathVariable("videoId") Integer videoId,
                           @RequestParam(value = "videoId", required = false) Integer videoId,
                           HttpServletRequest request){
-        Map<String, String[]> params = request.getParameterMap();
-        System.out.println("~~~~~" + content);
-        System.out.println("````````````" + videoId + "@@@@@@@" + title);
 
         String username = null;
 
@@ -122,6 +119,38 @@ public class NoteController {
         }
         model.addAttribute("username", username);
         return "jsp/noteWrite";
+    }
+
+
+    @RequestMapping(value = "/note/{noteId}/editNote")
+    public String editNote(@PathVariable("noteId") Integer noteId, Model model){
+
+        NoteDO noteDO = noteService.getContentByNoteId(noteId);
+//        noteService.updateNoteById(noteId);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("note", noteDO);
+        String json=jsonObject.toJSONString();
+
+        model.addAttribute("note",json);
+
+        return "jsp/user/editNote";
+
+    }
+
+
+    @RequestMapping(value = "/note/updateNote")
+    public String updateNote(@RequestParam(value = "title", required = false) String title,
+                             @RequestParam(value = "note", required = false) String content,
+                             @RequestParam(value = "noteId", required = false) Integer noteId
+                             ){
+
+        System.out.println("~~~~~~~~"+ title + content + noteId);
+        noteService.updateNoteById(noteId, title, content);
+
+
+        return "jsp/user/editNote";
+
     }
 
 }

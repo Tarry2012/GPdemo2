@@ -1,6 +1,7 @@
 package dao;
 
 import domain.CommentDO;
+import domain.NoteDO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -15,5 +16,7 @@ public interface CommentDAO {
     Integer add(CommentDO commentDO);
 
     List getCommentsByVideoId(@Param("videoId")int videoId);
+
+    List getContentByUserId(@Param("authorId")int authorId);
 
 }

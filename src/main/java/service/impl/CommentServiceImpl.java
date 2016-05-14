@@ -45,6 +45,12 @@ public class CommentServiceImpl implements CommentService{
         return comments;
     }
 
+    public List getContentByUserId(int userId)
+    {
+        List<CommentDO> commentDOs = commentDAO.getContentByUserId(userId);
+        return commentDOs;
+    }
+
 
 
 }

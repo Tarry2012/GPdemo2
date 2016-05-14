@@ -17,4 +17,6 @@ public interface CommentService {
     Integer add(CommentDO commentDO);
 
     List getCommentsByVideoId(@Param("videoId")int videoId);
+
+    List getContentByUserId(@Param("userId")int userId);
 }

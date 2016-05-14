@@ -123,7 +123,6 @@
             }
         }
     });
-
     $('#previousId').click(function () {
         var location = window.location.search;
         var str = location.substr(1);
@@ -141,6 +140,7 @@
         var url = "<%=request.getContextPath()%>/video/type?limit=" + limit + "&offset=5&interestid=" + interestid;
         $('#previousHref').attr("href",url);
     });
+
 
     $('#nextId').click(function () {
         var location = window.location.search;

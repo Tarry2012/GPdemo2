@@ -12,10 +12,12 @@ public interface NoteService {
 
     public  static final String SPRING_NAME = "noteService";
 
-    Integer updateNoteById(@Param("noteId")int noteId);
+    Integer updateNoteById(int noteId, String noteName, String noteContent);
 
     Integer add(NoteDO noteDO);
 
     List getContentById(@Param("userId")int userId);
+
+    NoteDO getContentByNoteId(int noteId);
 
 }

@@ -27,6 +27,7 @@
   <link href="<%=request.getContextPath()%>/resources/css/bottom.css" rel="stylesheet" type="text/css"/>
   <link href="<%=request.getContextPath()%>/resources/css/guess.css" rel="stylesheet" type="text/css"/>
   <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
+  <link href="<%=request.getContextPath()%>/resources/css/course.css" rel="stylesheet" type="text/css"/>
 
   <title>问道 用户主页</title>
 
@@ -101,8 +102,8 @@
         </ul>
       </aside>
     </div>
-    <div class="col-md-9">
-      <h2>暂无评论</h2>
+    <div class="col-md-9" id = "parentDiv">
+    </div>
 
     </div>
   </div>
@@ -153,6 +154,27 @@
     $href = $(this).attr('href');
     $('.tab-content ul' + $href).show().siblings().hide();
   })
+</script>
+<script>
+  $(document).ready(function () {
+    var url = "<%=request.getContextPath()%>/comment/getCommentByUserId";
+
+    $.get(url,function(data,status){
+
+      var parentdiv = $('#parentDiv');
+      for (var i= 0; i <= data.comment.length; i++){
+        var noteId = data.comment[i]['commentId'];
+        var videoId  = data.comment[i]['videoId'];
+        var commentContent = data.comment[i]['commentContent'];
+        var dateObj = new Date(data.comment[i]['commentTime']);
+        var UnixTimeToDate = dateObj.getUTCFullYear() + '年' + (dateObj.getUTCMonth() +1 ) + '月' + dateObj.getUTCDate() + '日  ' + dateObj.getHours() + ':' + dateObj.getUTCMinutes() + ':' + dateObj.getUTCSeconds();
+        var obj = "<div class='list-group'> <a href='<%=request.getContextPath()%>/video/" + videoId +"' class='list-group-item'> <h4 class='list-group-item-heading'></h4> <div class='tag'><span class='glyphicon glyphicon-time'>"
+                + UnixTimeToDate +"</span></div> <div class='list-group-item-tex'>" + commentContent +"</div> </a> </div>";
+        parentdiv.append(obj);
+      }
+    });
+  })
+
 </script>
 </body>
 </html>
