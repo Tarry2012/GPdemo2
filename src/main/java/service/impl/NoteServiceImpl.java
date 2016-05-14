@@ -30,9 +30,13 @@ public class NoteServiceImpl implements  NoteService{
         return noteDAO;
     }
 
-    public Integer updateNoteById( int userId)
+    public Integer updateNoteById( int noteId, String noteName, String noteContent)
     {
-        return this.noteDAO.updateNoteById(userId);
+        NoteDO noteDO = new NoteDO();
+        noteDO.setNoteContent(noteContent);
+        noteDO.setNoteName(noteName);
+        noteDO.setNoteId(noteId);
+        return this.noteDAO.updateNoteById(noteDO);
     }
 
     public Integer add(NoteDO noteDO)
@@ -45,5 +49,10 @@ public class NoteServiceImpl implements  NoteService{
     {
         List<NoteDO> notes = noteDAO.getContentById(userId);
         return notes;
+    }
+
+    public NoteDO getContentByNoteId(int noteId)
+    {
+        return this.noteDAO.getContentByNoteId(noteId);
     }
 }

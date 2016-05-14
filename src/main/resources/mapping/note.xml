@@ -13,8 +13,8 @@
     </resultMap>
 
 
-    <update id="updateNoteById" parameterType="Integer">
-        update wd_note set note_Content = #{noteContent} where note_id= #{noteId}
+    <update id="updateNoteById" parameterType="domain.NoteDO">
+        update wd_note set note_Content = #{noteContent} note_Name = #{noteName} where note_id= #{noteId}
     </update>
 
     <insert id="add" parameterType="domain.NoteDO">
@@ -25,7 +25,11 @@
     </insert>
 
     <select id="getContentById" resultMap="NoteMap">
-        select * from wd_note where user_id=#{userId};
+        select * from wd_note where user_id=#{userId} order by note_time DESC ;
+    </select>
+
+    <select id="getContentByNoteId" resultMap="NoteMap">
+        select * from wd_note where note_id=#{noteId} ;
     </select>
 
 </mapper>

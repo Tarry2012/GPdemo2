@@ -5,15 +5,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import domain.CommentDO;
 import domain.CommentTransDO;
+import domain.VideoQuery;
 import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import service.CommentService;
 import service.UserService;
 
@@ -45,6 +43,7 @@ public class CommentController {
 
     @RequestMapping(value = "/video/addComment", method = RequestMethod.POST)
     public String addComment(@RequestParam("comment") String comment,
+                             @RequestParam("videoId") Integer videoId,
                              HttpServletRequest request){
         JSONObject jsonObject = JSON.parseObject(comment);
         System.out.println(jsonObject);
@@ -65,7 +64,7 @@ public class CommentController {
         commentDO.setAuthorId(userId);
         commentDO.setCommentContent(jsonObject.getString("content"));
         commentDO.setCommentLikes(jsonObject.getInteger("upvote_count"));
-        commentDO.setVideoId(123);
+        commentDO.setVideoId(videoId);
 
         commentService.add(commentDO);
 
@@ -95,7 +94,6 @@ public class CommentController {
             //profilePictureURL
             String profilePictureURL = userService.getById(comment.getAuthorId()).getUserPicture();
             commentTransDO.setProfilePictureURL("/demo/src/main/webapp/resources/upload/"+profilePictureURL);
-            System.out.println("~~~~" + commentTransDO.getProfilePictureURL() + "~~~~~~~~~~");
 
             commentTrans.add(commentTransDO);
         }
@@ -107,6 +105,36 @@ public class CommentController {
         String json=jsonObject.toJSONString();
 
         System.out.println("comment: " + json);
+
+        return json;
+    }
+
+
+    //方法级别,所以处理这种url: /demo/comment/getCommentByUserId
+    @RequestMapping(value = "/comment/getCommentByUserId", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getCommentByUserId(HttpServletRequest request) {
+
+        String username = null;
+
+        Cookie[] cookies = request.getCookies();
+        for(int i = 0; i < cookies.length; i++ ){
+            if("username".equals(cookies[i].getName()))
+            {
+                username = cookies[i].getValue();
+            }
+        }
+
+        Integer userId = userService.getIdByName(username);
+
+
+        List<CommentDO> commentDOs = commentService.getContentByUserId(userId);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("comment", commentDOs);
+        String json=jsonObject.toJSONString();
+
+        System.out.println("comment: " + commentDOs);
 
         return json;
     }
