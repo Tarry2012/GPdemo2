@@ -46,7 +46,7 @@ import java.util.Map;
 //类级别的，处理根url
 @RequestMapping("")
 public class UserController {
-   private static Logger logger = Logger.getLogger(UserController.class);
+    private static Logger logger = Logger.getLogger(UserController.class);
 
     @Resource
     private UserService userService;
@@ -58,7 +58,7 @@ public class UserController {
     private VideoService videoService;
 
     //方法级别,所以处理这种url: /demo/userLogin
-    @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
+    @RequestMapping(value = "/userLogin", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
         String loginName = request.getParameter("loginName");
@@ -117,7 +117,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/userRegister.{format}", method = RequestMethod.POST)
+    @RequestMapping(value = "/userRegister.{format}", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String userRegister(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
@@ -161,74 +161,74 @@ public class UserController {
 
     @RequestMapping(value = "/checkOldPassword", method = RequestMethod.POST)
     @ResponseBody
-    public String verifyPassword(HttpServletRequest request, HttpServletResponse response){
+    public String verifyPassword(HttpServletRequest request, HttpServletResponse response) {
         String username = (String) request.getSession().getAttribute("username");
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("username")){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
                     username = cookie.getValue();
                 }
             }
         }
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             logger.error("checkOldPassword username is null");
             return "error";
         }
 
         UserAuthsDO userAuthsDO = userAuthsService.getByName(username);
         String inputPassword1 = request.getParameter("InputPassword1");
-        if (userAuthsDO == null || !BCrypt.checkpw(inputPassword1, userAuthsDO.getLoginPassword())){
+        if (userAuthsDO == null || !BCrypt.checkpw(inputPassword1, userAuthsDO.getLoginPassword())) {
             return "error";
-        }else{
+        } else {
             return "ok";
         }
     }
 
-    @RequestMapping(value = "/modifyPassword", method=RequestMethod.POST)
+    @RequestMapping(value = "/modifyPassword", method = RequestMethod.POST)
     @ResponseBody
-    public String modifyPassword(HttpServletRequest request){
-        String username = (String)request.getSession().getAttribute("username");
-        if (StringUtils.isEmpty(username)){
+    public String modifyPassword(HttpServletRequest request) {
+        String username = (String) request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("username")){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
                     username = cookie.getValue();
                 }
             }
         }
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             logger.error("username is null");
             return "error";
         }
         Integer userId = userService.getIdByName(username);
         String password = request.getParameter("InputPassword2");
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
-        if (userAuthsService.UpdatePassword(userId, passwordHash)){
+        if (userAuthsService.UpdatePassword(userId, passwordHash)) {
             return "ok";
-        }else{
+        } else {
             return "error";
         }
     }
 
-    @RequestMapping(value="/modifyHead", method = RequestMethod.POST)
+    @RequestMapping(value = "/modifyHead", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String modifyInfo(HttpServletRequest request, @RequestParam("file")MultipartFile file){
-        String username = (String)request.getSession().getAttribute("username");
-        if (StringUtils.isEmpty(username)){
+    public String modifyInfo(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+        String username = (String) request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("username")){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
                     username = cookie.getValue();
                 }
             }
         }
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             logger.error("modifyPassword username is null");
             return "error";
         }
         Integer userId = userService.getIdByName(username);
-        if (!file.isEmpty()){
+        if (!file.isEmpty()) {
             try {
                 String realpath = request.getSession().getServletContext().getRealPath("/resources/upload");
                 String filename = file.getOriginalFilename();
@@ -238,9 +238,9 @@ public class UserController {
                 userDO.setUserPicture(newFile.getName());
                 System.out.println("file: " + newFile.getName());
                 FileUtils.copyInputStreamToFile(file.getInputStream(), newFile);
-                if (userService.update(userDO)){
+                if (userService.update(userDO)) {
                     return "ok";
-                }else{
+                } else {
                     return "error";
                 }
             } catch (IOException e) {
@@ -251,20 +251,20 @@ public class UserController {
         return "error";
     }
 
-    @RequestMapping(value = "/modifySex", method = RequestMethod.POST)
+    @RequestMapping(value = "/modifySex", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String modifySex(HttpServletRequest request){
+    public String modifySex(HttpServletRequest request) {
         String sex = request.getParameter("sex");
-        String username = (String)request.getSession().getAttribute("username");
-        if (StringUtils.isEmpty(username)){
+        String username = (String) request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("username")){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
                     username = cookie.getValue();
                 }
             }
         }
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             logger.error("modifyPassword username is null");
             return "error";
         }
@@ -272,57 +272,25 @@ public class UserController {
         UserDO userDO = new UserDO();
         userDO.setUserId(userId);
         userDO.setUserSex(sex);
-        if (userService.update(userDO)){
+        if (userService.update(userDO)) {
             return "ok";
-        }else{
+        } else {
             return "error";
         }
     }
 
-    @RequestMapping(value="/userHomepage")
-    public String userHomepage(HttpServletRequest request, HttpServletResponse response, Model model){
-        String username = (String)request.getSession().getAttribute("username");
-        if (StringUtils.isEmpty(username)){
+    @RequestMapping(value = "baseInfo", produces = {"application/json;charset=UTF-8"})
+    public String baseInfo(HttpServletRequest request, Model model) {
+        String username = (String) request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("username")){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
                     username = cookie.getValue();
                 }
             }
         }
-        if (StringUtils.isEmpty(username)){
-            logger.error("username is null");
-            return "index";
-        }
-        Integer userId = userService.getIdByName(username);
-        UserDO userDO = userService.getById(userId);
-        model.addAttribute("username", username);
-        model.addAttribute("picture", userDO.getUserPicture());
-        List<UserVideoDO> userVideoDOList = userVideoService.selectVideos(userId);
-        List<Integer> videoList = new ArrayList<>();
-        for (UserVideoDO userVideoDO : userVideoDOList){
-            videoList.add(userVideoDO.getVideoId());
-        }
-        System.out.println("videoId: " + videoList);
-        List<VideoDO> videoDOList = videoService.selectVideos(videoList);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("videoDOList", videoDOList);
-        model.addAttribute("videoDOList", jsonObject.toJSONString());
-        return "jsp/user/userHomepage";
-    }
-
-    @RequestMapping(value="baseInfo")
-    public String baseInfo(HttpServletRequest request, Model model){
-        String username = (String)request.getSession().getAttribute("username");
-        if (StringUtils.isEmpty(username)){
-            Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("username")){
-                    username = cookie.getValue();
-                }
-            }
-        }
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             logger.error("username is null");
             return "index";
         }
@@ -333,18 +301,18 @@ public class UserController {
         return "jsp/user/base";
     }
 
-    @RequestMapping(value = "/password",produces = {"application/json;charset=UTF-8"})
-    public String interPassword(HttpServletRequest request, Model model){
-        String username = (String)request.getSession().getAttribute("username");
-        if (StringUtils.isEmpty(username)){
+    @RequestMapping(value = "/password", produces = {"application/json;charset=UTF-8"})
+    public String interPassword(HttpServletRequest request, Model model) {
+        String username = (String) request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("username")){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
                     username = cookie.getValue();
                 }
             }
         }
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             logger.error("username is null");
             return "index";
         }
@@ -352,18 +320,18 @@ public class UserController {
         return "jsp/user/password";
     }
 
-    @RequestMapping(value="/interest",produces = {"application/json;charset=UTF-8"})
-    public String inerest(HttpServletRequest request, Model model){
-        String username = (String)request.getSession().getAttribute("username");
-        if (StringUtils.isEmpty(username)){
+    @RequestMapping(value = "/interest", produces = {"application/json;charset=UTF-8"})
+    public String inerest(HttpServletRequest request, Model model) {
+        String username = (String) request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("username")){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
                     username = cookie.getValue();
                 }
             }
         }
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             logger.error("username is null");
             return "index";
         }
@@ -374,18 +342,18 @@ public class UserController {
         return "jsp/user/interest";
     }
 
-    @RequestMapping(value="/comments",produces = {"application/json;charset=UTF-8"})
-    public String comments(HttpServletRequest request, Model model){
-        String username = (String)request.getSession().getAttribute("username");
-        if (StringUtils.isEmpty(username)){
+    @RequestMapping(value = "/comments", produces = {"application/json;charset=UTF-8"})
+    public String comments(HttpServletRequest request, Model model) {
+        String username = (String) request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("username")){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
                     username = cookie.getValue();
                 }
             }
         }
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             logger.error("username is null");
             return "index";
         }
@@ -396,18 +364,18 @@ public class UserController {
         return "jsp/user/comments";
     }
 
-    @RequestMapping(value="/note",produces = {"application/json;charset=UTF-8"})
-    public String note(HttpServletRequest request, Model model){
-        String username = (String)request.getSession().getAttribute("username");
-        if (StringUtils.isEmpty(username)){
+    @RequestMapping(value = "/note", produces = {"application/json;charset=UTF-8"})
+    public String note(HttpServletRequest request, Model model) {
+        String username = (String) request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("username")){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
                     username = cookie.getValue();
                 }
             }
         }
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             logger.error("username is null");
             return "index";
         }
@@ -418,20 +386,20 @@ public class UserController {
         return "jsp/user/note";
     }
 
-    @RequestMapping(value="/userHomepage2{format}")
-    public String userHomepageLimit(HttpServletRequest request, HttpServletResponse response, Model model){
-        String username = (String)request.getSession().getAttribute("username");
-        int limit = StringUtils.isEmpty(request.getParameter("limit"))? 0: Integer.parseInt(request.getParameter("limit"));
-        int offset = StringUtils.isEmpty(request.getParameter("offset"))? 3: Integer.parseInt(request.getParameter("offset"));
-        if (StringUtils.isEmpty(username)){
+    @RequestMapping(value = "/userHomepage{format}", produces = {"application/json;charset=UTF-8"})
+    public String userHomepageLimit(HttpServletRequest request, Model model) {
+        String username = (String) request.getSession().getAttribute("username");
+        int limit = StringUtils.isEmpty(request.getParameter("limit")) ? 0 : Integer.parseInt(request.getParameter("limit"));
+        int offset = StringUtils.isEmpty(request.getParameter("offset")) ? 3 : Integer.parseInt(request.getParameter("offset"));
+        if (StringUtils.isEmpty(username)) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("username")){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
                     username = cookie.getValue();
                 }
             }
         }
-        if (StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             logger.error("username is null");
             return "index";
         }
@@ -440,21 +408,26 @@ public class UserController {
         model.addAttribute("username", username);
         model.addAttribute("picture", userDO.getUserPicture());
         List<UserVideoDO> userVideoDOList = userVideoService.selectVideos(userId);
-        List<Integer> videoList = new ArrayList<>();
-        for (UserVideoDO userVideoDO : userVideoDOList){
-            videoList.add(userVideoDO.getVideoId());
+        if (userVideoDOList == null || limit >= userVideoDOList.size()) {
+            logger.error("userVideoDOList is null");
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("videoDOList", null);
+            model.addAttribute("videoDOList", jsonObject.toJSONString());
+            return "jsp/user/userHomepage";
         }
-        System.out.println("videoId: " + videoList);
-        List<VideoDO> videoDOs = videoService.selectVideos(videoList);
+        List<Integer> videoIdList = new ArrayList<>();
+        for (UserVideoDO userVideoDO : userVideoDOList) {
+            videoIdList.add(userVideoDO.getVideoId());
+        }
+        List<VideoDO> videoDOs = videoService.selectVideos(videoIdList);
         List<VideoDO> videoDOList = new ArrayList<>();
         //在内存中处理分页
-        for (int i = limit; i < limit + offset; i++){
+        JSONObject jsonObject = new JSONObject();
+        for (int i = limit; i < limit + offset; i++) {
             videoDOList.add(videoDOs.get(i));
         }
-        JSONObject jsonObject = new JSONObject();
         jsonObject.put("videoDOList", videoDOList);
         model.addAttribute("videoDOList", jsonObject.toJSONString());
-       // return jsonObject.toJSONString();
         return "jsp/user/userHomepage";
     }
 }

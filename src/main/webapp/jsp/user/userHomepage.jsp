@@ -30,6 +30,8 @@
     <link href="<%=request.getContextPath()%>/resources/css/bottom.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/guess.css" rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/all.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/course.css" rel="stylesheet" type="text/css"/>
+
     <title>问道 用户主页</title>
 
     <script>
@@ -93,7 +95,7 @@
                 </div>
                 <h5 class="text-center">${username}</h5>
                 <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation"><a href="<%=request.getContextPath()%>/userHomepage"><img
+                    <li role="presentation"><a href="<%=request.getContextPath()%>/userHomepage?limit=0&offset=3"><img
                             src="<%=request.getContextPath()%>/resources/images/Looked.png"/></a></li>
                     <li role="presentation"><a href="<%=request.getContextPath()%>/note" ><img
                             src="<%=request.getContextPath()%>/resources/images/note.png"/></a></li>
@@ -106,6 +108,14 @@
         </div>
         <div class="col-md-9">
             <div class="listVideo" id="parentDiv">
+            </div>
+            <div class="nav">
+                <nav>
+                    <ul class="pager">
+                        <li class="previous" id="previousId"><a href="" id="previousHref">上一页<span aria-hidden="true"></span></a></li>
+                        <li class="next" id="nextId"><a href="" id="nextHref">下一页<span aria-hidden="true"></span></a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
@@ -161,25 +171,49 @@
 
     $(document).ready(function () {
         var data = ${videoDOList};
-        if (data.videoDOList.length == 0) {
+        if (data.videoDOList == null) {
             var divParent = $('#parentDiv');
-            divParent.append("没有数据……");
+            divParent.append("该页没有数据");
         } else {
             var msg = data['videoDOList'];
             var divParent = $('#parentDiv');
             for (var i = 0; i < data.videoDOList.length; i++) {
                 var videoName = data.videoDOList[i]['videoName'];
-                var videoLikes = data.videoDOList[i]['videoLike'];
-                var videoPlay = data.videoDOList[i]['videoPlay'];
-                var videoPictureUrl = "<%=request.getContextPath()%>" + "/resources/images/video/" + msg[i]['videoPicture'];
                 var videoUrl = "<%=request.getContextPath()%>" + "/video/" + msg[i]["videoId"];
                 var videoDescribe = data.videoDOList[i]['videoDescribe'];
-                var obj = "<div class='list-group'> <a href='" + videoUrl + "' class='list-group-item'> <h4 class='list-group-item-heading'>" + videoName +
-                        "</h4> <div class='tag'><span class='glyphicon glyphicon-heart'>" + videoLikes + "</span> <span class='glyphicon glyphicon-play-circle'>" + videoPlay +
-                        "</span> </div> <div class='image'><img src='" + videoPictureUrl + "'/></div> <div class='list-group-item-tex'>" + videoDescribe + "</div> </a> </div>"
+                var obj = "<div class='list-group'> <a href='" + videoUrl + "' class='list-group-item'> <h4 class='list-group-item-heading'>" + videoName + "</h4> <div class='list-group-item-tex'>" +
+            videoDescribe +"</div> </a> </div>"
                 divParent.append(obj);
             }
         }
+    });
+
+    $('#previousId').click(function () {
+        var location = window.location.search;
+        var str = location.substr(1);
+        var param = str.split('&');
+        var limit1 = param[0].split('=');
+        var offset2 = param[1].split('=');
+        var startLimit = parseInt(limit1[1]);
+        if (startLimit == 0){
+            var limit = 0;
+        }else{
+            var limit = parseInt(limit1[1]) - parseInt(offset2[1]);
+        }
+        var url = "<%=request.getContextPath()%>/userHomepage?limit=" + limit + "&offset=3";
+        $('#previousHref').attr("href",url);
+    });
+
+
+    $('#nextId').click(function () {
+        var location = window.location.search;
+        var str = location.substr(1);
+        var param = str.split('&');
+        var limit1 = param[0].split('=');
+        var offset2 = param[1].split('=');
+        var limit = parseInt(limit1[1]) + parseInt(offset2[1]);
+        var url = "<%=request.getContextPath()%>/userHomepage?limit=" + limit + "&offset=3";
+        $('#nextHref').attr("href",url);
     });
 </script>
 </html>

@@ -24,10 +24,9 @@ public class AuthInterceptor implements HandlerInterceptor {
         }else{
             HttpSession session = httpServletRequest.getSession();
             //为了调试，先把session验证去掉
-            session.setAttribute("username", "hello");
+            //session.setAttribute("username", "xiyou");
             String obj = (String)session.getAttribute("username");
             if (StringUtils.isEmpty(obj)){
-
                 logger.warn("未登录的: " + reqUrl);
                   httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/user/userLogin.jsp");
                   return false;
