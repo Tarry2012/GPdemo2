@@ -130,11 +130,13 @@
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
+        var url = window.location.pathname;
+        var arr = url.split("/");
         $('#comments-container').comments({
             getComments: function (success, error) {
                 $.post("<%=request.getContextPath()%>/video/getComment",
                         {
-                            videoId: "123"
+                            videoId: arr[3]
                         },
                         function (jsonArray) {
 //                            obj = JSON.parse(jsonArray);
@@ -144,8 +146,11 @@
             postComment: function (commentJSON, success, error) {
                 $.ajax({
                     type: 'post',
-                    url: '<%=request.getContextPath()%>/video/{videoId}/addComment',
-                    data: {'comment': JSON.stringify(commentJSON)},
+                    url: '<%=request.getContextPath()%>/video/addComment',
+                    data: {
+                        'comment': JSON.stringify(commentJSON),
+                        'videoId':arr[3]
+                    },
                     success: function () {
                         success(commentJSON);
                     },

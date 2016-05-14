@@ -102,7 +102,6 @@
       </aside>
     </div>
     <div class="col-md-9" id = "parentDiv">
-      <h2>暂无笔记</h2>
     </div>
   </div>
 </div>
@@ -159,13 +158,14 @@
     $.get(url,function(data,status){
 
       var parentdiv = $('#parentDiv');
-      for (var i= 1; i <= data.note.length; i++){
+      for (var i= 0; i <= data.note.length; i++){
+        var noteId = data.note[i]['noteId'];
         var noteName = data.note[i]['noteName'];
+        var videoId  = data.note[i]['videoId'];
         var noteContent = data.note[i]['noteContent'];
         var dateObj = new Date(data.note[i]['noteTime']);
-        var UnixTimeToDate = dateObj.getUTCFullYear() + '年' + (dateObj.getUTCMonth() +1 ) + '月' + dateObj.getUTCDate() + '日  ' + dateObj.getUTCHours() + ':' + dateObj.getUTCMinutes() + ':' + dateObj.getUTCSeconds();
-        alert(noteName);
-        var obj = "<div class='list-group'> <a href='#' class='list-group-item'> <h4 class='list-group-item-heading'>"
+        var UnixTimeToDate = dateObj.getUTCFullYear() + '年' + (dateObj.getUTCMonth() +1 ) + '月' + dateObj.getUTCDate() + '日  ' + dateObj.getHours() + ':' + dateObj.getUTCMinutes() + ':' + dateObj.getUTCSeconds();
+        var obj = "<div class='list-group'> <a href='<%=request.getContextPath()%>/note/" + noteId +"/editNote' class='list-group-item'> <h4 class='list-group-item-heading'>"
                 + noteName + "</h4> <div class='tag'><span class='glyphicon glyphicon-time'>"
                 + UnixTimeToDate +"</span></div> <div class='list-group-item-tex'>" + noteContent +"</div> </a> </div>";
         parentdiv.append(obj);

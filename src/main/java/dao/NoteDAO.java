@@ -10,9 +10,11 @@ import java.util.List;
  */
 public interface NoteDAO {
 
-    Integer updateNoteById(@Param("noteId")int noteId);
+    Integer updateNoteById(NoteDO noteDO);
 
     Integer add(NoteDO noteDO);
 
     List getContentById(@Param("userId")int userId);
+
+    NoteDO getContentByNoteId(int noteId);
 }

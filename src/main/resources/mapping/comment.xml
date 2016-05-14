@@ -29,4 +29,8 @@
         select * from wd_comment where video_id=#{videoId};
     </select>
 
+    <select id="getContentByUserId" parameterType="Integer" resultMap="CommentMap">
+        select * from wd_comment where author_id=#{authorId}  order by comment_time DESC ;
+    </select>
+
 </mapper>

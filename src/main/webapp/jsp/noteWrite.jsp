@@ -246,12 +246,7 @@
             var myText = document.getElementById("editor").innerText;
             var url = window.location.pathname;
             var arr = url.split("/");
-//            var videoId = window.location.pathname.substring(12,13);
-//            alert(videoId);
-//            if (myText.val() == '') {
-//                return false;
-//            }
-//            else {
+
             $.ajax({
                 type: 'post',
                 url: '<%=request.getContextPath()%>/video/addNote',
@@ -261,13 +256,12 @@
                     "note": myText
                 },
                 success: function (msg) {
-//                    if(msg == "ok") {
-//                        alert("已保存到我的笔记");
-//                    }
+                    alert("已保存到我的笔记");
                 }
             });
-            alert("已保存到我的笔记");
+            return false;
         });
+        return false;
     });
 </script>
 

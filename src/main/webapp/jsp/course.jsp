@@ -124,10 +124,6 @@
         }
     });
 
-    $('#previousId').click(function(){
-        var  = window.location.search;
-
-    });
 </script>
 </body>
 </html>
