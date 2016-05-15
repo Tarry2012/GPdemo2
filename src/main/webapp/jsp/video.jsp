@@ -101,6 +101,10 @@
                         <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                     </p>
                 </video>
+                <button id="capture" class="btn btn-default" type="submit">
+                    <span class="glyphicon glyphicon-scissors"></span>
+                </button>
+                <div id="output"></div>
             </div>
             <div class="blank">
             </div>
@@ -166,6 +170,28 @@
         });
 
     });
+
+    (function() {
+        "use strict";
+        var video, $output;
+        var scale = 0.25;
+        var initialize = function() {
+            $output = $("#output");
+            video = $("#my_video").get(0);
+            $("#capture").click(captureImage);
+        };
+        var captureImage = function() {
+            var canvas = document.createElement("canvas");
+            canvas.width = video.videoWidth * scale;
+            canvas.height = video.videoHeight * scale;
+            canvas.getContext('2d')
+                    .drawImage(video, 0, 0, canvas.width, canvas.height);
+            var img = document.createElement("img");
+            img.src = canvas.toDataURL();
+            $output.prepend(img);
+        };
+        $(initialize);
+    }());
 
 </script>
 
