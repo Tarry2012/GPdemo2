@@ -93,7 +93,7 @@
         </div>
         <div class="col-md-7">
             <div class="video">
-                <video id="my_video" class="video-js" controls preload="auto" width="350" height="208"
+                <video id="my_video" class="video-js vjs-big-play-centered" controls preload="auto" width="350" height="208"
                        poster="<%=request.getContextPath()%>/${videoPicture}" data-setup="{}">
                     <source src="<%=request.getContextPath()%>/${videoUrl}" type="video/mp4"/>
                     <p class="vjs-no-js">

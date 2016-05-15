@@ -141,7 +141,7 @@
     </div>
     <div class="guess_content clearfix">
         <div class="add_convenient">
-            <video id="my-video" class="video-js" controls preload="auto" width="350" height="208"
+            <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="350" height="208"
                    poster="<%=request.getContextPath()%>/resources/images/index1.png" data-setup="{}">
                 <source src="<%=request.getContextPath()%>/resources/video/oceans.mp4" type="video/mp4"/>
                 <p class="vjs-no-js">
@@ -151,7 +151,7 @@
             </video>
         </div>
         <div class="add_convenient">
-            <video id="my-video2" class="video-js" controls preload="auto" width="350" height="208"
+            <video id="my-video2" class="video-js vjs-big-play-centered" controls preload="auto" width="350" height="208"
                    poster="<%=request.getContextPath()%>/resources/images/index2.png" data-setup="{}">
                 <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
                 <p class="vjs-no-js">
@@ -161,7 +161,7 @@
             </video>
         </div>
         <div class="add_convenient">
-            <video id="my-video3" class="video-js" controls preload="auto" width="350" height="208"
+            <video id="my-video3" class="video-js vjs-big-play-centered" controls preload="auto" width="350" height="208"
                    poster="<%=request.getContextPath()%>/resources/images/index3.png" data-setup="{}">
                 <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
                 <p class="vjs-no-js">
