@@ -273,5 +273,3 @@ UNLOCK TABLES;
 -- Dump completed on 2016-05-11 17:35:45
 alter table wd_user_video add column is_like int default '0';
 alter table wd_user drop column user_home_page; 
-alter table wd_user_auths drop column check_code; 
-
