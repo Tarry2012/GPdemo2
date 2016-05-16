@@ -8,6 +8,7 @@ public class UserVideoDO {
     private int userId;
     private int videoId;
     private boolean isDelete;
+    private boolean isLike;
 
     public int getId() {
         return id;
@@ -41,6 +42,14 @@ public class UserVideoDO {
         this.isDelete = isDelete;
     }
 
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setIsLike(boolean isLike) {
+        this.isLike = isLike;
+    }
+
     @Override
     public String toString() {
         return "UserVideoDO{" +
@@ -48,6 +57,7 @@ public class UserVideoDO {
                 ", userId=" + userId +
                 ", videoId=" + videoId +
                 ", isDelete=" + isDelete +
+                ", isLike=" + isLike +
                 '}';
     }
 }

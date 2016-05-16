@@ -109,6 +109,7 @@ public class VideoController {
         userVideoDO.setUserId(userId);
         userVideoDO.setVideoId(videoId);
         userVideoDO.setIsDelete(false);
+        userVideoDO.setIsLike(false);
         if (!userVideoService.add(userVideoDO)){
             logger.error("add userVideo is error");
             return "index";

@@ -250,6 +250,9 @@ update wd_video set video_picture='oceans.jpg' where video_id=7;
 update wd_video set video_picture='oceans.jpg' where video_id=8;
 update wd_video set video_picture='oceans.jpg' where video_id=9;
 
+alter table wd_user_video add column islike int default '0';
+
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
