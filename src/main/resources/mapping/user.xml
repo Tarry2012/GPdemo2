@@ -8,7 +8,6 @@
         <result column="user_name" property="userName"/>
         <result column="user_sex" property="userSex"/>
         <result column="user_picture" property="userPicture"/>
-        <result column="user_home_page" property="userHomePage"/>
         <result column="login_times" property="loginTimes"/>
         <result column="last_login_time" property="lastLoginTime"/>
     </resultMap>
@@ -26,7 +25,7 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert wd_user(user_name,user_sex,user_picture,
-        user_home_page,last_login_time,login_times)values(#{userName},#{userSex},#{userPicture},#{userHomePage},#{lastLoginTime},#{loginTimes})
+        last_login_time,login_times)values(#{userName},#{userSex},#{userPicture},#{lastLoginTime},#{loginTimes})
     </insert>
 
     <select id="getNames" resultMap="UserMap">
@@ -44,7 +43,6 @@
             <if test="userName != null">user_name=#{userName},</if>
             <if test="userSex != null">user_sex=#{userSex}</if>
             <if test="userPicture != null">user_picture=#{userPicture},</if>
-            <if test="userHomePage != null">user_home_page=#{userHomePage}</if>
             <if test="loginTimes > 0" >login_times=#{loginTimes}</if>
             <if test="lastLoginTime != null">last_login_time=#{lastLoginTime}</if>
         </set>

@@ -11,7 +11,6 @@ public class UserDO implements Serializable{
     private String userName;
     private String userSex;
     private String userPicture;
-    private String userHomePage;
     private int loginTimes;
     private Date lastLoginTime;
 
@@ -56,20 +55,12 @@ public class UserDO implements Serializable{
         return userPicture;
     }
 
-    public String getUserHomePage() {
-        return userHomePage;
-    }
-
     public void setUserSex(String userSex) {
         this.userSex = userSex;
     }
 
     public void setUserPicture(String userPicture) {
         this.userPicture = userPicture;
-    }
-
-    public void setUserHomePage(String userHomePage) {
-        this.userHomePage = userHomePage;
     }
 
     @Override
@@ -79,7 +70,6 @@ public class UserDO implements Serializable{
                 ", userName='" + userName + '\'' +
                 ", userSex='" + userSex + '\'' +
                 ", userPicture='" + userPicture + '\'' +
-                ", userHomePage='" + userHomePage + '\'' +
                 ", loginTimes=" + loginTimes +
                 ", lastLoginTime=" + lastLoginTime +
                 '}';

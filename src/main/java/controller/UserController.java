@@ -423,7 +423,7 @@ public class UserController {
         List<VideoDO> videoDOList = new ArrayList<>();
         //在内存中处理分页
         JSONObject jsonObject = new JSONObject();
-        for (int i = limit; i < limit + offset; i++) {
+        for (int i = limit; i < videoDOs.size() && i <limit + offset; i++) {
             videoDOList.add(videoDOs.get(i));
         }
         jsonObject.put("videoDOList", videoDOList);

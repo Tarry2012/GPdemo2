@@ -16,6 +16,6 @@
     </insert>
 
     <select id="selectVideos" parameterType="java.lang.Integer" resultMap="UserVideoMap">
-        select id, user_id, video_id, is_delete from wd_user_video where user_id=#{userId} group by video_id;
+        select id, user_id, video_id, is_delete,is_like from wd_user_video where user_id=#{userId} group by video_id desc order by id;
     </select>
 </mapper>
