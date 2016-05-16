@@ -274,4 +274,9 @@ UNLOCK TABLES;
 alter table wd_user_video add column is_like int default '0';
 alter table wd_user drop column user_home_page; 
 alter table wd_user_auths drop column check_code; 
+alter table wd_comment change comment_likes comment_likes int(11) default 0; 
+alter table wd_user change user_sex user_sex int(1) default 0; 
+alter table wd_comment change comment_content comment_content longtext; 
+alter table wd_user_video change is_delete is_delete int default 0; 
+
 

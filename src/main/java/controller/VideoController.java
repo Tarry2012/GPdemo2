@@ -136,7 +136,7 @@ public class VideoController {
     @RequestMapping(value = "/video/hotVideo",produces = {"application/json;charset=UTF-8"},method = RequestMethod.GET)
     @ResponseBody
     public String selectHotVideo(HttpServletRequest request){
-        int limit = StringUtils.isEmpty(request.getParameter("limit"))? 7: Integer.parseInt(request.getParameter("limit"));
+        int limit = StringUtils.isEmpty(request.getParameter("limit"))? 10: Integer.parseInt(request.getParameter("limit"));
         List<VideoDO> videoDOList = videoService.selctHotVideo(limit);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("videoList", videoDOList);

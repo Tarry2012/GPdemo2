@@ -12,7 +12,7 @@
     </resultMap>
 
     <insert id="add" parameterType="domain.UserVideoDO">
-        insert into wd_user_video(user_id, video_id, is_delete)values(#{userId}, #{videoId}, #{isDelete}, #{isLike});
+        insert into wd_user_video(user_id, video_id, is_delete,is_like)values(#{userId}, #{videoId}, #{isDelete}, #{isLike});
     </insert>
 
     <select id="selectVideos" parameterType="java.lang.Integer" resultMap="UserVideoMap">

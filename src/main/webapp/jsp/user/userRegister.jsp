@@ -56,7 +56,7 @@
                 </div>
                 <div class="button btn-group" role="group" aria-label="...">
                     <button type="button" class="btn btn-default" id="subuser">注册</button>
-                    <a href="index.jsp">
+                    <a href="<%=request.getContextPath()%>/index.jsp">
                         <button type="button" class="btn btn-default">取消</button>
                     </a>
                 </div>
