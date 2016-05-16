@@ -131,9 +131,9 @@
             <a href="" class="list-group-item list-group-item-success" id="video5"></a>
             <a href="" class="list-group-item list-group-item-info" id="video6"></a>
             <a href="" class="list-group-item list-group-item-success" id="video7"></a>
-             <a href="" class="list-group-item list-group-item-success" id="video8"></a>
-            <a href="" class="list-group-item list-group-item-info" id="video9"></a>
-            <a href="" class="list-group-item list-group-item-success" id="video10"></a>
+             <a href="" class="list-group-item list-group-item-info" id="video8"></a>
+            <a href="" class="list-group-item list-group-item-success" id="video9"></a>
+            <a href="" class="list-group-item list-group-item-info" id="video10"></a>
         </span>
     </div>
 </div>
