@@ -17,7 +17,7 @@
 
     <select id="select" parameterType="domain.VideoQuery" resultMap="VideoMap">
         SELECT video_id,video_name,video_describe,video_time,video_url,video_like,video_play,interest_id,video_picture
-        FROM  wd_video
+        FROM wd_video
         where 1=1
         <if test="videoId > 0">
             and video_id = #{videoId}
@@ -30,8 +30,8 @@
         </if>
         ORDER BY video_id DESC
         <if test="limit>=0 and offset>0">
-           LiMiT #{limit},#{offset}
-       </if>
+            LiMiT #{limit},#{offset}
+        </if>
 
     </select>
 
@@ -45,14 +45,14 @@
     <update id="updatePlayOrLike" parameterType="domain.VideoUpdate">
         UPDATE wd_video
         <set>
-            <if test="videoPlay == true" >video_play=video_play+1</if>
+            <if test="videoPlay == true">video_play=video_play+1</if>
             <if test="videoLike == true">video_like=video_like+1</if>
         </set>
         where
         <if test="videoId > 0">video_id=#{videoId}</if>
     </update>
 
-    <select id="selectNewVideo"  resultMap="VideoMap">
+    <select id="selectNewVideo" resultMap="VideoMap">
        SELECT video_id,video_name,video_describe,video_time,video_url,video_like,video_play,interest_id,video_picture
        FROM wd_video
        ORDER BY video_id DESC
@@ -60,12 +60,22 @@
     </select>
 
     <select id="selectVideos" parameterType="java.util.List" resultMap="VideoMap">
-      SELECT video_id,video_name,video_describe,video_time,video_url,video_like,video_play,interest_id,video_picture
-      FROM wd_video
-      WHERE video_id IN
+        SELECT video_id,video_name,video_describe,video_time,video_url,video_like,video_play,interest_id,video_picture
+        FROM wd_video
+        WHERE video_id IN
         <foreach item="item" index="index" collection="list"
                  open="(" separator="," close=")">
             #{item}
         </foreach>
     </select>
-    </mapper>
+
+    <select id="selectLikeVideos" parameterType="java.util.List" resultMap="VideoMap">
+       SELECT video_id,video_name,video_describe,video_time,video_url,video_like,video_play,interest_id,video_picture
+       FROM wd_video
+       WHERE interest_id IN
+        <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>
