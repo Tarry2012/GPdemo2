@@ -55,7 +55,7 @@ public class InterestController {
             return "error";
         }
         Integer userId = userService.getIdByName(username);
-        List<UserInterestDO> userInterestDOList = new ArrayList<>();
+        List<UserInterestDO> userInterestDOList = new ArrayList<UserInterestDO>();
         for( int i = 0 ; i < arr.length; i++ ) {
             UserInterestDO userInterestDO = new UserInterestDO();
             userInterestDO.setUserId(userId);

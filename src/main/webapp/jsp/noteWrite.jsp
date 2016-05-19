@@ -262,7 +262,15 @@
                     "note": myText
                 },
                 success: function (msg) {
-                    alert("已保存到我的笔记");
+                    if (msg['msg'] == "ok") {
+                        alert("提交成功");
+                    } else {
+                        alert("提交失败，请重试");
+                        return
+                    }
+                },
+                error: function (data) {
+                    alert("系统内部错误，请重试")
                 }
             });
             return false;

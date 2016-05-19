@@ -415,12 +415,12 @@ public class UserController {
             model.addAttribute("videoDOList", jsonObject.toJSONString());
             return "jsp/user/userHomepage";
         }
-        List<Integer> videoIdList = new ArrayList<>();
+        List<Integer> videoIdList = new ArrayList<Integer>();
         for (UserVideoDO userVideoDO : userVideoDOList) {
             videoIdList.add(userVideoDO.getVideoId());
         }
         List<VideoDO> videoDOs = videoService.selectVideos(videoIdList);
-        List<VideoDO> videoDOList = new ArrayList<>();
+        List<VideoDO> videoDOList = new ArrayList<VideoDO>();
         //在内存中处理分页
         JSONObject jsonObject = new JSONObject();
         for (int i = limit; i < videoDOs.size() && i <limit + offset; i++) {
