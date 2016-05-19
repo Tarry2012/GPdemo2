@@ -17,4 +17,5 @@ public interface VideoService {
     Boolean updatePlayOrLike(VideoUpdate videoUpdate);
     List<VideoDO> selectNewVideo();
     List<VideoDO> selectVideos(List<Integer> videoList);
+    List<VideoDO> selectLikeVideos(List<Integer> interestId);
 }

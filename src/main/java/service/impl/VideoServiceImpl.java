@@ -42,5 +42,10 @@ public class VideoServiceImpl implements VideoService {
         return videoDAO.selectVideos(videoList);
     }
 
+    @Override
+    public List<VideoDO> selectLikeVideos(List<Integer> interestId) {
+        return videoDAO.selectLikeVideos(interestId);
+    }
+
 
 }

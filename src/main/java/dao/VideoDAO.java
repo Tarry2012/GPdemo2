@@ -15,4 +15,5 @@ public interface VideoDAO {
     Integer updatePlayOrLike(VideoUpdate videoUpdate);
     List<VideoDO> selectNewVideo();
     List<VideoDO> selectVideos(List<Integer> videoList);
+    List<VideoDO> selectLikeVideos(List<Integer> interestList);
 }

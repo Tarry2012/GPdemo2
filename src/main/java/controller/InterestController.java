@@ -1,8 +1,9 @@
 package controller;
 
-import common.constant.ChineseInterestEnum;
+import com.alibaba.fastjson.JSONObject;
 import common.constant.InterestEnum;
-import domain.InterestDO;
+import domain.UserInterestDO;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -10,13 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import service.InterestService;
+import service.UserInterestService;
 import service.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class InterestController {
     Logger logger = Logger.getLogger(NoteController.class);
 
     @Resource
-    private InterestService interestService;
+    private UserInterestService userInterestService;
     @Resource
     private UserService userService;
 
@@ -41,32 +41,37 @@ public class InterestController {
     @ResponseBody
     public String addInterest(@RequestParam(value = "interest[]", required = false)String [] arr,
                           HttpServletRequest request){
-        String username = null;
-
-
-        Cookie[] cookies = request.getCookies();
-        for(int i = 0; i < cookies.length; i++ ){
-            if("username".equals(cookies[i].getName()))
-            {
-                username = cookies[i].getValue();
+        String username = (String) request.getSession().getAttribute("username");
+        if (StringUtils.isEmpty(username)) {
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
+                    username = cookie.getValue();
+                }
             }
         }
-
-        Integer userId = userService.getIdByName(username);
-
-        for( int i = 0 ; i < arr.length; i++ ) {
-            InterestDO interestDO = new InterestDO();
-
-            interestDO.setUserId(userId);
-            Integer interest_id = InterestEnum.getIndex(arr[i]);
-            interestDO.setInterestId(interest_id);
-
-            interestService.add(interestDO);
+        if (StringUtils.isEmpty(username)) {
+            logger.error("username is null");
+            return "error";
         }
-        return "";
+        Integer userId = userService.getIdByName(username);
+        List<UserInterestDO> userInterestDOList = new ArrayList<>();
+        UserInterestDO userInterestDO = new UserInterestDO();
+        for( int i = 0 ; i < arr.length; i++ ) {
+            userInterestDO.setUserId(userId);
+            Integer interestId = InterestEnum.getIndex(arr[i]);
+            userInterestDO.setInterestId(interestId);
+            userInterestDOList.add(userInterestDO);
+        }
+        if (userInterestService.update(userInterestDOList, userId)){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("msg", "ok");
+            return jsonObject.toJSONString();
+        }else{
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("data", "error");
+            return jsonObject.toJSONString();
+        }
+
     }
-
-
-
-
 }

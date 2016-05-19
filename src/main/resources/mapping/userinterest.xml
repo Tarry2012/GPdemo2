@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.UserInterestDAO">
+    <resultMap id="UserInterestMap" type="domain.UserInterestDO">
+        <result column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="interest_id" property="interestId"/>
+    </resultMap>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from wd_user_interest
+        where user_id=#{userId}
+    </delete>
+
+    <insert id="add" parameterType="java.util.List">
+        insert into wd_user_interest(user_id,interest_id) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.userId},#{item.interestId})
+        </foreach>
+    </insert>
+
+    <select id="get" parameterType="java.lang.Integer" resultMap="UserInterestMap">
+      SELECT id,user_id,interest_id
+      from wd_user_interest
+      where user_id=#{userId}
+    </select>
+</mapper>
