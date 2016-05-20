@@ -68,9 +68,16 @@ public class NoteController {
         noteDO.setVideoId(videoId);
         noteDO.setNoteContent(content);
 
-        noteService.add(noteDO);
+        if( 0 == noteService.add(noteDO)){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("msg", "ok");
+            return jsonObject.toJSONString();
+        }else{
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("data", "error");
+            return jsonObject.toJSONString();
+        }
 
-        return "ok";
     }
 
     //方法级别,所以处理这种url: /demo/note/getNote

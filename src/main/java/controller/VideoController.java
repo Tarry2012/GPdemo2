@@ -175,6 +175,7 @@ public class VideoController {
         return jsonObject.toJSONString();
     }
 
+<<<<<<< HEAD
     @RequestMapping(value = "/video/recommend", produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String recommendVideo(HttpServletRequest request) {
