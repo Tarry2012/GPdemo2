@@ -47,5 +47,7 @@ public class VideoServiceImpl implements VideoService {
         return videoDAO.selectLikeVideos(interestId);
     }
 
-
+    public List<VideoDO> selectRecent(VideoQuery videoQuery){
+        return videoDAO.selectRecent(videoQuery);
+    }
 }

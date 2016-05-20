@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Date;
+
 /**
  * Created by tqy on 16-5-11.
  */
@@ -9,6 +11,8 @@ public class VideoQuery {
     private int interestId;
     private int limit;
     private int offset;
+    private Date startTime;
+    private Date endTime;
 
     public int getVideoId() {
         return videoId;
@@ -50,6 +54,22 @@ public class VideoQuery {
         this.offset = offset;
     }
 
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
     @Override
     public String toString() {
         return "VideoQuery{" +
@@ -58,6 +78,8 @@ public class VideoQuery {
                 ", interestId=" + interestId +
                 ", limit=" + limit +
                 ", offset=" + offset +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
                 '}';
     }
 }

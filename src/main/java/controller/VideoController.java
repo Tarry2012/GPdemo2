@@ -6,6 +6,7 @@ import common.constant.ChineseInterestEnum;
 import common.constant.InterestEnum;
 import domain.*;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -210,7 +212,7 @@ public class VideoController {
         }
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("videoDOList", recommandVideos);
-        return "";
+        return jsonObject.toJSONString();
     }
 
     private void randomSet(int min, int max, int num, HashSet<Integer> set) {
@@ -230,7 +232,17 @@ public class VideoController {
         }
     }
 
-    private List<VideoDO> BackUp(){
-        return null;
+    private String BackUp(){
+        VideoQuery videoQuery = new VideoQuery();
+        Date endTime = new Date();
+        Date startTime = DateUtils.addMonths(endTime, -1);
+
+        videoQuery.setLimit(3);
+        videoQuery.setStartTime(startTime);
+        videoQuery.setEndTime(endTime);
+        List<VideoDO> videoDOList = videoService.selectRecent(videoQuery);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("videdDOList", videoDOList);
+        return jsonObject.toJSONString();
     }
 }

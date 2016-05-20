@@ -18,4 +18,5 @@ public interface VideoService {
     List<VideoDO> selectNewVideo();
     List<VideoDO> selectVideos(List<Integer> videoList);
     List<VideoDO> selectLikeVideos(List<Integer> interestId);
+    List<VideoDO> selectRecent(VideoQuery videoQuery);
 }
