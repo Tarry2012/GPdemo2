@@ -42,7 +42,7 @@ public class NoteServiceImpl implements  NoteService{
     public Integer add(NoteDO noteDO)
     {
         this.noteDAO.add(noteDO);
-        return noteDO.getNoteId();
+        return 0;
     }
 
     public List getContentById(int userId)
