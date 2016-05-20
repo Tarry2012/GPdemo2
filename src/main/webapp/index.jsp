@@ -23,10 +23,10 @@
 
     <title>问道学习视频网站</title>
     <script>
-        function aboutUs(){
+        function aboutUs() {
             alert("软件1204 汤秋媛 \n软件1203 宋润雨")
         }
-        function contactUs(){
+        function contactUs() {
             alert("宋润雨邮箱：songrunyu1993@gmail.com \n" +
                     "汤秋媛邮箱：njtangqy@163.com")
         }
@@ -35,16 +35,16 @@
 <body>
 <div class="top_content">
     <ul>
-        <%  if (session.getAttribute("username") == null) {
+        <% if (session.getAttribute("username") == null) {
         %>
         <li><a href="<%=request.getContextPath()%>/jsp/user/userLogin.jsp">登录</a></li>
         <li><a href="<%=request.getContextPath()%>/jsp/user/userRegister.jsp">注册</a></li>
-        <%  }
-        else  {
+        <% } else {
         %>
-         <li><a href="<%=request.getContextPath()%>/userHomepage?limit=0&offset=3">我的主页</a></li>
-         <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
-        <%}
+        <li><a href="<%=request.getContextPath()%>/userHomepage?limit=0&offset=3">我的主页</a></li>
+        <li><a href="<%=request.getContextPath()%>/userLogout">退出</a></li>
+        <%
+            }
         %>
     </ul>
     <div class="top_title">
@@ -70,12 +70,18 @@
 <div class="navigation">
     <ul class="nav nav-pills">
         <li role="presentation" class="active"><a href="<%=request.getContextPath()%>/index.jsp">首页</a></li>
-        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=1">计算机</a></li>
-        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=2">文学</a></li>
-        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=3">科学</a></li>
-        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=4">经济</a></li>
-        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=5">艺术</a></li>
-        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=6">心理</a></li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=1">计算机</a>
+        </li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=2">文学</a>
+        </li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=3">科学</a>
+        </li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=4">经济</a>
+        </li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=5">艺术</a>
+        </li>
+        <li role="presentation"><a href="<%=request.getContextPath()%>/video/type?limit=0&offset=5&interestid=6">心理</a>
+        </li>
     </ul>
 </div>
 <%--loge结束--%>
@@ -92,18 +98,21 @@
         <div class="carousel-inner" role="listbox">
             <div class="item active">
                 <img id="picture1" src=""/>
+
                 <div class="carousel-caption">
                     <h3 id="text1"></h3>
                 </div>
             </div>
             <div class="item">
                 <img id="picture2" src=""/>
+
                 <div class="carousel-caption">
                     <h3 id="text2"></h3>
                 </div>
             </div>
             <div class="item">
                 <img id="picture3" src=""/>
+
                 <div class="carousel-caption">
                     <h3 id="text3"></h3>
                 </div>
@@ -142,37 +151,7 @@
     <div class="guess_title">
         <img src="<%=request.getContextPath()%>/resources/images/guessyoulike.png" height="45px"/>
     </div>
-    <div class="guess_content clearfix">
-        <div class="add_convenient">
-            <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="350" height="208"
-                   poster="<%=request.getContextPath()%>/resources/images/index1.png" data-setup="{}">
-                <source src="<%=request.getContextPath()%>/resources/video/oceans.mp4" type="video/mp4"/>
-                <p class="vjs-no-js">
-                    To view this video please enable JavaScript, and consider upgrading to a web browser that
-                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                </p>
-            </video>
-        </div>
-        <div class="add_convenient">
-            <video id="my-video2" class="video-js vjs-big-play-centered" controls preload="auto" width="350" height="208"
-                   poster="<%=request.getContextPath()%>/resources/images/index2.png" data-setup="{}">
-                <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
-                <p class="vjs-no-js">
-                    To view this video please enable JavaScript, and consider upgrading to a web browser that
-                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                </p>
-            </video>
-        </div>
-        <div class="add_convenient">
-            <video id="my-video3" class="video-js vjs-big-play-centered" controls preload="auto" width="350" height="208"
-                   poster="<%=request.getContextPath()%>/resources/images/index3.png" data-setup="{}">
-                <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
-                <p class="vjs-no-js">
-                    To view this video please enable JavaScript, and consider upgrading to a web browser that
-                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                </p>
-            </video>
-        </div>
+    <div class="guess_content clearfix" id="videoParent">
     </div>
 </div>
 
@@ -185,25 +164,44 @@
 <script>
     $(document).ready(function () {
         var url = "<%=request.getContextPath()%>/video/hotVideo";
-        $.get(url,function(data,status){
-           for (var i= 1; i <= data.videoList.length; i++){
-               var video = '#video'+i;
-               $(video).text(i+"."+data.videoList[i-1]['videoName']);
-               var url1 = "<%=request.getContextPath()%>/video/"+data.videoList[i-1]['videoId'];
-               $(video).attr("href",url1);
+        var divParent = $('#parentDiv');
+        $.get(url, function (data, status) {
+            for (var i = 1; i <= data.videoList.length; i++) {
+                var video = '#video' + i;
+                $(video).text(i + "." + data.videoList[i - 1]['videoName']);
+                var url1 = "<%=request.getContextPath()%>/video/" + data.videoList[i - 1]['videoId'];
+                $(video).attr("href", url1);
             }
         });
     });
 
     $(document).ready(function () {
         var url = "<%=request.getContextPath()%>/video/indexVideo";
-        $.get(url,function(data,status){
-            for (var i= 1; i <= data.videoList.length; i++){
-                var text = '#text'+i;
-                $(text).text(data.videoList[i-1]['videoName']);
-                var picture ='#picture'+i;
-                var url1 = "<%=request.getContextPath()%>/resources/images/video/"+data.videoList[i-1]['videoPicture'];
+        $.get(url, function (data, status) {
+            for (var i = 1; i <= data.videoList.length; i++) {
+                var text = '#text' + i;
+                $(text).text(data.videoList[i - 1]['videoName']);
+                var picture = '#picture' + i;
+                var url1 = "<%=request.getContextPath()%>/resources/images/video/" + data.videoList[i - 1]['videoPicture'];
                 $(picture).attr("src", url1);
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        var url = "<%=request.getContextPath()%>/video/recommend";
+        var parentDiv = ('#videoParent');
+        $.get(url, function (data, status) {
+            for (var i = 0; i < data.videoDOList.length; i++) {
+                var msg = data['videoDOList'];
+                var videoUrl = "<%=request.getContextPath()%>/resources/video/" + msg[i]["videoUrl"];
+                var videoPictureUrl = "<%=request.getContextPath()%>/resources/images/video/" + msg[i]["videoPicture"];
+                var videoId = "video" + data['videoDOList'][i]['videoId'];
+                //alert("videoUrl: " + videoUrl + " videoPictureUrl: " + videoPictureUrl + " videoId: " + videoId);
+                var obj = "<div class='add_convenient'> <video id='" + videoId + "' class='video-js vjs-big-play-centered' controls preload='auto' width='350px' height='208px' poster='" + videoPictureUrl + "' data-setup='{}'> <source src='" + videoUrl + "' type='video/mp4'/> "+
+                        "</video> </div>";
+                $('#videoParent').append(obj);
+                //parentDiv.append(obj);
             }
         });
     });

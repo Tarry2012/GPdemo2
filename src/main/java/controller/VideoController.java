@@ -175,27 +175,31 @@ public class VideoController {
         return jsonObject.toJSONString();
     }
 
-<<<<<<< HEAD
+
     @RequestMapping(value = "/video/recommend", produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String recommendVideo(HttpServletRequest request) {
+
         String username = (String) request.getSession().getAttribute("username");
         if (StringUtils.isEmpty(username)) {
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("username")) {
-                    username = cookie.getValue();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("username")) {
+                        username = cookie.getValue();
+                    }
                 }
             }
         }
         if (StringUtils.isEmpty(username)) {
-            logger.error("username is null");
-            return "index";
+            List<VideoDO> videoDOs = BackUp();
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("videoDOList", videoDOs);
+            return jsonObject.toJSONString();
         }
         Integer userId = userService.getIdByName(username);
         List<Integer> interestId = new ArrayList<>();
-        List<UserInterestDO> userInterestDOList = new ArrayList<>();
-        userInterestDOList = userInterestService.get(userId);
+        List<UserInterestDO> userInterestDOList = userInterestService.get(userId);
         for (UserInterestDO userInterestDO : userInterestDOList) {
             interestId.add(userInterestDO.getInterestId());
         }
@@ -203,13 +207,12 @@ public class VideoController {
         List<VideoDO> recommandVideos = new ArrayList<>();
         if (videoDOList.size() >= 3) {
             HashSet<Integer> set = new HashSet<>();
-            randomSet(0, videoDOList.size()-1, 3, set);
-            for (Integer i : set){
+            randomSet(0, videoDOList.size() - 1, 3, set);
+            for (Integer i : set) {
                 recommandVideos.add(videoDOList.get(i));
             }
-
         } else {
-
+            recommandVideos = BackUp();
         }
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("videoDOList", recommandVideos);
@@ -233,17 +236,14 @@ public class VideoController {
         }
     }
 
-    private String BackUp(){
+    private List<VideoDO> BackUp() {
         VideoQuery videoQuery = new VideoQuery();
         Date endTime = new Date();
         Date startTime = DateUtils.addMonths(endTime, -1);
-
         videoQuery.setLimit(3);
         videoQuery.setStartTime(startTime);
         videoQuery.setEndTime(endTime);
-        List<VideoDO> videoDOList = videoService.selectRecent(videoQuery);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("videdDOList", videoDOList);
-        return jsonObject.toJSONString();
+        return videoService.selectRecent(videoQuery);
+
     }
 }
