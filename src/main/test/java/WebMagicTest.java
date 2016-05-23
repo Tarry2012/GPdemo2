@@ -6,8 +6,6 @@ import webmagic.GithubRepoPageProcessor;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static com.sun.webpane.platform.ConfigManager.log;
-
 /**
  * Created by tqy on 16/4/25.
  */

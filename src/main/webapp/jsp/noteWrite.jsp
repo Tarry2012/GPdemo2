@@ -165,44 +165,11 @@
     </div>
 </div>
 <div class="guessYouLike">
-  <div class="guess_title">
-    <img src="<%=request.getContextPath()%>/resources/images/guessyoulike.png" style="height: 45px"/>
-  </div>
-  <div class="guess_content clearfix">
-    <div class="add_convenient">
-      <video id="my-video1" class="video-js vjs-big-play-centered" controls preload="auto" width="350" height="208"
-             poster="<%=request.getContextPath()%>/resources/images/index1.png" data-setup="{}">
-        <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg"/>
-        <source src="MY_VIDEO.webm" type="video/webm"/>
-        <p class="vjs-no-js">
-          To view this video please enable JavaScript, and consider upgrading to a web browser that
-          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-        </p>
-      </video>
+    <div class="guess_title">
+        <img src="<%=request.getContextPath()%>/resources/images/guessyoulike.png" height="45px"/>
     </div>
-    <div class="add_convenient">
-      <video id="my-video2" class="video-js vjs-big-play-centered" controls preload="auto" width="350" height="208"
-             poster="<%=request.getContextPath()%>/resources/images/index2.png" data-setup="{}">
-        <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
-        <source src="MY_VIDEO.webm" type='video/webm'>
-        <p class="vjs-no-js">
-          To view this video please enable JavaScript, and consider upgrading to a web browser that
-          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-        </p>
-      </video>
+    <div class="guess_content clearfix" id="videoParent">
     </div>
-    <div class="add_convenient">
-      <video id="my-video3" class="video-js vjs-big-play-centered" controls preload="auto" width="350" height="208"
-             poster="<%=request.getContextPath()%>/resources/images/index3.png" data-setup="{}">
-        <source src="http://www.w3school.com.cn/i/movie.ogg" type='video/ogg'>
-        <source src="MY_VIDEO.webm" type='video/webm'>
-        <p class="vjs-no-js">
-          To view this video please enable JavaScript, and consider upgrading to a web browser that
-          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-        </p>
-      </video>
-    </div>
-  </div>
 </div>
 
 <div class="bottom_base">
@@ -276,6 +243,25 @@
             return false;
         });
         return false;
+    });
+
+    $(document).ready(function () {
+        var url = "<%=request.getContextPath()%>/video/recommend";
+        var parentDiv = ('#videoParent');
+        $.get(url, function (data, status) {
+            for (var i = 0; i < data.videoDOList.length; i++) {
+                var msg = data['videoDOList'];
+                var videoUrl = "<%=request.getContextPath()%>/resources/video/" + msg[i]["videoUrl"];
+                var videoPictureUrl = "<%=request.getContextPath()%>/resources/images/video/" + msg[i]["videoPicture"];
+                var videoId = "video" + data['videoDOList'][i]['videoId'];
+                var videoName=data['videoDOList'][i]['videoName'];
+                //alert("videoUrl: " + videoUrl + " videoPictureUrl: " + videoPictureUrl + " videoId: " + videoId);
+                var obj = "<div class='add_convenient'> <video id='" + videoId + "' class='video-js vjs-big-play-centered' controls preload='auto' width='350px' height='208px' poster='" + videoPictureUrl + "' data-setup='{}'> <source src='" + videoUrl + "' type='video/mp4'/> "+
+                        "</video> <h4 class='textName' style='text-align: center'>"+videoName+"</h4></div>";
+                $('#videoParent').append(obj);
+                //parentDiv.append(obj);
+            }
+        });
     });
 </script>
 

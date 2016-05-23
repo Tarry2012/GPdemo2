@@ -197,9 +197,10 @@
                 var videoUrl = "<%=request.getContextPath()%>/resources/video/" + msg[i]["videoUrl"];
                 var videoPictureUrl = "<%=request.getContextPath()%>/resources/images/video/" + msg[i]["videoPicture"];
                 var videoId = "video" + data['videoDOList'][i]['videoId'];
+                var videoName=data['videoDOList'][i]['videoName'];
                 //alert("videoUrl: " + videoUrl + " videoPictureUrl: " + videoPictureUrl + " videoId: " + videoId);
                 var obj = "<div class='add_convenient'> <video id='" + videoId + "' class='video-js vjs-big-play-centered' controls preload='auto' width='350px' height='208px' poster='" + videoPictureUrl + "' data-setup='{}'> <source src='" + videoUrl + "' type='video/mp4'/> "+
-                        "</video> </div>";
+                        "</video> <h4 class='textName' style='text-align: center'>"+videoName+"</h4></div>";
                 $('#videoParent').append(obj);
                 //parentDiv.append(obj);
             }

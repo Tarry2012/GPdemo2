@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import common.constant.ChineseInterestEnum;
 import common.constant.InterestEnum;
+import common.constant.NumConstant;
 import domain.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -23,10 +24,7 @@ import service.VideoService;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by tqy on 16-5-11.
@@ -205,9 +203,9 @@ public class VideoController {
         }
         List<VideoDO> videoDOList = videoService.selectLikeVideos(interestId);
         List<VideoDO> recommandVideos = new ArrayList<>();
-        if (videoDOList.size() >= 3) {
-            HashSet<Integer> set = new HashSet<>();
-            randomSet(0, videoDOList.size() - 1, 3, set);
+        if (videoDOList.size() >= NumConstant.recommendNum) {
+            HashSet<Integer> set = new HashSet<Integer>();
+            random(videoDOList, set);
             for (Integer i : set) {
                 recommandVideos.add(videoDOList.get(i));
             }
@@ -219,23 +217,6 @@ public class VideoController {
         return jsonObject.toJSONString();
     }
 
-    private void randomSet(int min, int max, int num, HashSet<Integer> set) {
-        if (num > (max - min + 1) || max < min) {
-            return;
-        }
-        for (int i = 0; i < num; i++) {
-            // 调用Math.random()方法
-            int randNum = (int) (Math.random() * (max - min)) + min;
-            // 将不同的数存入HashSet中
-            set.add(randNum);
-        }
-        int setSize = set.size();
-        // 如果存入的数小于指定生成的个数，则调用递归再生成剩余个数的随机数，如此循环，直到达到指定大小
-        if (setSize < num) {
-            randomSet(min, max, num - setSize, set);// 递归
-        }
-    }
-
     private List<VideoDO> BackUp() {
         VideoQuery videoQuery = new VideoQuery();
         Date endTime = new Date();
@@ -245,5 +226,18 @@ public class VideoController {
         videoQuery.setEndTime(endTime);
         return videoService.selectRecent(videoQuery);
 
+    }
+
+    private void random(List videoList, HashSet set){
+        set.add(0);
+        set.add(videoList.size() -1);
+        Random random = new Random(System.currentTimeMillis());
+        int num = random.nextInt(videoList.size()-1);
+        if (num == videoList.size() -1){
+            num = videoList.size() -2;
+        }else if (num == 0){
+            num = num +1;
+        }
+        set.add(num);
     }
 }
